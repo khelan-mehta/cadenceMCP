@@ -1,0 +1,308 @@
+\e Display :57 Error "BadAtom (invalid Atom parameter)"
+\e  request 20 error 5 serial 230 
+@@@VIRTUOSO_RC=0
+=== ciw ===
+\i   let( (i p)
+\i     i = dbCreateParamInst(cv master name 0:0 orient 1 props)
+\i     p = pinPt(i tn)
+\i     i~>xy = list(xCoord(pt)-xCoord(p) yCoord(pt)-yCoord(p))
+\i     i))
+\t placeAt
+\p > 
+\i nm   = dbOpenCellViewByType("gpdk090" "nmos2v" "symbol" nil "r")
+\o Loading gpdk090/libInit.il ...
+\o 	Loading gpdk090/loadCxt.ile ... done!
+\o 	Loading context 'gpdk090' from library 'gpdk090' ... done!
+\o 	Loading context 'pdkUtils' from library 'gpdk090' ... done!
+\o 	Loading gpdk090/display.drf ... done!
+\o 	Loading gpdk090/gpdk090_customFilter.il ... done!
+\o 	Loading gpdk090/.simrc ... done!
+\o 	Loading gpdk090/libInitCustomExit.il ... 	Loading Environment Settings ...
+\w *WARNING* envSetVal: Can't set the value of variable 'extractVerifySubstrate',
+\w 	in tool[.partition] 'layout' - it has not been registered.
+\o 	Loading Model Management File ...
+\o Loading spectrei.cxt 
+\o Loading devCheck.cxt 
+\o Loading relXpert.cxt 
+\# Memory report: using         327 MB, process size 1,149 MB at UTC 2026.10.11 12:25:03.023
+\o Loading hspiceD.cxt 
+\o Loading spectreinl.cxt 
+\o Loading UltraSim.cxt 
+\o Loading msgHandler.cxt 
+\o Loading AMSOSS.cxt 
+\o Loading AMS.cxt 
+\o 	Loading gpdk090/gpdk090_PDKRegistrations.il ... done!
+\o 
+\o   *************************************************************           
+\o   *              Cadence Design Systems, Inc.                 *           
+\o   *                                                           *           
+\o   *                    Generic 90nm PDK                       *           
+\o   *                        (gpdk090)                          *           
+\o   *                                                           *           
+\o   *************************************************************           
+\o 	
+\o 
+\o 	Version : 4.6
+\o 
+\o 	Build date: 10-FEB-2011
+\o 
+\o done!
+\o Loaded gpdk090/libInit.il successfully!
+\t db:0x1673cd1a
+\p > 
+\i rpm  = dbOpenCellViewByType("gpdk090" "resnsppoly" "symbol" nil "r")
+\t db:0x1673cb1a
+\p > 
+\i resM = dbOpenCellViewByType("analogLib" "res" "symbol" nil "r")
+\t db:0x1673c41a
+\p > 
+\i vdcM = dbOpenCellViewByType("analogLib" "vdc" "symbol" nil "r")
+\t db:0x1673c21a
+\p > 
+\i idcM = dbOpenCellViewByType("analogLib" "idc" "symbol" nil "r")
+\t db:0x1673c01a
+\p > 
+\i gndM = dbOpenCellViewByType("analogLib" "gnd" "symbol" nil "r")
+\t db:0x1673be1a
+\p > 
+\i cv = dbOpenCellViewByType(lib "widlar" "schematic" "schematic" "w")
+\t db:0x1673bb1a
+\p > 
+\i mosP = list(list("model" "string" "gpdk090_nmos2v") list("w" "string" "3.12u") list("fw" "string" "1.56u")
+\i             list("l" "string" "280n") list("fingers" "string" "2") list("m" "string" "1"))
+\t (("model" "string" "gpdk090_nmos2v") 
+\t     ("w" "string" "3.12u") 
+\t     ("fw" "string" "1.56u") 
+\t     ("l" "string" "280n") 
+\t     ("fingers" "string" "2")
+\t     ("m" "string" "1")
+\t )
+\p > 
+\i M1 = dbCreateParamInst(cv nm "M1" 0:0 "MY" 1 mosP)
+\t db:0x1673b99a
+\p > 
+\i M2 = dbCreateParamInst(cv nm "M2" 3.0:0 "R0" 1 mosP)
+\t db:0x1673b99b
+\p > 
+\i d1 = pinPt(M1 "D") s1 = pinPt(M1 "S") b1 = pinPt(M1 "B") g1 = pinPt(M1 "G")
+\t (0.0 0.0)
+\p > 
+\i d2 = pinPt(M2 "D") s2 = pinPt(M2 "S") b2 = pinPt(M2 "B") g2 = pinPt(M2 "G")
+\t (3.0 0.0)
+\p > 
+\i xd1 = xCoord(d1) xd2 = xCoord(d2)
+\t 3.25
+\p > 
+\i yTop = 3.5  yBot = -2.5  xj = 1.75  yA = 1.0  xV = -4.0
+\t -4.0
+\p > 
+\i rsP = list(list("model" "string" "gpdk090_resnsppoly") list("segments" "int" 28) list("ssegs" "int" 28)
+\i            list("psegs" "int" 1) list("segW" "string" "1u") list("segL" "string" "24.195u")
+\i            list("r" "string" "270984") list("segR" "string" "9678")
+\i            list("effW" "string" "1u") list("effL" "string" "677.4600u")
+\i            list("w" "string" "1u") list("l" "string" "677.4600u"))
+\t (("model" "string" "gpdk090_resnsppoly") 
+\t     ("segments" "int" 28) 
+\t     ("ssegs" "int" 28) 
+\t     ("psegs" "int" 1) 
+\t     ("segW" "string" "1u")
+\t     ("segL" "string" "24.195u") 
+\t     ("r" "string" "270984") 
+\t     ("segR" "string" "9678") 
+\t     ("effW" "string" "1u") 
+\t     ("effL" "string" "677.4600u")
+\t     ("w" "string" "1u") 
+\t     ("l" "string" "677.4600u")
+\t )
+\p > 
+\i Rs    = placeAt(cv rpm  "Rs"    "PLUS"  list(xd2 -1.25) "R0" rsP)
+\t db:0x1673b99c
+\p > 
+\i Rload = placeAt(cv resM "Rload" "MINUS" list(xd2 1.5)  "R0" list(list("r" "string" "1M")))
+\t db:0x1673b99d
+\p > 
+\i Iref  = placeAt(cv idcM "Iref"  "MINUS" list(xd1 1.75) "R0" list(list("idc" "string" "100u")))
+\t db:0x1673b99e
+\p > 
+\i Vdd   = placeAt(cv vdcM "Vdd"   "PLUS"  list(xV 2.25)  "R0" list(list("vdc" "string" "1.8")))
+\t db:0x1673b99f
+\p > 
+\i rp = pinPt(Rs "PLUS") rm = pinPt(Rs "MINUS") rb = pinPt(Rs "B")
+\t (3.375 -1.4375)
+\p > 
+\i lp = pinPt(Rload "PLUS") lm = pinPt(Rload "MINUS")
+\t (3.25 1.5)
+\p > 
+\i ip = pinPt(Iref "PLUS")  im = pinPt(Iref "MINUS")
+\t (-0.25 1.75)
+\p > 
+\i vp = pinPt(Vdd "PLUS")   vm = pinPt(Vdd "MINUS")
+\t (-4.0 1.875)
+\p > 
+\i ; top rail
+\i W(cv list(vp xV:yTop))
+\o Loading schematic.cxt 
+\t (db:0x1673b31a)
+\p > 
+\i W(cv list(xV:yTop xd1:yTop))
+\t (db:0x1673b31b)
+\p > 
+\i W(cv list(xd1:yTop xd2:yTop))
+\t (db:0x1673b31c)
+\p > 
+\i W(cv list(ip xd1:yTop))
+\t (db:0x1673b31d)
+\p > 
+\i W(cv list(lp xd2:yTop))
+\t (db:0x1673b31f)
+\p > 
+\i ; Iref -> M1 drain, with diode-tie junction at yA
+\i W(cv list(im xd1:yA))
+\t (db:0x1673b320)
+\p > 
+\i W(cv list(xd1:yA d1))
+\t (db:0x1673b320)
+\p > 
+\i W(cv list(xd1:yA xj:yA))
+\t (db:0x1673b322)
+\p > 
+\i W(cv list(xj:yA xj:0.0))
+\t (db:0x1673b324)
+\p > 
+\i ; gate bus
+\i W(cv list(g1 xj:0.0))
+\t (db:0x1673b325)
+\p > 
+\i W(cv list(xj:0.0 g2))
+\t (db:0x1673b326)
+\p > 
+\i ; Rload -> M2 drain
+\i W(cv list(lm d2))
+\t (db:0x1673b328)
+\p > 
+\i ; M2 source -> Rs
+\i W(cv list(s2 rp))
+\t (db:0x1673b329)
+\p > 
+\i ; ground returns
+\i W(cv list(vm xV:yBot))
+\t (db:0x1673b32a)
+\p > 
+\i W(cv list(xV:yBot xd2:yBot))
+\t (db:0x1673b32b)
+\p > 
+\i W(cv list(rm xd2:yBot))
+\t (db:0x1673b32c)
+\p > 
+\i W(cv list(s1 xCoord(s1):yBot))
+\t (db:0x1673b32e)
+\p > 
+\i W(cv list(b1 -0.75:yCoord(b1)))
+\t (db:0x1673b330)
+\p > 
+\i W(cv list(-0.75:yCoord(b1) -0.75:yBot))
+\t (db:0x1673b332)
+\p > 
+\i W(cv list(b2 3.75:yCoord(b2)))
+\t (db:0x1673b334)
+\p > 
+\i W(cv list(3.75:yCoord(b2) 3.75:-0.8))
+\t (db:0x1673b335)
+\p > 
+\i W(cv list(3.75:-0.8 4.25:-0.8))
+\t (db:0x1673b336)
+\p > 
+\i W(cv list(4.25:-0.8 4.25:yBot))
+\t (db:0x1673b337)
+\p > 
+\i W(cv list(rb 4.25:yCoord(rb)))
+\t (db:0x1673b339)
+\p > 
+\i W(cv list(xd2:yBot 4.25:yBot))
+\t (db:0x1673b33b)
+\p > 
+\i G0 = placeAt(cv gndM "G0" "gnd!" list(1.5 yBot) "R0" nil)
+\t db:0x1673b9a0
+\p > 
+\i chk = schCheck(cv)
+\o INFO (SCH-1170): Extracting "widlar schematic"
+\t (0 0)
+\p > 
+\i printf("MCP:flatcheck=%L\n" chk)
+\o MCP:flatcheck=(0 0)
+\t t
+\p > 
+\i dbSave(cv)
+\# Available memory:          6,616 MB at UTC 2026.10.11 12:25:12.241
+\# Memory report: Maximum memory size now 6,971 MB at UTC 2026.10.11 12:25:12.241
+\o Loading lx.cxt 
+\o Loading lce.cxt 
+\o Loading le.cxt 
+\o Loading rte.cxt 
+\t t
+\p > 
+\o Loading mpt.cxt 
+\i printf("MCP:flat_nets=%L\n" cv~>nets~>name)
+\o MCP:flat_nets=("gnd!" "net7" "net2" "net3" "net8")
+\t t
+\p > 
+\i foreach(i list(M1 M2 Rs Rload Iref Vdd G0)
+\i   foreach(it i~>instTerms printf("MCP:conn %s.%s=%s\n" i~>name it~>name it~>net~>name)))
+\o MCP:conn M1.S=gnd!
+\o MCP:conn M1.B=gnd!
+\o MCP:conn M1.G=net2
+\o MCP:conn M1.D=net2
+\o MCP:conn M2.S=net7
+\o MCP:conn M2.B=gnd!
+\o MCP:conn M2.G=net2
+\o MCP:conn M2.D=net8
+\o MCP:conn Rs.B=gnd!
+\o MCP:conn Rs.MINUS=gnd!
+\o MCP:conn Rs.PLUS=net7
+\o MCP:conn Rload.MINUS=net8
+\o MCP:conn Rload.PLUS=net3
+\o MCP:conn Iref.PLUS=net3
+\o MCP:conn Iref.MINUS=net2
+\o MCP:conn Vdd.PLUS=net3
+\o MCP:conn Vdd.MINUS=gnd!
+\o MCP:conn G0.gnd!=gnd!
+\t (db:0x1673b99a db:0x1673b99b db:0x1673b99c db:0x1673b99d db:0x1673b99e
+\t     db:0x1673b99f db:0x1673b9a0
+\t )
+\p > 
+\i w1 = geOpen(?lib lib ?cell "widlar" ?view "schematic" ?mode "r")
+\o Loading vb.cxt 
+\o Loading nt.cxt 
+\o Loading oi.cxt 
+\o Loading see.cxt 
+\o Loading treeAssistant.cxt 
+\o Loading asst.cxt 
+\o Loading mtv.cxt 
+\o Loading leToolbox.cxt 
+\o Loading hsm.cxt 
+\o Loading simui.cxt 
+\t window:2
+\p > 
+\i hiResizeWindow(hiGetCurrentWindow() list(0:0 1600:1000))
+\t t
+\p > 
+\i procedure(wlA() errset(evalstring(hiGetBindKey("Schematics" "<Key>f")) t) hiRegTimer("wlB()" 30))
+\t wlA
+\p > 
+\i procedure(wlB() mcpShot("sch_flat") printf("MCP:OK=1\n") exit(0))
+\t wlB
+\p > 
+\i hiRegTimer("wlA()" 40)
+\t t
+\p > 
+\# Replay complete, returning to interactive mode at UTC 2026.10.11 12:25:12.530
+\o MCP:shot=/home/work/widlar_shots/sch_flat.png
+\o MCP:OK=1
+\o 
+\o Loading cph.cxt 
+\# Memory report: on exit            381 MB, process size 1,203 MB at UTC 2026.10.11 12:25:21.631
+\# Memory report: peak usage         381 MB, process size 1,203 MB
+total 88
+drwxrwxr-x.  2 work work  4096 Oct 11 20:25 .
+drwx------. 65 work work  4096 Oct 11 20:15 ..
+-rw-rw-r--.  1 work work 80615 Oct 11 20:25 sch_flat.png

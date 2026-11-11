@@ -1,0 +1,459 @@
+
+************************************
+Operating-Point information `info1':
+************************************
+Operating point computed in DC analysis `op' at T = 27 C.
+
+    V(nout) = 800.029 mV
+    V(nref) = 840.679 mV
+    V(ns) = 270.976 mV
+    I(VDD:p) = -101 uA
+    V(vdd) = 1.8 V
+
+
+Most positive signals:
+    V(vdd) = 1.8 V
+    I(VDD:p) = -101 uA
+
+Most negative signals:
+    V(M1:int_s) = 44.8718 uV
+    I(VDD:p) = -101 uA
+
+Smallest signals:
+    V(M1:int_s) = 44.8718 uV
+    I(VDD:p) = -101 uA
+
+
+Instance: M1 of gpdk090_nmos2v
+Model: M1.gpdk090_nmos2v_x
+Primitive: bsim3v3
+          d : V(nref) = 840.679 mV
+          g : V(nref) = 840.679 mV
+          s : val(0) = 0 
+          b : val(0) = 0 
+       type = n
+     region = sat
+   reversed = no
+        ids = 100 uA
+       isub = 46.6002 pA
+        vgs = 840.679 mV
+        vds = 840.679 mV
+        vbs = 0 V
+        vgb = 840.679 mV
+        vdb = 840.679 mV
+        vgd = 0 V
+        vth = 520.258 mV
+      vdsat = 216.021 mV
+     vfbeff = -893.816 mV
+         gm = 544.786 uS
+        gds = 41.7561 uS
+       gmbs = 139.158 uS
+    betaeff = 2.5978 mA/V^2
+        cjd = 710.88 aF
+        cjs = 819.584 aF
+         qb = -3.33907 fCoul
+         qg = 5.26152 fCoul
+         qd = -1.61908 aCoul
+        qbd = -637.389 aCoul
+        qbs = -36.7764e-21 Coul
+        cgg = 6.21734 fF
+        cgd = -529.501 aF
+        cgs = -5.3633 fF
+        cgb = -324.543 aF
+        cdg = -722.757 aF
+        cdd = 1.4317 fF
+        cds = 3.43029 aF
+        cdb = -712.376 aF
+        csg = -4.36942 fF
+        csd = -203.701 aF
+        css = 6.45636 fF
+        csb = -1.88324 fF
+        cbg = -1.12517 fF
+        cbd = -698.501 aF
+        cbs = -1.09649 fF
+        cbb = 2.92016 fF
+        ron = 8.40679 kOhm
+         id = 100 uA
+         is = -100 uA
+      ibulk = -46.6012 pA
+        ibs = -473.68 aA
+        ibd = -46.6007 pA
+        pwr = 84.0679 uW
+   gmoverid = 5.44787 1/V
+       ueff = 33.8875e-03
+     cgsovl = 717.892 aF
+     cgdovl = 717.122 aF
+     cgbovl = 1.49027 aF
+         i1 = 100 uA
+         i3 = -100 uA
+         i4 = -46.6012 pA
+        gbd = 814.957 pS
+        gbs = 0 S
+    vgsteff = 317.527 mV
+       qinv = 1.07259 mCoul
+        igd = 0 A
+        igs = 0 A
+        igb = 0 A
+       igcs = 0 A
+       igcd = 0 A
+      igidl = 0 A
+      igisl = 0 A
+        qgi = 4.80078 fCoul
+        qsi = -1.46137 fCoul
+        qdi = -1.59455 aCoul
+        qbi = -3.33782 fCoul
+      cddbi = 3.70007 aF
+      cssbi = 4.91888 fF
+      cggbi = 4.78084 fF
+      cgsbi = -4.64541 fF
+      cgdbi = 187.621 aF
+      cbdbi = 182.933 aF
+      cbsbi = -105.584 aF
+      qsrco = -1.92083 fCoul
+        ide = 100 uA
+        ige = 0 A
+        ise = 100 uA
+        ibe = -47.4418 pA
+        idb = 473.68 aA
+        isb = 473.68 aA
+        vsb = -0 V
+        gmb = 139.158 uS
+        vgt = 320.421 mV
+       vdss = 216.021 mV
+  vsat_marg = 624.658 mV
+  self_gain = 13.0469
+       rout = 23.9486 kOhm
+       beff = 1.948 mA/V^2
+        fug = 13.9457 GHz
+     vearly = 2.39486 V
+
+Instance: M2 of gpdk090_nmos2v
+Model: M1.gpdk090_nmos2v_x
+Primitive: bsim3v3
+          d : V(nout) = 800.029 mV
+          g : V(nref) = 840.679 mV
+          s : V(ns) = 270.976 mV
+          b : val(0) = 0 
+       type = n
+     region = subth
+   reversed = no
+        ids = 1.00001 uA
+       isub = 19.4351 fA
+        vgs = 569.703 mV
+        vds = 529.053 mV
+        vbs = -270.976 mV
+        vgb = 840.679 mV
+        vdb = 800.029 mV
+        vgd = 40.6502 mV
+        vth = 612.427 mV
+      vdsat = 43.5652 mV
+     vfbeff = -893.809 mV
+         gm = 23.8126 uS
+        gds = 1.77466 uS
+       gmbs = 6.0024 uS
+    betaeff = 2.63542 mA/V^2
+        cjd = 714.547 aF
+        cjs = 774.647 aF
+         qb = -3.39851 fCoul
+         qg = 3.97613 fCoul
+         qd = -29.5492 aCoul
+        qbd = -608.449 aCoul
+        qbs = -215.686 aCoul
+        cgg = 4.37689 fF
+        cgd = -612.554 aF
+        cgs = -2.96205 fF
+        cgb = -802.284 aF
+        cdg = -721.122 aF
+        cdd = 1.43267 fF
+        cds = 4.00053 aF
+        cdb = -715.553 aF
+        csg = -2.48632 fF
+        csd = -110.324 aF
+        css = 3.84126 fF
+        csb = -1.24461 fF
+        cbg = -1.16945 fF
+        cbd = -709.797 aF
+        cbs = -883.202 aF
+        cbb = 2.76245 fF
+        ron = 529.047 kOhm
+         id = 1.00001 uA
+         is = -1.00001 uA
+      ibulk = -20.3824 fA
+        ibs = -473.68 aA
+        ibd = -19.9088 fA
+        pwr = 529.058 nW
+   gmoverid = 23.8124 1/V
+       ueff = 34.3783e-03
+     cgsovl = 717.879 aF
+     cgdovl = 717.325 aF
+     cgbovl = 1.49027 aF
+         i1 = 1.00001 uA
+         i3 = -1.00001 uA
+         i4 = -20.3824 fA
+        gbd = 587.034 fS
+        gbs = 0 S
+    vgsteff = 14.7156 mV
+       qinv = 114.981 uCoul
+        igd = 0 A
+        igs = 0 A
+        igb = 0 A
+       igcs = 0 A
+       igcd = 0 A
+      igidl = 0 A
+      igisl = 0 A
+        qgi = 3.64128 fCoul
+        qsi = -236.689 aCoul
+        qdi = -7.33076 aCoul
+        qbi = -3.39726 fCoul
+      cddbi = 802.729e-21 F
+      cssbi = 2.34873 fF
+      cggbi = 2.9402 fF
+      cgsbi = -2.24418 fF
+      cgdbi = 104.771 aF
+      cbdbi = 175.506 aF
+      cbsbi = 62.7557 aF
+      qsrco = -548.07 aCoul
+        ide = 1.00001 uA
+        ige = 0 A
+        ise = 1.00001 uA
+        ibe = -1.09139 pA
+        idb = 473.68 aA
+        isb = 473.68 aA
+        vsb = 270.976 mV
+        gmb = 6.0024 uS
+        vgt = -42.7241 mV
+       vdss = 43.5652 mV
+  vsat_marg = 485.487 mV
+  self_gain = 13.4181
+       rout = 563.489 kOhm
+       beff = 1.09569 mA/V^2
+        fug = 865.886 MHz
+     vearly = 563.495 mV
+
+Maximum and minimum parameter values for bsim3v3: 
+          max ids = 100 uA on M1 of gpdk090_nmos2v
+          min ids = 1.00001 uA on M2 of gpdk090_nmos2v
+         max isub = 46.6002 pA on M1 of gpdk090_nmos2v
+         min isub = 19.4351 fA on M2 of gpdk090_nmos2v
+          max vgs = 840.679 mV on M1 of gpdk090_nmos2v
+          min vgs = 569.703 mV on M2 of gpdk090_nmos2v
+          max vds = 840.679 mV on M1 of gpdk090_nmos2v
+          min vds = 529.053 mV on M2 of gpdk090_nmos2v
+          max vbs = 0 V on M1 of gpdk090_nmos2v
+          min vbs = -270.976 mV on M2 of gpdk090_nmos2v
+          max vgb = 840.679 mV on M2 of gpdk090_nmos2v
+          min vgb = 840.679 mV on M1 of gpdk090_nmos2v
+          max vdb = 840.679 mV on M1 of gpdk090_nmos2v
+          min vdb = 800.029 mV on M2 of gpdk090_nmos2v
+          max vgd = 40.6502 mV on M2 of gpdk090_nmos2v
+          min vgd = 0 V on M1 of gpdk090_nmos2v
+          max vth = 612.427 mV on M2 of gpdk090_nmos2v
+          min vth = 520.258 mV on M1 of gpdk090_nmos2v
+        max vdsat = 216.021 mV on M1 of gpdk090_nmos2v
+        min vdsat = 43.5652 mV on M2 of gpdk090_nmos2v
+       max vfbeff = -893.809 mV on M2 of gpdk090_nmos2v
+       min vfbeff = -893.816 mV on M1 of gpdk090_nmos2v
+           max gm = 544.786 uS on M1 of gpdk090_nmos2v
+           min gm = 23.8126 uS on M2 of gpdk090_nmos2v
+          max gds = 41.7561 uS on M1 of gpdk090_nmos2v
+          min gds = 1.77466 uS on M2 of gpdk090_nmos2v
+         max gmbs = 139.158 uS on M1 of gpdk090_nmos2v
+         min gmbs = 6.0024 uS on M2 of gpdk090_nmos2v
+      max betaeff = 2.63542 mA/V^2 on M2 of gpdk090_nmos2v
+      min betaeff = 2.5978 mA/V^2 on M1 of gpdk090_nmos2v
+          max cjd = 714.547 aF on M2 of gpdk090_nmos2v
+          min cjd = 710.88 aF on M1 of gpdk090_nmos2v
+          max cjs = 819.584 aF on M1 of gpdk090_nmos2v
+          min cjs = 774.647 aF on M2 of gpdk090_nmos2v
+           max qb = -3.33907 fCoul on M1 of gpdk090_nmos2v
+           min qb = -3.39851 fCoul on M2 of gpdk090_nmos2v
+           max qg = 5.26152 fCoul on M1 of gpdk090_nmos2v
+           min qg = 3.97613 fCoul on M2 of gpdk090_nmos2v
+           max qd = -1.61908 aCoul on M1 of gpdk090_nmos2v
+           min qd = -29.5492 aCoul on M2 of gpdk090_nmos2v
+          max qbd = -608.449 aCoul on M2 of gpdk090_nmos2v
+          min qbd = -637.389 aCoul on M1 of gpdk090_nmos2v
+          max qbs = -36.7764e-21 Coul on M1 of gpdk090_nmos2v
+          min qbs = -215.686 aCoul on M2 of gpdk090_nmos2v
+          max cgg = 6.21734 fF on M1 of gpdk090_nmos2v
+          min cgg = 4.37689 fF on M2 of gpdk090_nmos2v
+          max cgd = -529.501 aF on M1 of gpdk090_nmos2v
+          min cgd = -612.554 aF on M2 of gpdk090_nmos2v
+          max cgs = -2.96205 fF on M2 of gpdk090_nmos2v
+          min cgs = -5.3633 fF on M1 of gpdk090_nmos2v
+          max cgb = -324.543 aF on M1 of gpdk090_nmos2v
+          min cgb = -802.284 aF on M2 of gpdk090_nmos2v
+          max cdg = -721.122 aF on M2 of gpdk090_nmos2v
+          min cdg = -722.757 aF on M1 of gpdk090_nmos2v
+          max cdd = 1.43267 fF on M2 of gpdk090_nmos2v
+          min cdd = 1.4317 fF on M1 of gpdk090_nmos2v
+          max cds = 4.00053 aF on M2 of gpdk090_nmos2v
+          min cds = 3.43029 aF on M1 of gpdk090_nmos2v
+          max cdb = -712.376 aF on M1 of gpdk090_nmos2v
+          min cdb = -715.553 aF on M2 of gpdk090_nmos2v
+          max csg = -2.48632 fF on M2 of gpdk090_nmos2v
+          min csg = -4.36942 fF on M1 of gpdk090_nmos2v
+          max csd = -110.324 aF on M2 of gpdk090_nmos2v
+          min csd = -203.701 aF on M1 of gpdk090_nmos2v
+          max css = 6.45636 fF on M1 of gpdk090_nmos2v
+          min css = 3.84126 fF on M2 of gpdk090_nmos2v
+          max csb = -1.24461 fF on M2 of gpdk090_nmos2v
+          min csb = -1.88324 fF on M1 of gpdk090_nmos2v
+          max cbg = -1.12517 fF on M1 of gpdk090_nmos2v
+          min cbg = -1.16945 fF on M2 of gpdk090_nmos2v
+          max cbd = -698.501 aF on M1 of gpdk090_nmos2v
+          min cbd = -709.797 aF on M2 of gpdk090_nmos2v
+          max cbs = -883.202 aF on M2 of gpdk090_nmos2v
+          min cbs = -1.09649 fF on M1 of gpdk090_nmos2v
+          max cbb = 2.92016 fF on M1 of gpdk090_nmos2v
+          min cbb = 2.76245 fF on M2 of gpdk090_nmos2v
+          max ron = 529.047 kOhm on M2 of gpdk090_nmos2v
+          min ron = 8.40679 kOhm on M1 of gpdk090_nmos2v
+           max id = 100 uA on M1 of gpdk090_nmos2v
+           min id = 1.00001 uA on M2 of gpdk090_nmos2v
+           max is = -1.00001 uA on M2 of gpdk090_nmos2v
+           min is = -100 uA on M1 of gpdk090_nmos2v
+        max ibulk = -20.3824 fA on M2 of gpdk090_nmos2v
+        min ibulk = -46.6012 pA on M1 of gpdk090_nmos2v
+              ibs = -473.68 aA (same value for all instances).
+          max ibd = -19.9088 fA on M2 of gpdk090_nmos2v
+          min ibd = -46.6007 pA on M1 of gpdk090_nmos2v
+          max pwr = 84.0679 uW on M1 of gpdk090_nmos2v
+          min pwr = 529.058 nW on M2 of gpdk090_nmos2v
+     max gmoverid = 23.8124 1/V on M2 of gpdk090_nmos2v
+     min gmoverid = 5.44787 1/V on M1 of gpdk090_nmos2v
+         max ueff = 34.3783e-03 on M2 of gpdk090_nmos2v
+         min ueff = 33.8875e-03 on M1 of gpdk090_nmos2v
+       max cgsovl = 717.892 aF on M1 of gpdk090_nmos2v
+       min cgsovl = 717.879 aF on M2 of gpdk090_nmos2v
+       max cgdovl = 717.325 aF on M2 of gpdk090_nmos2v
+       min cgdovl = 717.122 aF on M1 of gpdk090_nmos2v
+           cgbovl = 1.49027 aF (same value for all instances).
+           max i1 = 100 uA on M1 of gpdk090_nmos2v
+           min i1 = 1.00001 uA on M2 of gpdk090_nmos2v
+           max i3 = -1.00001 uA on M2 of gpdk090_nmos2v
+           min i3 = -100 uA on M1 of gpdk090_nmos2v
+           max i4 = -20.3824 fA on M2 of gpdk090_nmos2v
+           min i4 = -46.6012 pA on M1 of gpdk090_nmos2v
+          max gbd = 814.957 pS on M1 of gpdk090_nmos2v
+          min gbd = 587.034 fS on M2 of gpdk090_nmos2v
+              gbs = 0 S (same value for all instances).
+      max vgsteff = 317.527 mV on M1 of gpdk090_nmos2v
+      min vgsteff = 14.7156 mV on M2 of gpdk090_nmos2v
+         max qinv = 1.07259 mCoul on M1 of gpdk090_nmos2v
+         min qinv = 114.981 uCoul on M2 of gpdk090_nmos2v
+              igd = 0 A (same value for all instances).
+              igs = 0 A (same value for all instances).
+              igb = 0 A (same value for all instances).
+             igcs = 0 A (same value for all instances).
+             igcd = 0 A (same value for all instances).
+            igidl = 0 A (same value for all instances).
+            igisl = 0 A (same value for all instances).
+          max qgi = 4.80078 fCoul on M1 of gpdk090_nmos2v
+          min qgi = 3.64128 fCoul on M2 of gpdk090_nmos2v
+          max qsi = -236.689 aCoul on M2 of gpdk090_nmos2v
+          min qsi = -1.46137 fCoul on M1 of gpdk090_nmos2v
+          max qdi = -1.59455 aCoul on M1 of gpdk090_nmos2v
+          min qdi = -7.33076 aCoul on M2 of gpdk090_nmos2v
+          max qbi = -3.33782 fCoul on M1 of gpdk090_nmos2v
+          min qbi = -3.39726 fCoul on M2 of gpdk090_nmos2v
+        max cddbi = 3.70007 aF on M1 of gpdk090_nmos2v
+        min cddbi = 802.729e-21 F on M2 of gpdk090_nmos2v
+        max cssbi = 4.91888 fF on M1 of gpdk090_nmos2v
+        min cssbi = 2.34873 fF on M2 of gpdk090_nmos2v
+        max cggbi = 4.78084 fF on M1 of gpdk090_nmos2v
+        min cggbi = 2.9402 fF on M2 of gpdk090_nmos2v
+        max cgsbi = -2.24418 fF on M2 of gpdk090_nmos2v
+        min cgsbi = -4.64541 fF on M1 of gpdk090_nmos2v
+        max cgdbi = 187.621 aF on M1 of gpdk090_nmos2v
+        min cgdbi = 104.771 aF on M2 of gpdk090_nmos2v
+        max cbdbi = 182.933 aF on M1 of gpdk090_nmos2v
+        min cbdbi = 175.506 aF on M2 of gpdk090_nmos2v
+        max cbsbi = 62.7557 aF on M2 of gpdk090_nmos2v
+        min cbsbi = -105.584 aF on M1 of gpdk090_nmos2v
+        max qsrco = -548.07 aCoul on M2 of gpdk090_nmos2v
+        min qsrco = -1.92083 fCoul on M1 of gpdk090_nmos2v
+          max ide = 100 uA on M1 of gpdk090_nmos2v
+          min ide = 1.00001 uA on M2 of gpdk090_nmos2v
+              ige = 0 A (same value for all instances).
+          max ise = 100 uA on M1 of gpdk090_nmos2v
+          min ise = 1.00001 uA on M2 of gpdk090_nmos2v
+          max ibe = -1.09139 pA on M2 of gpdk090_nmos2v
+          min ibe = -47.4418 pA on M1 of gpdk090_nmos2v
+              idb = 473.68 aA (same value for all instances).
+              isb = 473.68 aA (same value for all instances).
+          max vsb = 270.976 mV on M2 of gpdk090_nmos2v
+          min vsb = -0 V on M1 of gpdk090_nmos2v
+          max gmb = 139.158 uS on M1 of gpdk090_nmos2v
+          min gmb = 6.0024 uS on M2 of gpdk090_nmos2v
+          max vgt = 320.421 mV on M1 of gpdk090_nmos2v
+          min vgt = -42.7241 mV on M2 of gpdk090_nmos2v
+         max vdss = 216.021 mV on M1 of gpdk090_nmos2v
+         min vdss = 43.5652 mV on M2 of gpdk090_nmos2v
+    max vsat_marg = 624.658 mV on M1 of gpdk090_nmos2v
+    min vsat_marg = 485.487 mV on M2 of gpdk090_nmos2v
+    max self_gain = 13.4181 on M2 of gpdk090_nmos2v
+    min self_gain = 13.0469 on M1 of gpdk090_nmos2v
+         max rout = 563.489 kOhm on M2 of gpdk090_nmos2v
+         min rout = 23.9486 kOhm on M1 of gpdk090_nmos2v
+         max beff = 1.948 mA/V^2 on M1 of gpdk090_nmos2v
+         min beff = 1.09569 mA/V^2 on M2 of gpdk090_nmos2v
+          max fug = 13.9457 GHz on M1 of gpdk090_nmos2v
+          min fug = 865.886 MHz on M2 of gpdk090_nmos2v
+       max vearly = 2.39486 V on M1 of gpdk090_nmos2v
+       min vearly = 563.495 mV on M2 of gpdk090_nmos2v
+
+
+Instance: IREF
+Model: isource
+Primitive: isource
+       sink : V(vdd) = 1.8 V
+        src : V(nref) = 840.679 mV
+          i = 100 uA
+          v = 959.321 mV
+        pwr = 95.9321 uW
+
+
+Instance: RS of gpdk090_resnsppoly
+Model: resnsppoly
+Primitive: phy_res
+          1 : V(ns) = 270.976 mV
+          2 : val(0) = 0 
+          0 : val(0) = 0 
+    subtype = poly
+     region = normal
+          i = 999.971 nA
+      capd1 = 664.226 fF
+      capd2 = 664.226 fF
+        id1 = 0 A
+        id2 = 0 A
+        res = 270.984 kOhm
+      resd1 = infinity Ohm
+      resd2 = infinity Ohm
+        pwr = 270.968 nW
+
+
+Instance: RL
+Model: resistor
+Primitive: resistor
+          1 : V(vdd) = 1.8 V
+          2 : V(nout) = 800.029 mV
+          v = 999.971 mV
+          i = 999.971 nA
+        res = 1 MOhm
+        pwr = 999.942 nW
+
+
+Instance: VDD
+Model: vsource
+Primitive: vsource
+          p : V(vdd) = 1.8 V
+          n : val(0) = 0 
+          v = 1.8 V
+          i = -101 uA
+        pwr = -181.8 uW
+
+
+Total Power Dissipation = 85.8679 uW.
+
+

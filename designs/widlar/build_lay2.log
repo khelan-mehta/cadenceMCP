@@ -1,0 +1,309 @@
+\e Display :57 Error "BadAtom (invalid Atom parameter)"
+\e  request 20 error 5 serial 230 
+@@@VIRTUOSO_RC=0
+=== ciw ===
+\o Loading msgHandler.cxt 
+\o Loading AMSOSS.cxt 
+\o Loading AMS.cxt 
+\o 	Loading gpdk090/gpdk090_PDKRegistrations.il ... done!
+\o 
+\o   *************************************************************           
+\o   *              Cadence Design Systems, Inc.                 *           
+\o   *                                                           *           
+\o   *                    Generic 90nm PDK                       *           
+\o   *                        (gpdk090)                          *           
+\o   *                                                           *           
+\o   *************************************************************           
+\o 	
+\o 
+\o 	Version : 4.6
+\o 
+\o 	Build date: 10-FEB-2011
+\o 
+\o done!
+\o Loaded gpdk090/libInit.il successfully!
+\o Loading schematic.cxt 
+\o INFO (SCH-1170): Extracting "widlar schematic"
+\# Available memory:          6,578 MB at UTC 2026.10.11 12:34:10.406
+\# Memory report: Maximum memory size now 6,932 MB at UTC 2026.10.11 12:34:10.406
+\# Memory report: using         354 MB, process size 1,176 MB at UTC 2026.10.11 12:34:10.406
+\o Loading lx.cxt 
+\o Loading lce.cxt 
+\o Loading le.cxt 
+\o Loading rte.cxt 
+\o MCP:schfix_widlar=t
+\o INFO (SCH-1170): Extracting "widlar_core schematic"
+\o MCP:schfix_widlar_core=t
+\t ("widlar" "widlar_core")
+\p > 
+\o Loading mpt.cxt 
+\i ; ---------- 1. place ----------
+\i cv = dbOpenCellViewByType(lib "widlar_lay" "layout" "maskLayout" "w")
+\t db:0x1751cd9a
+\p > 
+\i mp1 = list(list("fw" "float" 3.12e-6) list("l" "float" 2.8e-7) list("fingers" "int" 1)
+\i            list("tap" "string" "Integrated") list("connectGates" "string" "Top"))
+\t (("fw" "float" 3.12e-06) 
+\t     ("l" "float" 2.8e-07) 
+\t     ("fingers" "int" 1) 
+\t     ("tap" "string" "Integrated") 
+\t     ("connectGates" "string" "Top")
+\t )
+\p > 
+\i mp2 = list(list("fw" "float" 3.12e-6) list("l" "float" 2.8e-7) list("fingers" "int" 1)
+\i            list("tap" "string" "None") list("connectGates" "string" "Top"))
+\t (("fw" "float" 3.12e-06) 
+\t     ("l" "float" 2.8e-07) 
+\t     ("fingers" "int" 1) 
+\t     ("tap" "string" "None") 
+\t     ("connectGates" "string" "Top")
+\t )
+\p > 
+\i MA = dbCreateParamInstByMasterName(cv "gpdk090" "nmos2v" "layout" "M1" 0:0 "R0" 1 mp1)
+\t db:0x1751a69a
+\p > 
+\i MB = dbCreateParamInstByMasterName(cv "gpdk090" "nmos2v" "layout" "M2" 6.0:0 "R0" 1 mp2)
+\t db:0x1751a69b
+\p > 
+\i RS = dbCreateParamInstByMasterName(cv "gpdk090" "resnsppoly" "layout" "RS" 0:-32.0 "R0" 1
+\i       list(list("segments" "int" 28) list("segW" "float" 1e-6) list("segL" "float" 24.195e-6)
+\i            list("connection" "string" "Series")))
+\t db:0x1751a69c
+\p > 
+\i printf("MCP:bb M1=%L M2=%L RS=%L\n" MA~>bBox MB~>bBox RS~>bBox)
+\o MCP:bb M1=((-0.86 -0.3) (0.88 3.42)) M2=((5.4 -0.3) (6.88 3.42)) RS=((-0.28 -32.56) (44.48 -7.245))
+\t t
+\p > 
+\i printf("MCP:eff fw=%L fing=%L segs=%L\n" MA~>fw MA~>fingers RS~>segments)
+\o MCP:eff fw=3.12e-06 fing="1" segs=28
+\t t
+\p > 
+\i d1 = termBox(MA "D") g1 = termBox(MA "G") s1 = termBox(MA "S") b1 = termBox(MA "B")
+\t ((-0.5 0.0) 
+\t     (-0.12 3.12)
+\t )
+\p > 
+\i d2 = termBox(MB "D") g2 = termBox(MB "G") s2 = termBox(MB "S") b2 = termBox(MB "B")
+\t ((5.58 -0.12) 
+\t     (6.7 3.24)
+\t )
+\p > 
+\i rp = termBox(RS "PLUS") rm = termBox(RS "MINUS")
+\t ((43.2 -32.37) 
+\t     (44.2 -32.25)
+\t )
+\p > 
+\i printf("MCP:t d1=%L g1=%L s1=%L b1=%L\n" d1 g1 s1 b1)
+\o MCP:t d1=((0.28 0.0) (0.58 3.12)) g1=((0.0 3.26) (0.28 3.38)) s1=((-0.56 0.0) (0.0 3.12)) b1=((-0.5 0.0) (-0.12 3.12))
+\t t
+\p > 
+\i printf("MCP:t d2=%L g2=%L s2=%L b2=%L\n" d2 g2 s2 b2)
+\o MCP:t d2=((6.28 0.0) (6.58 3.12)) g2=((6.0 3.26) (6.28 3.38)) s2=((5.7 0.0) (6.0 3.12)) b2=((5.58 -0.12) (6.7 3.24))
+\t t
+\p > 
+\i printf("MCP:t rp=%L rm=%L\n" rp rm)
+\o MCP:t rp=((0.0 -32.37) (1.0 -32.25)) rm=((43.2 -32.37) (44.2 -32.25))
+\t t
+\p > 
+\i ; ---------- 2. nets + routing (Metal1 only) ----------
+\i nIREF = dbCreateNet(cv "IREF") nIOUT = dbCreateNet(cv "IOUT")
+\t db:0x1751909b
+\p > 
+\i nGND = dbCreateNet(cv "GND")  nNS  = dbCreateNet(cv "NS")
+\t db:0x1751909d
+\p > 
+\i ; GND rail under the MOS row, extended right to pick up RS.MINUS riser
+\i railY0 = -2.0 railY1 = -1.6
+\t -1.6
+\p > 
+\i netRect(cv nGND -1.0 railY0 45.0 railY1)
+\t db:0x1751901a
+\p > 
+\i ; M1 S/B (integrated tap: B metal column) down to rail
+\i netRect(cv nGND xCoord(lowerLeft(b1)) railY1 xCoord(upperRight(b1)) 0.1)
+\t db:0x1751901b
+\p > 
+\i ; also drop the S diffusion contact column if it carries metal (use S box x-range clipped to metal width)
+\i ; RS.MINUS riser on the far right
+\i netRect(cv nGND xCoord(lowerLeft(rm)) yCoord(lowerLeft(rm)) 45.0 yCoord(upperRight(rm)))
+\t db:0x1751901c
+\p > 
+\i netRect(cv nGND 44.88 yCoord(lowerLeft(rm)) 45.0 railY1)
+\t db:0x1751901d
+\p > 
+\i ; NS: M2.S col down, channel left, down the left edge, into RS.PLUS
+\i nsX0 = xCoord(lowerLeft(s2)) nsX1 = nsX0+0.12
+\t 5.82
+\p > 
+\i netRect(cv nNS nsX0 -1.1 nsX1 0.1)
+\t db:0x1751901e
+\p > 
+\i netRect(cv nNS -1.4 -1.1 nsX1 -0.9)
+\t db:0x1751901f
+\p > 
+\i netRect(cv nNS -1.4 yCoord(lowerLeft(rp)) -1.28 -0.9)
+\t db:0x17519020
+\p > 
+\i netRect(cv nNS -1.4 yCoord(lowerLeft(rp)) xCoord(upperRight(rp)) yCoord(upperRight(rp)))
+\t db:0x17519021
+\p > 
+\i ; IREF: M1.D up, bar across to both gate straps, out to pin on the left
+\i dx0 = xCoord(lowerLeft(d1)) dx1 = xCoord(upperRight(d1))
+\t 0.58
+\p > 
+\i barY0 = 2.3 barY1 = 2.42
+\t 2.42
+\p > 
+\i netRect(cv nIREF dx0 yCoord(upperRight(d1))-0.1 dx1 barY1)
+\t db:0x17519022
+\p > 
+\i netRect(cv nIREF -1.4 barY0 xCoord(upperRight(g2))-0.1 barY1)
+\t db:0x17519023
+\p > 
+\i gc1 = (xCoord(lowerLeft(g1))+xCoord(upperRight(g1)))/2.0
+\t 0.14
+\p > 
+\i gc2 = (xCoord(lowerLeft(g2))+xCoord(upperRight(g2)))/2.0
+\t 6.14
+\p > 
+\i netRect(cv nIREF gc1-0.06 yCoord(lowerLeft(g1))+0.02 gc1+0.06 barY1)
+\t db:0x17519024
+\p > 
+\i netRect(cv nIREF gc2-0.06 yCoord(lowerLeft(g2))+0.02 gc2+0.06 barY1)
+\t db:0x17519025
+\p > 
+\i ; IOUT: M2.D down, stub right, pin
+\i ox0 = xCoord(lowerLeft(d2)) ox1 = xCoord(upperRight(d2))
+\t 6.58
+\p > 
+\i netRect(cv nIOUT ox0 -0.75 ox1 0.1)
+\t db:0x17519026
+\p > 
+\i netRect(cv nIOUT ox0 -0.75 8.3 -0.63)
+\t db:0x17519027
+\p > 
+\i ; pins
+\i mkPin(cv nIREF -1.4 barY0 -0.9 barY1)
+\t db:0x17519028
+\p > 
+\i mkPin(cv nIOUT 7.8 -0.75 8.3 -0.63)
+\t db:0x1751902a
+\p > 
+\i mkPin(cv nGND 4.0 railY0 4.5 railY1)
+\t db:0x1751902c
+\p > 
+\i printf("MCP:routed=t nets=%L\n" cv~>nets~>name)
+\o MCP:routed=t nets=("IREF" "IOUT" "GND" "NS")
+\t t
+\p > 
+\i dbSave(cv)
+\o Loading drdEdit.cxt 
+\o Loading leToolbox.cxt 
+\o Loading treeAssistant.cxt 
+\o Loading soi.cxt 
+\o Loading techComp.cxt 
+\t t
+\p > 
+\i ; ---------- 3. DRC ----------
+\i lay = dbOpenCellViewByType(lib "widlar_lay" "layout" "maskLayout" "r")
+\t db:0x1751cd9a
+\p > 
+\i drcRes = errset( ivDRC( ?cell lay ?rulesFilePath "/home/work/gpdk090_v4.6/diva/divaDRC.rul" ?rulesLibName "" ?hier t ?echo t) nil)
+\o DRC started at Sun Oct 11 20:34:10 2026
+\o 
+\o Validating hierarchy instantiation for:
+\o library: widlar_lib
+\o cell:    widlar_lay
+\o view:    layout
+\o Rules path is /home/work/gpdk090_v4.6/diva/divaDRC.rul.
+\o Inclusion limit is set to 1000.
+\w *WARNING* Illegal techfile name "/home/work/gpdk090_v4.6/diva/divaDRC.rul".
+\o Verification program terminated.
+\t (nil)
+\p > 
+\i printf("MCP:drc_call=%L\n" drcRes)
+\o MCP:drc_call=(nil)
+\t t
+\p > 
+\i ; ---------- 4. extract + LVS ----------
+\i extRes = errset( ivExtract( ?cell lay ?rulesFilePath "/home/work/gpdk090_v4.6/diva/divaEXT.rul" ?rulesLibName "" ?hier t ?echo t) nil)
+\o Extraction started at Sun Oct 11 20:34:10 2026
+\o 
+\o Validating hierarchy instantiation for:
+\o library: widlar_lib
+\o cell:    widlar_lay
+\o view:    layout
+\o Rules path is /home/work/gpdk090_v4.6/diva/divaEXT.rul.
+\o Inclusion limit is set to 1000.
+\w *WARNING* Illegal techfile name "/home/work/gpdk090_v4.6/diva/divaEXT.rul".
+\o Verification program terminated.
+\t (nil)
+\p > 
+\i printf("MCP:ext_call=%L\n" extRes)
+\o MCP:ext_call=(nil)
+\t t
+\p > 
+\i lvsRes = errset(
+\i   ivLVS( "./LVSrun" lib "widlar_lay" "extracted" t
+\i          lib "widlar_core" "schematic" t
+\i          t nil t nil "" t 0 t "" "/home/work/gpdk090_v4.6/diva/divaLVS.rul" "" ) nil)
+\o Loading LVS.cxt 
+\o Loading layerProc.cxt 
+\o Loading seCore.cxt 
+\o LVS job is now started...
+\t (t)
+\p > 
+\i printf("MCP:lvs_call=%L\n" lvsRes)
+\o MCP:lvs_call=(t)
+\t t
+\p > 
+\i printf("MCP:OK=1\n")
+\o MCP:OK=1
+\t t
+\p > 
+\i ; ---------- 5. screenshots ----------
+\i w = geOpen(?lib lib ?cell "widlar_lay" ?view "layout" ?mode "r")
+\w *WARNING* (LE-104268): widlar_lib/widlar_lay/layout has already been opened in edit mode.
+\o Loading lo.cxt 
+\o Loading vb.cxt 
+\o Loading see.cxt 
+\o Loading oi.cxt 
+\o Loading asst.cxt 
+\o Loading mtv.cxt 
+\t window:2
+\p > 
+\i hiResizeWindow(hiGetCurrentWindow() list(0:0 1600:1000))
+\t t
+\p > 
+\i procedure(wlA()
+\i   errset(evalstring(hiGetBindKey("Layout" "Shift<Key>f")) t)
+\i   errset(evalstring(hiGetBindKey("Layout" "<Key>f")) t)
+\i   hiRegTimer("wlB()" 30))
+\t wlA
+\p > 
+\i procedure(wlB() mcpShot("lay_full")
+\i   errset(hiZoomIn(hiGetCurrentWindow() list(-2.5:-3.5 10.0:3.5)) t)
+\i   hiRegTimer("wlC()" 30))
+\t wlB
+\p > 
+\i procedure(wlC() mcpShot("lay_mos") exit(0))
+\t wlC
+\p > 
+\i hiRegTimer("wlA()" 40)
+\t t
+\p > 
+\# Replay complete, returning to interactive mode at UTC 2026.10.11 12:34:14.022
+\w *WARNING* The LVS job has failed to run to completion. Examine si.out and si.log in the run directory for more information.
+\w 
+\w Run Directory: /home/work/widlar_run/LVSrun
+\p > 
+\o MCP:shot=/home/work/widlar_shots/lay_full.png
+\o MCP:shot=/home/work/widlar_shots/lay_mos.png
+\o 
+\# Memory report: on exit            386 MB, process size 1,208 MB at UTC 2026.10.11 12:34:26.302
+\# Memory report: peak usage         386 MB, process size 1,208 MB
+total 332
+drwxrwxr-x.  2 work work   4096 Oct 11 20:34 .
+drwx------. 65 work work   4096 Oct 11 20:15 ..
+-rw-rw-r--.  1 work work 162395 Oct 11 20:34 lay_full.png
+-rw-rw-r--.  1 work work 166198 Oct 11 20:34 lay_mos.png

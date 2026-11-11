@@ -1,0 +1,16 @@
+#
+# Edit Lock-Stake file. CAUTION: Please do not change.
+#
+# Information about current Edit Lock Owner.
+#
+LockStakeVersion               1.1
+LoginName                      work
+HostName                       work-eda
+ProcessIdentifier              22453
+ProcessCreationTime_UTC        1791724642
+ProcessCreationTime_Readable   Sun Oct 11 21:17:22 2026 CST
+AppIdentifier                  OA File System Design Manager
+OSType                         unix
+ReasonForPlacingEditLock       OpenAccess edit lock
+FilePathUsedToEditLock         /home/work/widlar_lib/widlar_lay/layout/layout.oa.cdslck.dirlck
+TimeEditLocked                 Sun Oct 11 21:17:23 2026 CST

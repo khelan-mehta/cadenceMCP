@@ -1,0 +1,9 @@
+@(#)$CDS: LVS version 6.1.7-64b 11/09/2015 12:38 (sjfnl124) $
+layout/netlist: No such file or directory
+Errors found in layout/netlist.
+/opt/IC617/tools/dfII/bin/64bit/LVS aborted.
+@(#)$CDS: LVS version 6.1.7-64b 11/09/2015 12:38 (sjfnl124) $
+
+Command line: /opt/IC617/tools/dfII/bin/64bit/LVS -dir . layout schematic
+
+ GENERIC PDK LVS Rules

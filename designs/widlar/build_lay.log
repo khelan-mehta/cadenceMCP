@@ -1,0 +1,284 @@
+\e Display :57 Error "BadAtom (invalid Atom parameter)"
+\e  request 20 error 5 serial 230 
+@@@VIRTUOSO_RC=0
+=== ciw ===
+\# Program start time UTC 2026.10.11 12:29:09.272
+\# Local time Sunday 11 October 2026, 8:29 pm
+\o Program:		@(#)$CDS: virtuoso version 6.1.7-64b 11/09/2015 12:45 (sjfnl165) $
+\o Hierarchy:		/opt/IC617/tools.lnx86/dfII/
+\o Sub version:		sub-version  IC6.1.7-64b.78  (64-bit addresses)
+\# Command line:	/opt/IC617/tools/dfII/bin/64bit/virtuoso -replay ./run_b7df37f4.il -log ./ciw_b7df37f4.log
+\# Host name (type):	work-eda (x86_64)
+\# Operating system:	Linux 2.6.32-431.el6.x86_64 #1 SMP Sun Nov 10 22:19:54 EST 2013
+\# Linux /etc/issue:	Red Hat Enterprise Linux Server release 6.5 (Santiago)
+\# Linux /etc/issue:	Kernel \r on an \m
+\# X display name (WxH):	:57 (1600x1000)
+\# Available geometry:			TL(0:0) BR(1599:999)
+\# X server:			CentOS
+\# Depth of Visual (Root):	24 (24)
+\# Number of Planes Used:	24
+\# X version:		11.0 (vendor release 11704000)
+\# X resource pool:	base 0x200000, mask 0x1fffff (2097151), shift 0
+\# 			current id 0x0, current max 0x1ffffa (2097146)
+\# Max data seg size:	     unlimited
+\# Max process size:	     unlimited
+\# Initial sbrk value:	        375 MB
+\# Available memory:	      6,831 MB
+\# System memory:	      7,770 MB
+\# Maximum memory size:	      7,475 MB
+\# Max mem available:	      6,911 MB
+\# Initial memory used:	         80 MB
+\#        process size:	        873 MB
+\# Qt version:		4.8.5
+\# Window Manager:	other
+\# User Name:		work
+\o Working Directory:	work-eda:/home/work/widlar_run
+\# Process Id:		9268
+\o 
+\o COPYRIGHT � 1992-2015  CADENCE DESIGN SYSTEMS INC.  ALL RIGHTS RESERVED.
+\o           � 1992-2015  UNIX SYSTEMS Laboratories INC.,
+\o                          Reproduced with permission.
+\o 
+\o This Cadence Design Systems program and online documentation are
+\o proprietary/confidential information and may be disclosed/used only
+\o as authorized in a license agreement controlling such use and disclosure.
+\o 
+\o           RESTRICTED RIGHTS NOTICE (SHORT FORM)
+\o Use/reproduction/disclosure is subject to restriction
+\o set forth at FAR 1252.227-19 or its equivalent.
+\o Loading geView.cxt 
+\o Loading menuBuilder.cxt 
+\o Loading schView.cxt 
+\o Loading selectSv.cxt 
+\o Loading wireEdit.cxt 
+\o Loading pte2.cxt 
+\o Loading xlUI.cxt 
+\o Loading auCore.cxt 
+\o Loading vhdl.cxt 
+\o Loading seismic.cxt 
+\o Loading ci.cxt 
+\o Loading ams.cxt 
+\o Virtuoso Framework License (111) was checked out successfully. Total checkout time was 0.00s.
+\# Memory report: using         229 MB, process size 1,051 MB at UTC 2026.10.11 12:29:10.224
+\o END OF SITE CUSTOMIZATION
+\o //
+\o //  Calibre Skill Interface * (v2015.2_36.27) *
+\o //
+\o //                 Copyright Mentor Graphics Corporation 2005
+\o //                             All Rights Reserved.
+\o //         THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+\o //            WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION
+\o //              OR ITS LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+\o //
+\o //
+\o Loading HSPICE.cxt
+\o Loading oasis.cxt 
+\o Loading analog.cxt 
+\o Loading cdf.cxt 
+\o   ==== HSPICE-ADE Interface, K-2015.06-3 BUILD (08/06/2015 18:09:41) ==== 
+\o   ==== COPYRIGHT 2008-2026 SYNOPSYS INC.                             ==== 
+\o   ==== HSPICE-ADE Interface installed successfully                   ==== 
+\o   HSPICE-ADE: use interface at '/opt/synopsys/Hspice-2015.06-3/interface'
+\o   HSPICE-ADE: use HSPICE at '/opt/synopsys/Hspice-2015.06-3//hspice/bin/hspice'
+\o   HSPICE-ADE: HSPICE Version K-2015.06-3 linux64 (build id: 3630644)
+\p > 
+\i procedure( mcpShot(name)
+\i   let( (f)
+\i     hiRedraw()
+\i     f = sprintf(nil "%s/%s.png" "/home/work/widlar_shots" name)
+\i     system(sprintf(nil "xwd -root -display $DISPLAY | convert xwd:- %s" f))
+\i     printf("MCP:shot=%s\n" f)))
+\t mcpShot
+\p > 
+\i printf("SKILL_START\n")
+\o SKILL_START
+\t t
+\p > 
+\i lib = "widlar_lib"
+\t "widlar_lib"
+\p > 
+\i procedure( termBox(inst tn)
+\i   let( (mt fig)
+\i     mt = car(setof(x inst~>master~>terminals x~>name==tn))
+\i     fig = car(mt~>pins)~>fig
+\i     when(fig dbTransformBBox(fig~>bBox inst~>transform))))
+\t termBox
+\p > 
+\i procedure( allTermBoxes(inst tn)
+\i   let( (mt)
+\i     mt = car(setof(x inst~>master~>terminals x~>name==tn))
+\i     foreach(p mt~>pins
+\i       printf("MCP:tb %s.%s %s %L\n" inst~>name tn p~>fig~>layerName dbTransformBBox(p~>fig~>bBox inst~>transform)))))
+\t allTermBoxes
+\p > 
+\i procedure( M1R(cv x0 y0 x1 y1)
+\i   dbCreateRect(cv list("Metal1" "drawing") list(min(x0 x1):min(y0 y1) max(x0 x1):max(y0 y1))))
+\t M1R
+\p > 
+\i procedure( ctr(bb) list((xCoord(lowerLeft(bb))+xCoord(upperRight(bb)))/2.0 (yCoord(lowerLeft(bb))+yCoord(upperRight(bb)))/2.0))
+\t ctr
+\p > 
+\i ; ---------- open layout ----------
+\i cv = dbOpenCellViewByType(lib "widlar_lay" "layout" "maskLayout" "w")
+\o Loading gpdk090/libInit.il ...
+\o 	Loading gpdk090/loadCxt.ile ... done!
+\o 	Loading context 'gpdk090' from library 'gpdk090' ... done!
+\o 	Loading context 'pdkUtils' from library 'gpdk090' ... done!
+\o 	Loading gpdk090/display.drf ... done!
+\o 	Loading gpdk090/gpdk090_customFilter.il ... done!
+\o 	Loading gpdk090/.simrc ... done!
+\o 	Loading gpdk090/libInitCustomExit.il ... 	Loading Environment Settings ...
+\w *WARNING* envSetVal: Can't set the value of variable 'extractVerifySubstrate',
+\w 	in tool[.partition] 'layout' - it has not been registered.
+\o 	Loading Model Management File ...
+\o Loading spectrei.cxt 
+\o Loading devCheck.cxt 
+\o Loading relXpert.cxt 
+\o Loading hspiceD.cxt 
+\o Loading spectreinl.cxt 
+\o Loading UltraSim.cxt 
+\o Loading msgHandler.cxt 
+\o Loading AMSOSS.cxt 
+\o Loading AMS.cxt 
+\o 	Loading gpdk090/gpdk090_PDKRegistrations.il ... done!
+\o 
+\o   *************************************************************           
+\o   *              Cadence Design Systems, Inc.                 *           
+\o   *                                                           *           
+\o   *                    Generic 90nm PDK                       *           
+\o   *                        (gpdk090)                          *           
+\o   *                                                           *           
+\o   *************************************************************           
+\o 	
+\o 
+\o 	Version : 4.6
+\o 
+\o 	Build date: 10-FEB-2011
+\o 
+\o done!
+\o Loaded gpdk090/libInit.il successfully!
+\t db:0x17b2cd9a
+\p > 
+\i mosP = list(list("fw" "float" 1.56e-6) list("l" "float" 2.8e-7) list("fingers" "int" 2)
+\i             list("tap" "string" "Integrated") list("connectGates" "string" "Top")
+\i             list("connectSD" "string" "Source"))
+\t (("fw" "float" 1.56e-06) 
+\t     ("l" "float" 2.8e-07) 
+\t     ("fingers" "int" 2) 
+\t     ("tap" "string" "Integrated") 
+\t     ("connectGates" "string" "Top")
+\t     ("connectSD" "string" "Source")
+\t )
+\p > 
+\i MA = dbCreateParamInstByMasterName(cv "gpdk090" "nmos2v" "layout" "M1" 0:0 "R0" 1 mosP)
+\t db:0x17b2c71a
+\p > 
+\i MB = dbCreateParamInstByMasterName(cv "gpdk090" "nmos2v" "layout" "M2" 6.0:0 "R0" 1 mosP)
+\t db:0x17b2c71b
+\p > 
+\i rsP = list(list("segments" "int" 28) list("segW" "float" 1e-6) list("segL" "float" 24.195e-6)
+\i            list("connection" "string" "Series") list("leftTap" "boolean" t))
+\t (("segments" "int" 28) 
+\t     ("segW" "float" 1e-06) 
+\t     ("segL" "float" 2.4195e-05) 
+\t     ("connection" "string" "Series") 
+\t     ("leftTap" "boolean" t)
+\t )
+\p > 
+\i RS = dbCreateParamInstByMasterName(cv "gpdk090" "resnsppoly" "layout" "RS" 0:-32.0 "R0" 1 rsP)
+\t db:0x17b2c71c
+\p > 
+\i printf("MCP:placed=%L\n" list(MA!=nil MB!=nil RS!=nil))
+\o MCP:placed=(t t t)
+\t t
+\p > 
+\i printf("MCP:mosbb=%L %L\n" MA~>bBox MB~>bBox)
+\o MCP:mosbb=((-0.86 -0.3) (1.52 2.08)) ((5.14 -0.3) (7.52 2.08))
+\t t
+\p > 
+\i printf("MCP:rsbb=%L\n" RS~>bBox)
+\o MCP:rsbb=((-0.78 -32.56) (44.48 -7.245))
+\t t
+\p > 
+\i printf("MCP:eff=%L %L %L\n" MA~>fw MA~>fingers RS~>segments)
+\o MCP:eff=1.56e-06 2.0 28
+\t t
+\p > 
+\i foreach(tn '("D" "G" "S" "B") allTermBoxes(MA tn))
+\o MCP:tb M1.D Metal1 ((0.4 0.0) (0.52 1.56))
+\o MCP:tb M1.G Metal1 ((0.0 1.92) (0.92 2.04))
+\o MCP:tb M1.S Oxide ((-0.56 0.0) (0.0 1.56))
+\o MCP:tb M1.B Metal1 ((-0.5 0.0) (-0.12 1.56))
+\t ("D" "G" "S" "B")
+\p > 
+\i foreach(tn RS~>master~>terminals~>name allTermBoxes(RS tn))
+\o MCP:tb RS.PLUS Metal1 ((0.0 -32.37) (1.0 -32.25))
+\o MCP:tb RS.MINUS Metal1 ((43.2 -32.37) (44.2 -32.25))
+\o MCP:tb RS.B Metal1 ((-0.7 -32.41) (-0.58 -7.395))
+\t ("PLUS" "MINUS" "B")
+\p > 
+\i printf("MCP:cdsd=%L
+\i " errset(cdfParseCallbacks(nil) nil))
+\t MCP:cdsd=nil t
+\p > 
+\i printf("MCP:envprobe=%L
+\i " errset(envGetVal("layout" "stopLevel") nil))
+\t MCP:envprobe=(0) t
+\p > 
+\i printf("MCP:bk_shiftf=%L
+\i " hiGetBindKey("Layout" "Shift<Key>f"))
+\t MCP:bk_shiftf="hiGetCurrentWindow()->stopLevel = dbGetMaxHierDepth()-1" t
+\p > 
+\i dbSave(cv)
+\# Available memory:          6,610 MB at UTC 2026.10.11 12:29:21.420
+\# Memory report: Maximum memory size now 6,961 MB at UTC 2026.10.11 12:29:21.420
+\# Memory report: using         351 MB, process size 1,173 MB at UTC 2026.10.11 12:29:21.420
+\o Loading le.cxt 
+\o Loading drdEdit.cxt 
+\o Loading leToolbox.cxt 
+\o Loading treeAssistant.cxt 
+\o Loading soi.cxt 
+\o Loading techComp.cxt 
+\t t
+\p > 
+\o Loading mpt.cxt 
+\i printf("MCP:OK=1\n")
+\o MCP:OK=1
+\t t
+\p > 
+\i w = geOpen(?lib lib ?cell "widlar_lay" ?view "layout" ?mode "r")
+\w *WARNING* (LE-104268): widlar_lib/widlar_lay/layout has already been opened in edit mode.
+\o Loading lo.cxt 
+\o Loading vb.cxt 
+\o Loading see.cxt 
+\o Loading oi.cxt 
+\o Loading asst.cxt 
+\o Loading mtv.cxt 
+\o Loading lce.cxt 
+\t window:2
+\p > 
+\i hiResizeWindow(hiGetCurrentWindow() list(0:0 1600:1000))
+\t t
+\p > 
+\i procedure(wlA()
+\i   errset(envSetVal("layout" "stopLevel" 'int 32) nil)
+\i   errset(evalstring(hiGetBindKey("Layout" "Shift<Key>f")) t)
+\i   errset(evalstring(hiGetBindKey("Layout" "<Key>f")) t)
+\i   hiRegTimer("wlB()" 30))
+\t wlA
+\p > 
+\i procedure(wlB() mcpShot("lay_probe") exit(0))
+\t wlB
+\p > 
+\i hiRegTimer("wlA()" 40)
+\t t
+\p > 
+\# Replay complete, returning to interactive mode at UTC 2026.10.11 12:29:21.707
+\o MCP:shot=/home/work/widlar_shots/lay_probe.png
+\o 
+\# Memory report: on exit            376 MB, process size 1,198 MB at UTC 2026.10.11 12:29:30.853
+\# Memory report: peak usage         376 MB, process size 1,198 MB
+total 172
+drwxrwxr-x.  2 work work   4096 Oct 11 20:29 .
+drwx------. 65 work work   4096 Oct 11 20:15 ..
+-rw-rw-r--.  1 work work 167206 Oct 11 20:29 lay_probe.png

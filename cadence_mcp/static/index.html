@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Cadence Analog CMOS — MCP Dashboard</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--txt:#e6edf3;--mut:#8b949e;
+        --acc:#58a6ff;--grn:#7ee787;--org:#f0883e;--red:#f85149;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:14px ui-monospace,Consolas,monospace}
+  header{padding:10px 16px;border-bottom:1px solid var(--border);display:flex;gap:16px;align-items:center}
+  header h1{font-size:16px;margin:0;color:var(--acc)}
+  header .vm{margin-left:auto;font-size:12px;color:var(--mut)}
+  .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--red);margin-right:5px}
+  .dot.ok{background:var(--grn)}
+  nav{display:flex;gap:4px;padding:8px 16px;border-bottom:1px solid var(--border)}
+  nav button{background:transparent;color:var(--mut);border:1px solid transparent;padding:6px 12px;
+             border-radius:6px;cursor:pointer;font:inherit}
+  nav button.active{color:var(--txt);background:var(--panel);border-color:var(--border)}
+  main{display:grid;grid-template-columns:340px 1fr;gap:14px;padding:14px}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px}
+  .panel h3{margin:0 0 8px;font-size:13px;color:var(--acc)}
+  select,input,textarea{background:#0d1117;color:var(--txt);border:1px solid var(--border);
+         border-radius:5px;padding:5px 7px;font:inherit;width:100%}
+  label{display:block;font-size:11px;color:var(--mut);margin:6px 0 2px}
+  .row{display:flex;gap:6px}
+  .row>*{flex:1}
+  button.go{background:var(--acc);color:#04101f;border:none;border-radius:6px;padding:8px 12px;
+            font:inherit;font-weight:bold;cursor:pointer;width:100%;margin-top:10px}
+  button.go:disabled{opacity:.5;cursor:wait}
+  button.sec{background:transparent;color:var(--acc);border:1px solid var(--border);border-radius:6px;
+             padding:6px 10px;cursor:pointer;font:inherit}
+  table{border-collapse:collapse;width:100%;font-size:12px}
+  th,td{border:1px solid var(--border);padding:3px 6px;text-align:left}
+  th{color:var(--mut);font-weight:normal}
+  .grp{margin-bottom:6px}
+  .grp>summary{cursor:pointer;color:var(--org);font-size:12px;padding:3px 0}
+  .meas{font-size:12px}
+  .meas b{color:var(--grn)}
+  .runitem{padding:6px;border:1px solid var(--border);border-radius:6px;margin-bottom:6px;cursor:pointer}
+  .runitem:hover{border-color:var(--acc)}
+  .runitem small{color:var(--mut)}
+  #plot{width:100%;height:460px}
+  .pill{display:inline-block;background:#21262d;border:1px solid var(--border);border-radius:10px;
+        padding:1px 8px;font-size:11px;color:var(--mut);margin:2px}
+  .err{color:var(--red)}
+  .muted{color:var(--mut)}
+  pre{white-space:pre-wrap;font-size:11px;color:var(--mut);max-height:200px;overflow:auto}
+</style>
+</head>
+<body>
+<header>
+  <h1>⚡ Cadence Analog CMOS — MCP Dashboard</h1>
+  <span class="muted">gpdk090 · Spectre 15.1</span>
+  <span class="vm"><span id="vmdot" class="dot"></span><span id="vmtxt">VM ?</span>
+    <button class="sec" onclick="startVM()">start VM</button></span>
+</header>
+<nav>
+  <button data-tab="run" class="active">Run &amp; Tweak</button>
+  <button data-tab="plot">Results &amp; Plots</button>
+  <button data-tab="dev">Library / Devices</button>
+  <button data-tab="sch">Schematic</button>
+  <button data-tab="dig">Digital (CPU + cells)</button>
+</nav>
+
+<!-- ================= RUN TAB ================= -->
+<main id="tab-run">
+  <div class="panel">
+    <h3>Experiment</h3>
+    <select id="expSel" onchange="loadExp()"></select>
+    <div id="expSpec" class="muted" style="margin:8px 0;font-size:12px"></div>
+    <div id="paramForm"></div>
+    <button class="go" id="runBtn" onclick="runExp()">▶ Run simulation</button>
+    <div id="runStatus" style="margin-top:8px;font-size:12px"></div>
+  </div>
+  <div class="panel">
+    <h3>Result</h3>
+    <div id="resultBox" class="muted">Run an experiment to see measurements, the device
+      operating-point table, and auto-plots.</div>
+    <div id="measBox" class="meas"></div>
+    <div id="devBox"></div>
+    <div id="autoPlots"></div>
+  </div>
+</main>
+
+<!-- ================= PLOT TAB ================= -->
+<main id="tab-plot" style="display:none">
+  <div class="panel">
+    <h3>Runs</h3>
+    <select id="filterExp" onchange="loadRuns()"><option value="">all experiments</option></select>
+    <div id="runList" style="margin-top:8px;max-height:70vh;overflow:auto"></div>
+  </div>
+  <div class="panel">
+    <h3>Plot anything</h3>
+    <div class="row">
+      <div><label>analysis</label><select id="anaSel" onchange="onAna()"></select></div>
+      <div><label>X axis</label><select id="xSel"></select></div>
+    </div>
+    <div class="row">
+      <div><label>Y signals (multi)</label><select id="ySel" multiple size="5"></select></div>
+      <div>
+        <label>Y transform</label>
+        <select id="ytr">
+          <option value="none">none</option><option value="db">20·log10 |·| (dB)</option>
+          <option value="phase">phase (°)</option><option value="abs">|·|</option>
+          <option value="sqrtabs">√|·|</option>
+        </select>
+        <label>X scale</label>
+        <select id="xsc"><option value="linear">linear</option><option value="log">log</option></select>
+        <button class="sec" style="margin-top:8px;width:100%" onclick="drawCustom()">Plot</button>
+      </div>
+    </div>
+    <div id="plot"></div>
+    <div id="runMeta" class="muted" style="font-size:12px"></div>
+  </div>
+</main>
+
+<!-- ================= DEVICE TAB ================= -->
+<main id="tab-dev" style="display:none">
+  <div class="panel">
+    <h3>gpdk090 library</h3>
+    <div id="devList"></div>
+  </div>
+  <div class="panel">
+    <h3>Component parameters</h3>
+    <div id="devDetail" class="muted">Select a device.</div>
+  </div>
+</main>
+
+<!-- ================= SCHEMATIC TAB ================= -->
+<main id="tab-sch" style="display:none">
+  <div class="panel">
+    <h3>Circuit</h3>
+    <select id="schSel" onchange="drawSch()"></select>
+    <div id="schNotes" class="muted" style="font-size:12px;margin-top:8px"></div>
+  </div>
+  <div class="panel">
+    <h3>Schematic (live parameters)</h3>
+    <div id="schBox"></div>
+  </div>
+</main>
+
+<!-- ================= DIGITAL TAB ================= -->
+<main id="tab-dig" style="display:none">
+  <div class="panel">
+    <h3>8-bit CPU (functional Verilog/Amaranth)</h3>
+    <label>demo program</label>
+    <select id="cpuDemo" onchange="loadDemo()"></select>
+    <textarea id="cpuSrc" rows="12" spellcheck="false"></textarea>
+    <div class="row">
+      <div><label>cache lines</label><input id="cLines" value="8"/></div>
+      <div><label>line bytes</label><input id="cBytes" value="4"/></div>
+      <div><label>miss penalty</label><input id="cPen" value="8"/></div>
+    </div>
+    <button class="go" id="cpuBtn" onclick="runCpu()">▶ Assemble &amp; run CPU</button>
+    <div id="cpuStatus" style="margin-top:8px;font-size:12px"></div>
+    <hr style="border-color:var(--border);margin:14px 0"/>
+    <h3>Transistor-level cells (Spectre / gpdk090)</h3>
+    <div id="cellBtns"></div>
+    <div id="cellStatus" style="margin-top:8px;font-size:12px"></div>
+  </div>
+  <div class="panel">
+    <h3>Digital result</h3>
+    <div id="digResult" class="muted">Run the CPU or characterize a cell.</div>
+    <div id="digMeas" class="meas"></div>
+    <div id="digPlots"></div>
+  </div>
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+let EXPS=[], CUREXP=null, CURRUN=null, DEMOS={};
+
+async function jget(u){const r=await fetch(u);return r.json();}
+async function jpost(u,b){const r=await fetch(u,{method:'POST',headers:{'Content-Type':'application/json'},
+   body:JSON.stringify(b)});return r.json();}
+
+/* tabs */
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  ['run','plot','dev','sch'].forEach(t=>$('tab-'+t).style.display='none');
+  $('tab-'+b.dataset.tab).style.display='grid';
+  if(b.dataset.tab==='plot')loadRuns();
+  if(b.dataset.tab==='dev')loadDevices();
+  if(b.dataset.tab==='sch')drawSch();
+  if(b.dataset.tab==='dig')initDigital();
+});
+
+/* VM status */
+async function vmStatus(){const s=await jget('/api/runs');/*touch*/}
+async function pollVM(){try{const r=await fetch('/api/vm',{method:'POST',
+  headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'status'})});
+  const s=await r.json();const ok=s.guest_ready;
+  $('vmdot').className='dot'+(ok?' ok':'');$('vmtxt').textContent=ok?'VM ready':
+    (s.running?'VM booting':'VM off');}catch(e){$('vmtxt').textContent='VM ?';}}
+async function startVM(){$('vmtxt').textContent='starting…';
+  await fetch('/api/vm',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({action:'start'})});pollVM();}
+
+/* ===== RUN TAB ===== */
+async function init(){
+  EXPS=await jget('/api/experiments');
+  const opts=EXPS.map(e=>`<option value="${e.id}">Exp ${e.id} — ${e.title}</option>`).join('');
+  $('expSel').innerHTML=opts;
+  $('filterExp').innerHTML='<option value="">all experiments</option>'+
+     EXPS.map(e=>`<option value="${e.id}">Exp ${e.id}</option>`).join('');
+  $('schSel').innerHTML=opts;
+  loadExp();pollVM();setInterval(pollVM,15000);
+}
+async function loadExp(){
+  const id=$('expSel').value;
+  CUREXP=await jget('/api/experiment/'+id);
+  $('expSpec').innerHTML='<b>Spec:</b> '+CUREXP.spec+(CUREXP.notes?'<br><span class="muted">'+CUREXP.notes+'</span>':'');
+  const groups={};
+  CUREXP.params.forEach(p=>{(groups[p.group]=groups[p.group]||[]).push(p);});
+  let html='';
+  for(const g in groups){
+    html+=`<details class="grp" open><summary>${g}</summary>`;
+    groups[g].forEach(p=>{
+      html+=`<label title="${p.desc}">${p.name} ${p.unit?'('+p.unit+')':''} — <span class="muted">${p.desc}</span></label>`;
+      if(p.type==='enum'){
+        html+=`<select data-p="${p.name}">`+p.choices.map(c=>`<option ${c==p.default?'selected':''}>${c}</option>`).join('')+`</select>`;
+      }else if(p.type==='multiline'){
+        html+=`<textarea data-p="${p.name}" rows="6">${p.default}</textarea>`;
+      }else{
+        html+=`<input data-p="${p.name}" value="${p.default}"/>`;
+      }
+    });
+    html+=`</details>`;
+  }
+  $('paramForm').innerHTML=html;
+}
+function collectParams(){
+  const o={};document.querySelectorAll('#paramForm [data-p]').forEach(el=>o[el.dataset.p]=el.value);return o;}
+async function runExp(){
+  const id=$('expSel').value, params=collectParams();
+  $('runBtn').disabled=true;$('runStatus').innerHTML='⏳ simulating on VM… (first run boots the VM)';
+  try{
+    const r=await jpost('/api/run',{experiment:id,params});
+    if(!r.ok){$('runStatus').innerHTML='<span class="err">✗ '+(r.errors||'')+' errors</span>';
+      $('resultBox').innerHTML='<pre>'+(r.log_tail||r.error||'failed')+'</pre>';}
+    else{$('runStatus').innerHTML='✓ run '+r.run_id+' — '+(r.warnings||0)+' warnings';
+      showResult(r);CURRUN=r.run_id;}
+  }catch(e){$('runStatus').innerHTML='<span class="err">'+e+'</span>';}
+  $('runBtn').disabled=false;pollVM();
+}
+function fmt(v){if(v==null)return '—';if(typeof v==='number'){
+   const a=Math.abs(v);if(a!==0&&(a<1e-3||a>=1e5))return v.toExponential(3);return (+v.toFixed(5)).toString();}return v;}
+function showResult(r){
+  $('resultBox').innerHTML=`<b>Exp ${r.experiment_id}</b> — ${r.title} · run ${r.run_id}`;
+  const m=r.measurements||{};let mh='<table><tr><th>metric</th><th>value</th></tr>';
+  for(const k in m){if(k==='devices')continue;if(typeof m[k]==='object')continue;
+    mh+=`<tr><td>${k}</td><td><b>${fmt(m[k])}</b></td></tr>`;}
+  mh+='</table>';$('measBox').innerHTML=mh;
+  const dt=r.device_table||[];
+  if(dt.length){let dh='<h3>Operating point (per device)</h3><table><tr><th>inst</th><th>region</th>'+
+    '<th>id</th><th>gm</th><th>ro</th><th>vth</th><th>vdsat</th><th>cgs</th><th>fT</th></tr>';
+    dt.forEach(d=>{dh+=`<tr><td>${d.instance}</td><td>${d.region||''}</td><td>${fmt(d.id)}</td>`+
+      `<td>${fmt(d.gm)}</td><td>${fmt(d.ro)}</td><td>${fmt(d.vth)}</td><td>${fmt(d.vdsat)}</td>`+
+      `<td>${fmt(d.cgs)}</td><td>${fmt(d.fug)}</td></tr>`;});
+    dh+='</table>';$('devBox').innerHTML=dh;}else $('devBox').innerHTML='';
+  // auto plots
+  $('autoPlots').innerHTML='<h3>Auto-plots</h3>';
+  loadRunAndPlot(r.run_id,true);
+}
+
+/* ===== PLOT TAB ===== */
+async function loadRuns(){
+  const eid=$('filterExp').value;
+  const runs=await jget('/api/runs'+(eid?'?experiment='+eid:''));
+  $('runList').innerHTML=runs.map(r=>{
+    const ms=r.measurements||{};const hi=Object.keys(ms).slice(0,3).map(k=>`${k}=${fmt(ms[k])}`).join(' · ');
+    return `<div class="runitem" onclick="loadRunAndPlot('${r.run_id}')">
+      <b>Exp ${r.experiment_id}</b> <small>${r.created_str}</small><br>
+      <small>${r.title}</small><br><span class="pill">${r.ok?'ok':'ERR'}</span>
+      <small>${hi}</small></div>`;}).join('')||'<span class="muted">no runs yet</span>';
+}
+async function loadRunAndPlot(rid, auto){
+  CURRUN=rid;const d=await jget('/api/run/'+rid);
+  window._RUN=d;
+  const anas=Object.keys(d.analyses||{});
+  $('anaSel').innerHTML=anas.map(a=>`<option>${a}</option>`).join('');
+  onAna();
+  $('runMeta').innerHTML=`run ${rid} · Exp ${d.experiment_id} · ${d.created_str} · `+
+     `<a class="muted" href="#" onclick="showNetlist();return false">netlist</a>`;
+  if(auto){renderAutoPlots(d);} else {
+    // switch to plot tab
+    document.querySelector('nav button[data-tab=plot]').click();
+    drawDefault(d);
+  }
+}
+function onAna(){
+  const d=window._RUN;if(!d)return;const a=d.analyses[$('anaSel').value];if(!a)return;
+  const names=a.names||[];
+  $('xSel').innerHTML=`<option value="@sweep">${a.sweep} (sweep)</option>`+
+     names.map(n=>`<option>${n}</option>`).join('');
+  $('ySel').innerHTML=names.map(n=>`<option>${n}</option>`).join('');
+}
+function transform(arr, tr, cdata){
+  if(tr==='db')return arr.map(v=>20*Math.log10(Math.abs(v)||1e-30));
+  if(tr==='abs')return arr.map(Math.abs);
+  if(tr==='sqrtabs')return arr.map(v=>Math.sqrt(Math.abs(v)));
+  return arr;
+}
+function drawCustom(){
+  const d=window._RUN;if(!d)return;const a=d.analyses[$('anaSel').value];
+  const xkey=$('xSel').value==='@sweep'?a.sweep:$('xSel').value;
+  const x=a.data[xkey];
+  const ys=[...$('ySel').selectedOptions].map(o=>o.value);
+  const tr=$('ytr').value;
+  const traces=ys.map(y=>({x:x,y:transform(a.data[y]||[],tr),mode:'lines',name:y+(tr!=='none'?' ['+tr+']':'')}));
+  plot(traces,$('xSel').value==='@sweep'?a.sweep:xkey,tr, $('xsc').value);
+}
+function plot(traces,xlabel,ylabel,xscale){
+  Plotly.newPlot('plot',traces,{paper_bgcolor:'#161b22',plot_bgcolor:'#0d1117',
+    font:{color:'#e6edf3',family:'monospace',size:11},margin:{t:20,r:10},
+    xaxis:{title:xlabel,gridcolor:'#30363d',type:xscale||'linear'},
+    yaxis:{title:ylabel,gridcolor:'#30363d'},legend:{orientation:'h'}},{responsive:true});
+}
+function drawDefault(d){
+  if(d.plots&&d.plots.length){const p=d.plots[0];drawSpec(d,p);}
+}
+function drawSpec(d,p){
+  const a=d.analyses[p.analysis];if(!a)return;
+  const xkey=p.x==='@sweep'||p.x==='time'?a.sweep:p.x;
+  const x=a.data[xkey]||a.data[a.sweep];
+  const tr=p.ytransform||'none';
+  const traces=p.y.map(y=>({x:x,y:transform(a.data[y]||[],tr),mode:'lines',name:y}));
+  plot(traces,p.xlabel||xkey,p.ylabel||'',p.xscale||'linear');
+}
+function renderAutoPlots(d){
+  const box=$('autoPlots');box.innerHTML='<h3>Auto-plots</h3>';
+  (d.plots||[]).forEach((p,i)=>{
+    const div=document.createElement('div');div.id='ap'+i;div.style.height='300px';box.appendChild(div);
+    const a=d.analyses[p.analysis];if(!a){div.innerHTML='<span class="muted">no data for '+p.title+'</span>';return;}
+    const xkey=(p.x==='@sweep'||p.x==='time')?a.sweep:p.x;
+    const x=a.data[xkey]||a.data[a.sweep];const tr=p.ytransform||'none';
+    const traces=p.y.map(y=>({x:x,y:transform(a.data[y]||[],tr),mode:'lines',name:y}));
+    Plotly.newPlot(div.id,traces,{title:{text:p.title,font:{size:12}},paper_bgcolor:'#161b22',
+      plot_bgcolor:'#0d1117',font:{color:'#e6edf3',family:'monospace',size:10},margin:{t:26,r:8},
+      xaxis:{title:p.xlabel,gridcolor:'#30363d',type:p.xscale||'linear'},
+      yaxis:{title:p.ylabel,gridcolor:'#30363d'},showlegend:true,
+      legend:{orientation:'h'}},{responsive:true});
+  });
+}
+function showNetlist(){const d=window._RUN;$('runMeta').innerHTML+='<pre>'+d.netlist+'</pre>';}
+
+/* ===== DEVICES ===== */
+async function loadDevices(){
+  const ds=await jget('/api/devices');
+  $('devList').innerHTML=ds.map(d=>`<div class="runitem" onclick="showDev('${d.name}')">
+     <b>${d.name}</b> <span class="pill">${d.type}</span><br><small>${d.rail}</small><br>
+     <small class="muted">${d.desc}</small></div>`).join('');
+}
+async function showDev(name){
+  const d=await jget('/api/device/'+name);
+  let h=`<h3>${d.name}</h3><p class="muted">${d.desc}</p>
+     <div class="pill">model: ${d.model}</div><div class="pill">terminals: ${d.terminals}</div>
+     <div class="pill">rail: ${d.rail}</div>
+     <h3 style="margin-top:10px">Instance parameters</h3>
+     <table><tr><th>param</th><th>default</th><th>range</th><th>unit</th><th>desc</th></tr>`;
+  d.params.forEach(p=>h+=`<tr><td><b>${p.name}</b></td><td>${p.default}</td>
+     <td>${(p.min||'')}…${(p.max||'')}</td><td>${p.unit}</td><td>${p.desc}</td></tr>`);
+  h+='</table>';
+  if(d.op){h+='<h3 style="margin-top:10px">Operating-point outputs</h3>'+
+     d.op.map(o=>`<span class="pill">${o}</span>`).join('');}
+  $('devDetail').innerHTML=h;
+}
+
+/* ===== SCHEMATIC ===== */
+function drawSch(){
+  const id=$('schSel').value||$('expSel').value;
+  const exp=EXPS.find(e=>e.id==id);
+  $('schBox').innerHTML=`<img style="width:100%;border:1px solid var(--border);border-radius:8px" src="/api/schematic/${id}?t=${Date.now()}"/>`;
+  if(exp)$('schNotes').innerHTML='<b>Exp '+exp.id+'</b> — '+exp.title+'<br>'+exp.spec;
+}
+
+/* ===== DIGITAL ===== */
+let digInit=false;
+async function initDigital(){
+  if(digInit)return; digInit=true;
+  const d=await jget('/api/cpu-demos'); DEMOS=d.demos;
+  $('cpuDemo').innerHTML=Object.keys(DEMOS).map(k=>`<option>${k}</option>`).join('');
+  loadDemo();
+  const cells=await jget('/api/cells');
+  const char=['INV','FA','SRAM6T','DFF'];
+  $('cellBtns').innerHTML=cells.map(c=>{
+    const can=char.includes(c.name)||c.name==='INV';
+    return `<button class="sec" style="margin:3px" onclick="charCell('${c.name}')" title="${c.desc}">${c.name}</button>`;
+  }).join('')+`<button class="sec" style="margin:3px" onclick="charCell('RING')">ring-osc</button>`;
+}
+function loadDemo(){ $('cpuSrc').value=DEMOS[$('cpuDemo').value]||''; }
+async function runCpu(){
+  $('cpuBtn').disabled=true;$('cpuStatus').textContent='⏳ assembling + simulating…';
+  try{
+    const r=await jpost('/api/run-cpu',{program:$('cpuSrc').value,
+      cache_lines:+$('cLines').value,line_bytes:+$('cBytes').value,miss_penalty:+$('cPen').value});
+    if(r.error){$('cpuStatus').innerHTML='<span class="err">'+r.error+'</span>';}
+    else{$('cpuStatus').innerHTML='✓ run '+r.run_id+' halted='+r.halted+' cycles='+r.cycles_run;
+      showDig('CPU program', r.final, r.run_id);}
+  }catch(e){$('cpuStatus').innerHTML='<span class="err">'+e+'</span>';}
+  $('cpuBtn').disabled=false;
+}
+async function charCell(cell){
+  $('cellStatus').textContent='⏳ Spectre transistor-level sim of '+cell+'…';
+  try{
+    const r=await jpost('/api/characterize',{cell:cell, stages:5});
+    if(r.error){$('cellStatus').innerHTML='<span class="err">'+r.error+'</span>';return;}
+    $('cellStatus').innerHTML='✓ '+cell+' characterized';
+    // find its saved run (latest cell:<cell> or ring)
+    const runs=await jget('/api/runs');
+    const tag = cell==='RING' ? 'ring' : cell;
+    const match=runs.find(x=>String(x.experiment_id).includes(tag));
+    showDig(cell+' (transistor-level)', r, match?match.run_id:null);
+  }catch(e){$('cellStatus').innerHTML='<span class="err">'+e+'</span>';}
+}
+function showDig(title, meas, run_id){
+  $('digResult').innerHTML='<b>'+title+'</b>'+(run_id?' · run '+run_id:'');
+  let h='<table><tr><th>metric</th><th>value</th></tr>';
+  for(const k in meas){const v=meas[k];
+    if(v==null||typeof v==='object')continue;
+    h+=`<tr><td>${k}</td><td><b>${fmt(v)}</b></td></tr>`;}
+  h+='</table>';
+  // truth table if present
+  if(meas.truth_table){h+='<h3>Truth table</h3><table><tr><th>a</th><th>b</th><th>cin</th><th>sum</th><th>cout</th><th>✓</th></tr>';
+    meas.truth_table.forEach(r=>h+=`<tr><td>${r.a}</td><td>${r.b}</td><td>${r.cin}</td><td>${r.sum}</td><td>${r.cout}</td><td>${r.ok?'✓':'✗'}</td></tr>`);
+    h+='</table>';}
+  $('digMeas').innerHTML=h;
+  $('digPlots').innerHTML='';
+  if(run_id){ jget('/api/run/'+run_id).then(d=>{ window._RUN=d;
+    const box=$('digPlots'); (d.plots||[]).forEach((p,i)=>{
+      const div=document.createElement('div');div.id='dp'+i;div.style.height='300px';box.appendChild(div);
+      const a=d.analyses[p.analysis];if(!a){return;}
+      const xkey=(p.x==='@sweep'||p.x==='time')?a.sweep:p.x;
+      const x=a.data[xkey]||a.data[a.sweep];const tr=p.ytransform||'none';
+      const traces=p.y.map(y=>({x:x,y:transform(a.data[y]||[],tr),mode:'lines',name:y}));
+      Plotly.newPlot(div.id,traces,{title:{text:p.title,font:{size:12}},paper_bgcolor:'#161b22',
+        plot_bgcolor:'#0d1117',font:{color:'#e6edf3',family:'monospace',size:10},margin:{t:26,r:8},
+        xaxis:{title:p.xlabel,gridcolor:'#30363d',type:p.xscale||'linear'},
+        yaxis:{title:p.ylabel,gridcolor:'#30363d'},legend:{orientation:'h'}},{responsive:true});
+    });});
+  }
+}
+
+init();
+</script>
+</body>
+</html>

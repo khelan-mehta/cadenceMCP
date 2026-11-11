@@ -1,0 +1,22 @@
+# Simulation outputs / run artifacts
+data/
+newRequest/**/*.raw/
+*.pkl
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Local / scratch
+.claude/settings.local.json
+scratch_*.py
+_probe/
+
+# LaTeX build files
+*.aux
+*.log
+*.out
+!designs/**/*.log
+!widlar_from_vm/**/*.log

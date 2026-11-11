@@ -1,0 +1,315 @@
+\e Display :57 Error "BadAtom (invalid Atom parameter)"
+\e  request 20 error 5 serial 230 
+@@@VIRTUOSO_RC=0
+=== ciw ===
+\o Loading analog.cxt 
+\o Loading cdf.cxt 
+\o   ==== HSPICE-ADE Interface, K-2015.06-3 BUILD (08/06/2015 18:09:41) ==== 
+\o   ==== COPYRIGHT 2008-2026 SYNOPSYS INC.                             ==== 
+\o   ==== HSPICE-ADE Interface installed successfully                   ==== 
+\o   HSPICE-ADE: use interface at '/opt/synopsys/Hspice-2015.06-3/interface'
+\o   HSPICE-ADE: use HSPICE at '/opt/synopsys/Hspice-2015.06-3//hspice/bin/hspice'
+\o   HSPICE-ADE: HSPICE Version K-2015.06-3 linux64 (build id: 3630644)
+\p > 
+\i procedure( mcpShot(name)
+\i   let( (f)
+\i     hiRedraw()
+\i     f = sprintf(nil "%s/%s.png" "/home/work/widlar_shots" name)
+\i     system(sprintf(nil "xwd -root -display $DISPLAY | convert xwd:- %s" f))
+\i     printf("MCP:shot=%s\n" f)))
+\t mcpShot
+\p > 
+\i printf("SKILL_START\n")
+\o SKILL_START
+\t t
+\p > 
+\i RUNS = "/home/work/mcp_runs"
+\t "/home/work/mcp_runs"
+\p > 
+\i ; ---------- clean stray wire + annotate op ----------
+\i cv = dbOpenCellViewByType("widlar_lib" "hsc" "schematic" "schematic" "a")
+\w *WARNING* LIB widlar_lib from File /home/work/widlar_run/cds.lib Line 2 redefines
+\w LIB widlar_lib from File /home/work/cds.lib
+\w Insert UNDEFINE widlar_lib
+\w before DEFINE widlar_lib
+\w     in /home/work/widlar_run/cds.lib
+\w Or remove or comment out DEFINE widlar_lib
+\w     in /home/work/cds.lib
+\w to suppress this warning message.
+\o Loading gpdk090/libInit.il ...
+\o 	Loading gpdk090/loadCxt.ile ... done!
+\o 	Loading context 'gpdk090' from library 'gpdk090' ... done!
+\o 	Loading context 'pdkUtils' from library 'gpdk090' ... done!
+\o 	Loading gpdk090/display.drf ... done!
+\o 	Loading gpdk090/gpdk090_customFilter.il ... done!
+\o 	Loading gpdk090/.simrc ... done!
+\o 	Loading gpdk090/libInitCustomExit.il ... 	Loading Environment Settings ...
+\w *WARNING* envSetVal: Can't set the value of variable 'extractVerifySubstrate',
+\w 	in tool[.partition] 'layout' - it has not been registered.
+\o 	Loading Model Management File ...
+\o Loading spectrei.cxt 
+\o Loading devCheck.cxt 
+\o Loading relXpert.cxt 
+\o Loading hspiceD.cxt 
+\o Loading spectreinl.cxt 
+\o Loading UltraSim.cxt 
+\o Loading msgHandler.cxt 
+\o Loading AMSOSS.cxt 
+\o Loading AMS.cxt 
+\o 	Loading gpdk090/gpdk090_PDKRegistrations.il ... done!
+\o 
+\o   *************************************************************           
+\o   *              Cadence Design Systems, Inc.                 *           
+\o   *                                                           *           
+\o   *                    Generic 90nm PDK                       *           
+\o   *                        (gpdk090)                          *           
+\o   *                                                           *           
+\o   *************************************************************           
+\o 	
+\o 
+\o 	Version : 4.6
+\o 
+\o 	Build date: 10-FEB-2011
+\o 
+\o done!
+\o Loaded gpdk090/libInit.il successfully!
+\# Memory report: using         351 MB, process size 1,173 MB at UTC 2026.10.14 08:40:19.024
+\t db:0x1779cd9a
+\p > 
+\i foreach(sh cv~>shapes
+\i   when( sh~>objType=="line" && sh~>layerName=="wire"
+\i     let( (pts)
+\i       pts = sh~>points
+\i       when( member(list(-0.6 4.1) pts) dbDeleteObject(sh))))
+\i   when( sh~>objType=="label" && sh~>layerName=="annotate" dbDeleteObject(sh)))
+\e dbGetq: object is a purged/freed object - db:0x1779cb26
+\t (db:0x1779cb1a db:0x1779cb1b db:0x1779cb1c db:0x1779cb1d db:0x1779cb1e
+\t     db:0x1779cb1f db:0x1779cb20 db:0x1779cb21 db:0x1779cb22 db:0x1779cb23
+\t     db:0x1779cb24 db:0x1779cb25 db:0x1779cb26 db:0x1779cb27 db:0x1779cb28
+\t     db:0x1779cb29 db:0x1779cb2a db:0x1779cb2b db:0x1779cb2c db:0x1779cb2d
+\t     db:0x1779cb2e db:0x1779cb2f db:0x1779cb30 db:0x1779cb31 db:0x1779cb32
+\t     db:0x1779cb33 db:0x1779cb34 db:0x1779cb35 db:0x1779cb36 db:0x1779cb37
+\t     db:0x1779cb38 db:0x1779cb39 db:0x1779cb3a db:0x1779cb3b db:0x1779cb3c
+\t     db:0x1779cb3d db:0x1779cb3e db:0x1779cb3f db:0x1779cb40 db:0x1779cb41
+\t     db:0x1779cb42 db:0x1779cb43 db:0x1779cb44 db:0x1779cb45 db:0x1779cb46
+\t     db:0x1779cb47 db:0x1779cb48 db:0x1779cb49 db:0x1779cb4a db:0x1779cb4b
+\t     db:0x1779cb4c db:0x1779cb4d db:0x1779cb4e db:0x1779cb4f db:0x1779cb50
+\t     db:0x1779cb51 db:0x1779cb52 db:0x1779cb53 db:0x1779cb54 db:0x1779cb55
+\t     db:0x1779cb56
+\t )
+\p > 
+\i procedure( NOTE(x y txt)
+\i   let((r)
+\i     r = errset(schCreateNoteLabel(cv list(x y) txt "lowerLeft" "R0" "stick" 0.17 nil) nil)
+\i     unless( r && car(r)
+\i       errset(dbCreateLabel(cv list("annotate" "drawing") list(x y) txt "lowerLeft" "R0" "stick" 0.17) nil))))
+\t NOTE
+\p > 
+\i NOTE(-6.7 -0.6 "M0: id=100u")
+\o Loading schematic.cxt 
+\t (db:0x1779cb26)
+\p > 
+\i NOTE(-6.7 -0.9 "vgs=1.121V")
+\t (db:0x1779cb57)
+\p > 
+\i NOTE(1.0 -0.4 "M1: id=100u")
+\t (db:0x1779cb58)
+\p > 
+\i NOTE(1.0 -0.7 "vgs=811.4m vds=251.4m")
+\t (db:0x1779cb59)
+\p > 
+\i NOTE(6.1 -0.4 "M2: id=100.01u")
+\t (db:0x1779cb5a)
+\p > 
+\i NOTE(6.1 -0.7 "vds=252.4m")
+\t (db:0x1779cb5b)
+\p > 
+\i NOTE(1.0 1.9 "M3: vgs=869.4m")
+\t (db:0x1779cb5c)
+\p > 
+\i NOTE(6.1 1.9 "M4: vgs=868.4m")
+\t (db:0x1779cb5d)
+\p > 
+\i NOTE(-4.4 2.4 "vb=1.121V")
+\t (db:0x1779cb5e)
+\p > 
+\i NOTE(-1.3 2.7 "nin=811.4m")
+\t (db:0x1779cb5f)
+\p > 
+\i NOTE(0.45 0.75 "na=251.4m")
+\t (db:0x1779cb60)
+\p > 
+\i NOTE(5.45 0.75 "nb=252.4m")
+\t (db:0x1779cb61)
+\p > 
+\i NOTE(6.8 3.75 "IOUT=100.06u")
+\t (db:0x1779cb62)
+\p > 
+\i dbSave(cv)
+\# Available memory:          6,637 MB at UTC 2026.10.14 08:40:27.875
+\# Memory report: Maximum memory size now 6,990 MB at UTC 2026.10.14 08:40:27.875
+\o Loading lx.cxt 
+\o Loading lce.cxt 
+\o Loading le.cxt 
+\o Loading rte.cxt 
+\t t
+\p > 
+\o Loading mpt.cxt 
+\i printf("MCP:annotated=t\n")
+\o MCP:annotated=t
+\t t
+\p > 
+\i state = 0
+\t 0
+\p > 
+\i w0 = nil wl = nil
+\t nil
+\p > 
+\i procedure( nextStep()
+\i   state = state+1
+\i   printf("MCP:step=%d\n" state)
+\i   case( state
+\i     (1  wl = geOpen(?lib "widlar_lib" ?cell "hsc_lay" ?view "layout" ?mode "r")
+\i         hiSetCurrentWindow(wl)
+\i         hiResizeWindow(wl list(0:0 1600:1000))
+\i         errset(evalstring(hiGetBindKey("Layout" "Shift<Key>f")) t)
+\i         errset(evalstring(hiGetBindKey("Layout" "<Key>f")) t)
+\i         hiRegTimer("nextStep()" 40))
+\i     (2  mcpShot("hsc_lay_full")
+\i         errset(hiZoomIn(wl list(4.0:11.0 15.5:17.5)) t)
+\i         hiRegTimer("nextStep()" 30))
+\i     (3  mcpShot("hsc_lay_mid")
+\i         errset(hiCloseWindow(wl) t)
+\i         w0 = geOpen(?lib "widlar_lib" ?cell "hsc" ?view "schematic" ?mode "r")
+\i         hiSetCurrentWindow(w0)
+\i         hiResizeWindow(w0 list(0:0 1600:1000))
+\i         errset(evalstring(hiGetBindKey("Schematics" "<Key>f")) t)
+\i         hiRegTimer("nextStep()" 40))
+\i     (4  mcpShot("hsc_annot")
+\i         errset(hiCloseWindow(w0) t)
+\i         openResults(strcat(RUNS "/hsc_cmp/psf"))
+\i         printf("MCP:res=%L\n" results())
+\i         selectResult('dc)
+\i         errset(plot(getData("MA2:d")) t)
+\i         errset(plot(getData("MB2:d")) t)
+\i         errset(plot(getData("MC4:d")) t)
+\i         hiRegTimer("nextStep()" 60))
+\i     (5  mcpShot("p_cmp")
+\i         clearAll() newWindow()
+\i         openResults(strcat(RUNS "/hsc_main/psf"))
+\i         printf("MCP:resm=%L\n" results())
+\i         selectResult("swvout-dc")
+\i         errset(plot(getData("M4:d")) t)
+\i         hiRegTimer("nextStep()" 60))
+\i     (6  mcpShot("p_vout")
+\i         clearAll() newWindow()
+\i         selectResult('acr)
+\i         errset(plot(mag(1.0/getData("VOUT:p"))) t)
+\i         hiRegTimer("nextStep()" 60))
+\i     (7  mcpShot("p_rout")
+\i         clearAll() newWindow()
+\i         selectResult('tr)
+\i         errset(plot(getData("M4:d")) t)
+\i         hiRegTimer("nextStep()" 60))
+\i     (8  mcpShot("p_tran")
+\i         clearAll() newWindow()
+\i         selectResult("swvdd-dc")
+\i         errset(plot(getData("M4:d")) t)
+\i         hiRegTimer("nextStep()" 60))
+\i     (9  mcpShot("p_swvdd") printf("MCP:OK=1\n") exit(0))
+\i   ))
+\t nextStep
+\p > 
+\i hiRegTimer("nextStep()" 40)
+\t t
+\p > 
+\# Replay complete, returning to interactive mode at UTC 2026.10.14 08:40:27.986
+\o MCP:step=1
+\o Loading drdEdit.cxt 
+\o Loading leToolbox.cxt 
+\o Loading treeAssistant.cxt 
+\o Loading soi.cxt 
+\o Loading lo.cxt 
+\o Loading vb.cxt 
+\o Loading see.cxt 
+\o Loading oi.cxt 
+\o Loading asst.cxt 
+\o Loading mtv.cxt 
+\a when(dwindow('ptePaletteAssistant1) hiMapWindow(dwindow('ptePaletteAssistant1)))
+\r t
+\o MCP:step=2
+\o MCP:shot=/home/work/widlar_shots/hsc_lay_full.png
+\o MCP:step=3
+\o MCP:shot=/home/work/widlar_shots/hsc_lay_mid.png
+\o Loading nt.cxt 
+\a _treeNavActivateOpc(dwindow('treeAssistant2) "Objects/Nets")
+\r t
+\o Loading hsm.cxt 
+\o Loading simui.cxt 
+\a when(dwindow('oiAssistant2) hiMapWindow(dwindow('oiAssistant2)))
+\r t
+\a when(dwindow('treeAssistant2) hiMapWindow(dwindow('treeAssistant2)))
+\r t
+\o MCP:step=4
+\o MCP:shot=/home/work/widlar_shots/hsc_annot.png
+\o Loading cph.cxt 
+\o Loading dal.cxt 
+\o Loading awv.cxt 
+\o Loading viva.cxt 
+\o MCP:res=dc()
+\o Loading socket.cxt 
+\o Loading par.cxt 
+\o Loading alvs.cxt 
+\o Loading caa.cxt 
+\o Loading adexl.cxt 
+\o Loading te.cxt 
+\# Memory report: using         493 MB, process size 1,422 MB at UTC 2026.10.14 08:40:46.082
+\o MCP:step=5
+\w *WARNING* window zoomPanProc is not registered
+\o MCP:shot=/home/work/widlar_shots/p_cmp.png
+\o MCP:resm=dc("op-info" "swvout-dc" "swvdd-dc" ac tran)
+\o MCP:step=6
+\w *WARNING* window zoomPanProc is not registered
+\o MCP:shot=/home/work/widlar_shots/p_vout.png
+\o WARNING (OCN-6038): Results acr are not available for /home/work/mcp_runs/hsc_main/psf. Use results() for a list of available results.
+\o *Error*   Evaluating expression (mag((1.0 / getData("VOUT:p")))).
+\e *Error* ("quotient" 0 t nil ("*Error* quotient: can't handle (1.0 / nil)"))
+\e 
+\e 
+\o ERROR (WIA-1006): Unable to plot expression <mag((1.0 / getData("VOUT:p")))>
+\o            because it does not evaluate to an object that can be plotted, like a waveform or
+\o            parametric wave. See the Visualization & Analysis Tool documentation for information
+\o            about the types of objects that can be plotted in Visualization & Analysis Tool. Only
+\o            the expressions that evaluate to those objects can be plotted.
+\o *Warning* Wave1 is not a waveform object that can be displayed and
+\o           will be DELETED automatically.
+\o MCP:step=7
+\w *WARNING* window zoomPanProc is not registered
+\o MCP:shot=/home/work/widlar_shots/p_rout.png
+\o WARNING (OCN-6038): Results tr are not available for /home/work/mcp_runs/hsc_main/psf. Use results() for a list of available results.
+\o ERROR (WIA-1006): Unable to plot expression <getData("M4:d")>
+\o            because it does not evaluate to an object that can be plotted, like a waveform or
+\o            parametric wave. See the Visualization & Analysis Tool documentation for information
+\o            about the types of objects that can be plotted in Visualization & Analysis Tool. Only
+\o            the expressions that evaluate to those objects can be plotted.
+\o MCP:step=8
+\w *WARNING* window zoomPanProc is not registered
+\o MCP:shot=/home/work/widlar_shots/p_tran.png
+\o MCP:step=9
+\w *WARNING* window zoomPanProc is not registered
+\o MCP:shot=/home/work/widlar_shots/p_swvdd.png
+\o MCP:OK=1
+\o 
+\# Memory report: on exit            503 MB, process size 1,432 MB at UTC 2026.10.14 08:41:18.911
+\# Memory report: peak usage         503 MB, process size 1,432 MB
+total 844
+drwxrwxr-x.  2 work work   4096 Oct 14 16:41 .
+drwx------. 65 work work   4096 Oct 13 18:43 ..
+-rw-rw-r--.  1 work work  65729 Oct 14 16:40 hsc_annot.png
+-rw-rw-r--.  1 work work 115798 Oct 14 16:40 hsc_lay_full.png
+-rw-rw-r--.  1 work work 161131 Oct 14 16:40 hsc_lay_mid.png
+-rw-rw-r--.  1 work work 103618 Oct 14 16:40 p_cmp.png
+-rw-rw-r--.  1 work work  93484 Oct 14 16:41 p_rout.png
+-rw-rw-r--.  1 work work 107744 Oct 14 16:41 p_swvdd.png
+-rw-rw-r--.  1 work work  79639 Oct 14 16:41 p_tran.png
+-rw-rw-r--.  1 work work 109180 Oct 14 16:40 p_vout.png

@@ -1,0 +1,101 @@
+"""HS-cascode capture session: clean + annotate schematic, layout shots,
+ViVA plots (comparison, compliance, Rout AC, transient, VDD sweep)."""
+import sys, re; sys.path.insert(0, "designs/widlar")
+from vgui import run_gui
+
+il = r'''
+printf("SKILL_START\n")
+RUNS = "/home/work/mcp_runs"
+
+; ---------- clean stray wire + annotate op ----------
+cv = dbOpenCellViewByType("widlar_lib" "hsc" "schematic" "schematic" "a")
+foreach(sh cv~>shapes
+  when( sh~>objType=="line" && sh~>layerName=="wire"
+    let( (pts)
+      pts = sh~>points
+      when( member(list(-0.6 4.1) pts) dbDeleteObject(sh))))
+  when( sh~>objType=="label" && sh~>layerName=="annotate" dbDeleteObject(sh)))
+procedure( NOTE(x y txt)
+  let((r)
+    r = errset(schCreateNoteLabel(cv list(x y) txt "lowerLeft" "R0" "stick" 0.17 nil) nil)
+    unless( r && car(r)
+      errset(dbCreateLabel(cv list("annotate" "drawing") list(x y) txt "lowerLeft" "R0" "stick" 0.17) nil))))
+NOTE(-6.7 -0.6 "M0: id=100u")
+NOTE(-6.7 -0.9 "vgs=1.121V")
+NOTE(1.0 -0.4 "M1: id=100u")
+NOTE(1.0 -0.7 "vgs=811.4m vds=251.4m")
+NOTE(6.1 -0.4 "M2: id=100.01u")
+NOTE(6.1 -0.7 "vds=252.4m")
+NOTE(1.0 1.9 "M3: vgs=869.4m")
+NOTE(6.1 1.9 "M4: vgs=868.4m")
+NOTE(-4.4 2.4 "vb=1.121V")
+NOTE(-1.3 2.7 "nin=811.4m")
+NOTE(0.45 0.75 "na=251.4m")
+NOTE(5.45 0.75 "nb=252.4m")
+NOTE(6.8 3.75 "IOUT=100.06u")
+dbSave(cv)
+printf("MCP:annotated=t\n")
+
+state = 0
+w0 = nil wl = nil
+procedure( nextStep()
+  state = state+1
+  printf("MCP:step=%d\n" state)
+  case( state
+    (1  wl = geOpen(?lib "widlar_lib" ?cell "hsc_lay" ?view "layout" ?mode "r")
+        hiSetCurrentWindow(wl)
+        hiResizeWindow(wl list(0:0 1600:1000))
+        errset(evalstring(hiGetBindKey("Layout" "Shift<Key>f")) t)
+        errset(evalstring(hiGetBindKey("Layout" "<Key>f")) t)
+        hiRegTimer("nextStep()" 40))
+    (2  mcpShot("hsc_lay_full")
+        errset(hiZoomIn(wl list(4.0:11.0 15.5:17.5)) t)
+        hiRegTimer("nextStep()" 30))
+    (3  mcpShot("hsc_lay_mid")
+        errset(hiCloseWindow(wl) t)
+        w0 = geOpen(?lib "widlar_lib" ?cell "hsc" ?view "schematic" ?mode "r")
+        hiSetCurrentWindow(w0)
+        hiResizeWindow(w0 list(0:0 1600:1000))
+        errset(evalstring(hiGetBindKey("Schematics" "<Key>f")) t)
+        hiRegTimer("nextStep()" 40))
+    (4  mcpShot("hsc_annot")
+        errset(hiCloseWindow(w0) t)
+        openResults(strcat(RUNS "/hsc_cmp/psf"))
+        printf("MCP:res=%L\n" results())
+        selectResult('dc)
+        errset(plot(getData("MA2:d")) t)
+        errset(plot(getData("MB2:d")) t)
+        errset(plot(getData("MC4:d")) t)
+        hiRegTimer("nextStep()" 60))
+    (5  mcpShot("p_cmp")
+        clearAll() newWindow()
+        openResults(strcat(RUNS "/hsc_main/psf"))
+        printf("MCP:resm=%L\n" results())
+        selectResult("swvout-dc")
+        errset(plot(getData("M4:d")) t)
+        hiRegTimer("nextStep()" 60))
+    (6  mcpShot("p_vout")
+        clearAll() newWindow()
+        selectResult('acr)
+        errset(plot(mag(1.0/getData("VOUT:p"))) t)
+        hiRegTimer("nextStep()" 60))
+    (7  mcpShot("p_rout")
+        clearAll() newWindow()
+        selectResult('tr)
+        errset(plot(getData("M4:d")) t)
+        hiRegTimer("nextStep()" 60))
+    (8  mcpShot("p_tran")
+        clearAll() newWindow()
+        selectResult("swvdd-dc")
+        errset(plot(getData("M4:d")) t)
+        hiRegTimer("nextStep()" 60))
+    (9  mcpShot("p_swvdd") printf("MCP:OK=1\n") exit(0))
+  ))
+hiRegTimer("nextStep()" 40)
+'''
+log, got, _ = run_gui(il, shots=["hsc_lay_full", "hsc_lay_mid", "hsc_annot",
+                                 "p_cmp", "p_vout", "p_rout", "p_tran", "p_swvdd"],
+                      timeout=900, tag="hscshots")
+open("designs/hscasc/final_shots.log", "w", encoding="utf-8").write(log)
+print(got)
+print("\n".join(l for l in re.findall(r"MCP:[^\n]*|\*Error\*[^\n]*", log) if "%" not in l)[:4000])

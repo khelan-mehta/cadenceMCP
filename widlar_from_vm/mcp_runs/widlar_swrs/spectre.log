@@ -1,0 +1,151 @@
+
+Cadence (R) Virtuoso (R) Spectre (R) Circuit Simulator
+Version 15.1.0.284.isr1 64bit -- 12 Nov 2015
+Copyright (C) 1989-2015 Cadence Design Systems, Inc. All rights reserved worldwide. Cadence, Virtuoso and Spectre are registered trademarks of Cadence Design Systems, Inc. All others are the property of their respective holders.
+
+Includes RSA BSAFE(R) Cryptographic or Security Protocol Software from RSA Security, Inc.
+
+User: work   Host: work-eda   HostID: 7F0100   PID: 8143
+Memory  available: 2.7603 GB  physical: 4.0036 GB
+Linux   : Red Hat Enterprise Linux Server release 6.5 (Santiago)
+CPU Type: 12th Gen Intel(R) Core(TM) i5-12450H
+All processors running at 2496.0 MHz
+        Socket: Processors
+        0:       0
+        
+System load averages (1min, 5min, 15min) : 15.0 %, 7.0 %, 1.0 %
+This is a virtual machine
+
+
+Simulating `input.scs' on work-eda at 8:26:12 PM, Sun Oct 11, 2026 (process id: 8143).
+Current working directory: /home/work/mcp_runs/widlar_swrs
+Command line:
+    /opt/MMSIM151/tools/bin/spectre -64 input.scs -format psfascii -raw  \
+        ./psf +log ./spectre.log
+
+Loading /opt/MMSIM151/tools.lnx86/cmi/lib/64bit/5.0/libinfineon_sh.so ...
+Loading /opt/MMSIM151/tools.lnx86/cmi/lib/64bit/5.0/libphilips_o_sh.so ...
+Loading /opt/MMSIM151/tools.lnx86/cmi/lib/64bit/5.0/libphilips_sh.so ...
+Loading /opt/MMSIM151/tools.lnx86/cmi/lib/64bit/5.0/libsparam_sh.so ...
+Loading /opt/MMSIM151/tools.lnx86/cmi/lib/64bit/5.0/libstmodels_sh.so ...
+Reading file:  /home/work/mcp_runs/widlar_swrs/input.scs
+Reading file:  /opt/MMSIM151/tools.lnx86/spectre/etc/configs/spectre.cfg
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090.scs
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090_mos.scs
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090_mos_iso.scs
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090_resistor.scs
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/resd_va.va
+Reading link:  /opt/MMSIM151/tools.lnx86/spectre/etc/ahdl/discipline.h
+Reading file:  /opt/MMSIM151/tools.lnx86/spectre/etc/ahdl/disciplines.vams
+Reading link:  /opt/MMSIM151/tools.lnx86/spectre/etc/ahdl/constants.h
+Reading file:  /opt/MMSIM151/tools.lnx86/spectre/etc/ahdl/constants.vams
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/rnoise_va.va
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090_capacitor.scs
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090_diode.scs
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090_bipolar.scs
+Time for NDB Parsing: CPU = 450.931 ms, elapsed = 496.372 ms.
+Time accumulated: CPU = 815.875 ms, elapsed = 496.378 ms.
+Peak resident memory used = 45.6 Mbytes.
+
+
+The CPU load for active processors is :
+        Spectre  0 (100.0 %)    
+        Other   
+
+Warning from spectre during hierarchy flattening.
+    WARNING (SFE-30): "input.scs" 7: M1: `fingers' is not a valid parameter for an instance of `gpdk090_nmos2v'.  Ignored.
+    WARNING (SFE-30): "input.scs" 7: M1: `fw' is not a valid parameter for an instance of `gpdk090_nmos2v'.  Ignored.
+    WARNING (SFE-30): "input.scs" 8: M2: `fingers' is not a valid parameter for an instance of `gpdk090_nmos2v'.  Ignored.
+    WARNING (SFE-30): "input.scs" 8: M2: `fw' is not a valid parameter for an instance of `gpdk090_nmos2v'.  Ignored.
+
+Time for Elaboration: CPU = 36.994 ms, elapsed = 35.9309 ms.
+Time accumulated: CPU = 852.869 ms, elapsed = 532.5 ms.
+Peak resident memory used = 51.6 Mbytes.
+
+Time for EDB Visiting: CPU = 7.999 ms, elapsed = 8.83102 ms.
+Time accumulated: CPU = 860.868 ms, elapsed = 541.497 ms.
+Peak resident memory used = 52.1 Mbytes.
+
+
+Warning from spectre during initial setup.
+    WARNING (CMI-2477): M2: `Rds' = 1.25483 uOhm is less than 0.001. Set to 0.
+
+
+Global user options:
+               save = allpub
+           currents = all
+
+Scoped user options:
+
+Circuit inventory:
+              nodes 4
+            bsim3v3 2     
+            isource 1     
+           resistor 2     
+            vsource 1     
+
+Analysis and control statement inventory:
+                 dc 1     
+
+Output statements:
+             .probe 0     
+           .measure 0     
+               save 0     
+
+
+Warning from spectre during initial setup.
+    WARNING (CMI-2477): M2: `Rds' = 1.25483 uOhm is less than 0.001. Set to 0.
+
+Time for parsing: CPU = 29.995 ms, elapsed = 39.062 ms.
+Time accumulated: CPU = 890.863 ms, elapsed = 580.892 ms.
+Peak resident memory used = 53.1 Mbytes.
+
+~~~~~~~~~~~~~~~~~~~~~~
+Pre-Simulation Summary
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+
+**********************************************
+DC Analysis `swrs': rsx = (150e+03 -> 400e+03)
+**********************************************
+
+Warning from spectre during DC analysis `swrs'.
+    WARNING (CMI-2477): M2: `Rds' = 1.25483 uOhm is less than 0.001. Set to 0.
+
+
+Opening the PSFASCII file ./psf/swrs.dc ...
+Important parameter values:
+    reltol = 1e-03
+    abstol(V) = 1 uV
+    abstol(I) = 1 pA
+    temp = 27 C
+    tnom = 27 C
+    tempeffects = all
+    gmindc = 1 pS
+
+Warning from spectre at rsx = 150.5e+03 during DC analysis `swrs'.
+    WARNING (CMI-2477): M2: `Rds' = 1.25483 uOhm is less than 0.001. Set to 0.
+Warning from spectre at rsx = 151e+03 during DC analysis `swrs'.
+    WARNING (CMI-2477): M2: `Rds' = 1.25483 uOhm is less than 0.001. Set to 0.
+Warning from spectre at rsx = 151.5e+03 during DC analysis `swrs'.
+    WARNING (CMI-2477): M2: `Rds' = 1.25483 uOhm is less than 0.001. Set to 0.
+Warning from spectre at rsx = 152e+03 during DC analysis `swrs'.
+    WARNING (CMI-2477): M2: `Rds' = 1.25483 uOhm is less than 0.001. Set to 0.
+        Further occurrences of this warning will be suppressed.
+
+......9......8......7......6......5......4......3......2......1......0
+Total time required for dc analysis `swrs': CPU = 82.988 ms, elapsed = 84.681 ms.
+Time accumulated: CPU = 980.85 ms, elapsed = 672.967 ms.
+Peak resident memory used = 54.3 Mbytes.
+
+
+Notice from spectre.
+    496 warnings suppressed.
+
+
+Aggregate audit (8:26:13 PM, Sun Oct 11, 2026):
+Time used: CPU = 992 ms, elapsed = 992 ms, util. = 100%.
+Time spent in licensing: elapsed = 70.8 ms, percentage of total = 7.14%.
+Peak memory used = 54.6 Mbytes.
+Simulation started at: 8:26:12 PM, Sun Oct 11, 2026, ended at: 8:26:13 PM, Sun Oct 11, 2026, with elapsed time (wall clock): 992 ms.
+spectre completes with 0 errors, 11 warnings, and 1 notice.

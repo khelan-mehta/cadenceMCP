@@ -1,0 +1,310 @@
+\e Display :57 Error "BadAtom (invalid Atom parameter)"
+\e  request 20 error 5 serial 230 
+@@@VIRTUOSO_RC=0
+=== ciw ===
+\t db:0x1649c01b
+\p > 
+\i rsP = list(list("model" "string" "gpdk090_resnsppoly") list("segments" "int" 28) list("ssegs" "int" 28)
+\i            list("psegs" "int" 1) list("segW" "string" "1u") list("segL" "string" "24.195u")
+\i            list("r" "string" "270984") list("segR" "string" "9678")
+\i            list("effW" "string" "1u") list("effL" "string" "677.4600u")
+\i            list("w" "string" "1u") list("l" "string" "677.4600u"))
+\t (("model" "string" "gpdk090_resnsppoly") 
+\t     ("segments" "int" 28) 
+\t     ("ssegs" "int" 28) 
+\t     ("psegs" "int" 1) 
+\t     ("segW" "string" "1u")
+\t     ("segL" "string" "24.195u") 
+\t     ("r" "string" "270984") 
+\t     ("segR" "string" "9678") 
+\t     ("effW" "string" "1u") 
+\t     ("effL" "string" "677.4600u")
+\t     ("w" "string" "1u") 
+\t     ("l" "string" "677.4600u")
+\t )
+\p > 
+\i RS = dbCreateParamInst(cv rpm "RS" 0:0 "R0" 1 rsP)
+\t db:0x1649c01c
+\p > 
+\i pS = pinPt(M2 "S")
+\t (3.25 -0.1875)
+\p > 
+\i pP = pinPt(RS "PLUS")
+\t (0.0 0.0)
+\p > 
+\i RS~>xy = list(xCoord(pS)-xCoord(pP) yCoord(pS)-yCoord(pP)-1.0)
+\t (3.25 -1.1875)
+\p > 
+\i foreach(i list(M1 M2 RS) foreach(tn i~>master~>terminals~>name printf("MCP:pin %s.%s=%L\n" i~>name tn pinPt(i tn))))
+\o MCP:pin M1.D=(-0.25 0.1875)
+\o MCP:pin M1.G=(0.0 0.0)
+\o MCP:pin M1.B=(-0.25 0.0)
+\o MCP:pin M1.S=(-0.25 -0.1875)
+\o MCP:pin M2.D=(3.25 0.1875)
+\o MCP:pin M2.G=(3.0 0.0)
+\o MCP:pin M2.B=(3.25 0.0)
+\o MCP:pin M2.S=(3.25 -0.1875)
+\o MCP:pin RS.PLUS=(3.25 -1.1875)
+\o MCP:pin RS.MINUS=(3.25 -1.5625)
+\o MCP:pin RS.B=(3.375 -1.375)
+\t (db:0x1649c01a db:0x1649c01b db:0x1649c01c)
+\p > 
+\i g1 = pinPt(M1 "G") g2 = pinPt(M2 "G") d1 = pinPt(M1 "D") d2 = pinPt(M2 "D")
+\t (3.25 0.1875)
+\p > 
+\i s1 = pinPt(M1 "S") s2 = pinPt(M2 "S") b1 = pinPt(M1 "B") b2 = pinPt(M2 "B")
+\t (3.25 0.0)
+\p > 
+\i rp = pinPt(RS "PLUS") rm = pinPt(RS "MINUS") rb = pinPt(RS "B")
+\t (3.375 -1.375)
+\p > 
+\i yP = yCoord(d1)+0.75  yTop = yP+0.75  yG = yCoord(rm)-0.75
+\t -2.3125
+\p > 
+\i xm = (xCoord(g1)+xCoord(g2))/2.0
+\t 1.5
+\p > 
+\i W(cv list(g1 xm:yCoord(g1)))
+\o Loading schematic.cxt 
+\t (db:0x1649bc9a)
+\p > 
+\i W(cv list(xm:yCoord(g1) g2))
+\t (db:0x1649bc9b)
+\p > 
+\i W(cv list(d1 xCoord(d1):yP))
+\t (db:0x1649bc9a)
+\p > 
+\i W(cv list(xCoord(d1):yP xm:yP))
+\t (db:0x1649bc9c)
+\p > 
+\i W(cv list(xm:yP xm:yCoord(g1)))
+\t (db:0x1649bc9e)
+\p > 
+\i W(cv list(d1 xCoord(d1):yTop))
+\t (db:0x1649bca0)
+\p > 
+\i W(cv list(d2 xCoord(d2):yTop))
+\t (db:0x1649bca2)
+\p > 
+\i schCreatePin(cv iop "IREF" "inputOutput" nil xCoord(d1):yTop "R90")
+\t db:0x1649c01d
+\p > 
+\i schCreatePin(cv iop "IOUT" "inputOutput" nil xCoord(d2):yTop "R90")
+\t db:0x1649c01e
+\p > 
+\i wns = car(W(cv list(s2 rp)))
+\t db:0x1649bca5
+\p > 
+\i schCreateWireLabel(cv wns xCoord(s2)+0.1:(yCoord(s2)+yCoord(rp))/2.0 "NS" "lowerLeft" "R0" "stick" 0.0625 nil)
+\t db:0x1649bca6
+\p > 
+\i xL = xCoord(s1)-1.0  xR = xCoord(rb)+1.0
+\t 4.375
+\p > 
+\i W(cv list(rm xCoord(rm):yG))
+\t (db:0x1649bca7)
+\p > 
+\i W(cv list(s1 xCoord(s1):yG))
+\t (db:0x1649bca8)
+\p > 
+\i W(cv list(b1 xCoord(b1)-0.5:yCoord(b1)))
+\t (db:0x1649bca9)
+\p > 
+\i W(cv list(xCoord(b1)-0.5:yCoord(b1) xCoord(b1)-0.5:yG))
+\t (db:0x1649bcaa)
+\p > 
+\i W(cv list(b2 xCoord(b2)+0.5:yCoord(b2)))
+\t (db:0x1649bcab)
+\p > 
+\i W(cv list(xCoord(b2)+0.5:yCoord(b2) xCoord(b2)+0.5:yG))
+\t (db:0x1649bcac)
+\p > 
+\i W(cv list(rb xR:yCoord(rb)))
+\t (db:0x1649bcad)
+\p > 
+\i W(cv list(xR:yCoord(rb) xR:yG))
+\t (db:0x1649bcae)
+\p > 
+\i W(cv list(xL:yG xR:yG))
+\t (db:0x1649bcaf db:0x1649bcb0 db:0x1649bcb1 db:0x1649bcb2 db:0x1649bcb3)
+\p > 
+\i schCreatePin(cv iop "GND" "inputOutput" nil xL:yG "R180")
+\t db:0x1649c01f
+\p > 
+\i chk = schCheck(cv)
+\o INFO (SCH-1170): Extracting "widlar_core schematic"
+\t (0 0)
+\p > 
+\i printf("MCP:schcheck=%L\n" chk)
+\o MCP:schcheck=(0 0)
+\t t
+\p > 
+\i dbSave(cv)
+\# Available memory:          6,615 MB at UTC 2026.10.11 12:22:13.518
+\# Memory report: Maximum memory size now 6,970 MB at UTC 2026.10.11 12:22:13.518
+\# Memory report: using         355 MB, process size 1,177 MB at UTC 2026.10.11 12:22:13.518
+\o Loading lx.cxt 
+\o Loading lce.cxt 
+\o Loading le.cxt 
+\o Loading rte.cxt 
+\t t
+\p > 
+\o Loading mpt.cxt 
+\i printf("MCP:core_nets=%L\n" cv~>nets~>name)
+\o MCP:core_nets=("IREF" "NS" "GND" "IOUT")
+\t t
+\p > 
+\i foreach(i list(M1 M2 RS)
+\i   foreach(it i~>instTerms printf("MCP:conn %s.%s=%s\n" i~>name it~>name it~>net~>name)))
+\o MCP:conn M1.S=GND
+\o MCP:conn M1.B=GND
+\o MCP:conn M1.G=IREF
+\o MCP:conn M1.D=IREF
+\o MCP:conn M2.S=NS
+\o MCP:conn M2.B=GND
+\o MCP:conn M2.G=IREF
+\o MCP:conn M2.D=IOUT
+\o MCP:conn RS.B=GND
+\o MCP:conn RS.MINUS=GND
+\o MCP:conn RS.PLUS=NS
+\t (db:0x1649c01a db:0x1649c01b db:0x1649c01c)
+\p > 
+\i ; ================= symbol =================
+\i s1r = errset(schViewToView("widlar_lib" "widlar_core" "widlar_lib" "widlar_core" "schematic" "symbol" "schSchemToPinList" "schPinListToSymbol") t)
+\p > 
+\i printf("MCP:symgen1=%L\n" s1r)
+\e *Error* eval: unbound variable - s1r
+\p > 
+\i unless( ddGetObj("widlar_lib" "widlar_core" "symbol")
+\i   s2r = errset(schViewToView("widlar_lib" "widlar_core" "schematic" "widlar_lib" "widlar_core" "symbol" "schSchemToPinList" "schPinListToSymbol") t)
+\i   printf("MCP:symgen2=%L\n" s2r))
+\t nil
+\p > 
+\i printf("MCP:symexists=%L\n" ddGetObj("widlar_lib" "widlar_core" "symbol")!=nil)
+\o MCP:symexists=t
+\t t
+\p > 
+\i ; ================= testbench =================
+\i sym = dbOpenCellViewByType(lib "widlar_core" "symbol" nil "r")
+\t db:0x1649b71a
+\p > 
+\i when( sym
+\i   tb = dbOpenCellViewByType(lib "widlar_tb" "schematic" "schematic" "w")
+\i   X = dbCreateInst(tb sym "I0" 0:0 "R0" 1)
+\i   vdcM = dbOpenCellViewByType("analogLib" "vdc" "symbol" nil "r")
+\i   idcM = dbOpenCellViewByType("analogLib" "idc" "symbol" nil "r")
+\i   resM = dbOpenCellViewByType("analogLib" "res" "symbol" nil "r")
+\i   gndM = dbOpenCellViewByType("analogLib" "gnd" "symbol" nil "r")
+\i   pI = pinPt(X "IREF") pO = pinPt(X "IOUT") pG = pinPt(X "GND")
+\i   printf("MCP:tbpins=%L\n" list(pI pO pG))
+\i   V0 = dbCreateParamInst(tb vdcM "V0" list(xCoord(pI)-4.0 yCoord(pI)) "R0" 1 list(list("vdc" "string" "VDD")))
+\i   I1 = dbCreateParamInst(tb idcM "IREF" list(xCoord(pI)-1.75 yCoord(pI)+2.0) "R0" 1 list(list("idc" "string" "Iref")))
+\i   RL = dbCreateParamInst(tb resM "RL" list(xCoord(pO)+1.75 yCoord(pO)+2.0) "R0" 1 list(list("r" "string" "1M")))
+\i   vp = pinPt(V0 "PLUS") vm = pinPt(V0 "MINUS")
+\i   ip = pinPt(I1 "PLUS") im = pinPt(I1 "MINUS")
+\i   lp = pinPt(RL "PLUS") lm = pinPt(RL "MINUS")
+\i   yV = max(yCoord(vp) max(yCoord(ip) yCoord(lp)))+0.75
+\i   W(tb list(vp xCoord(vp):yV))
+\i   W(tb list(xCoord(vp):yV xCoord(lp):yV))
+\i   W(tb list(ip xCoord(ip):yV))
+\i   W(tb list(lp xCoord(lp):yV))
+\i   W(tb list(im xCoord(im):yCoord(pI)))
+\i   W(tb list(xCoord(im):yCoord(pI) pI))
+\i   W(tb list(lm xCoord(lm):yCoord(pO)))
+\i   W(tb list(xCoord(lm):yCoord(pO) pO))
+\i   yGG = min(yCoord(vm) yCoord(pG))-1.0
+\i   W(tb list(vm xCoord(vm):yGG))
+\i   W(tb list(pG xCoord(pG):yGG))
+\i   W(tb list(xCoord(vm):yGG xCoord(pG):yGG))
+\i   G0 = dbCreateInst(tb gndM "G0" 0:0 "R0" 1)
+\i   gpt = pinPt(G0 "gnd!")
+\i   G0~>xy = list(xCoord(G0~>xy)+xCoord(pG)-xCoord(gpt) yCoord(G0~>xy)+yGG-yCoord(gpt))
+\i   wv = car(setof(w tb~>shapes w~>objType=="line" && member(xCoord(ip):yV w~>points)))
+\i   when(wv schCreateWireLabel(tb wv xCoord(ip):yV "vdd" "lowerLeft" "R0" "stick" 0.0625 nil))
+\i   wi = car(setof(w tb~>shapes w~>objType=="line" && member(pI w~>points)))
+\i   when(wi schCreateWireLabel(tb wi pI "iref" "lowerRight" "R0" "stick" 0.0625 nil))
+\i   wo = car(setof(w tb~>shapes w~>objType=="line" && member(pO w~>points)))
+\i   when(wo schCreateWireLabel(tb wo pO "iout" "lowerLeft" "R0" "stick" 0.0625 nil))
+\i   printf("MCP:tbcheck=%L\n" schCheck(tb))
+\i   dbSave(tb)
+\i   printf("MCP:tb_nets=%L\n" tb~>nets~>name)
+\i   foreach(it X~>instTerms printf("MCP:tbconn I0.%s=%s\n" it~>name it~>net~>name))
+\i )
+\o MCP:tbpins=((0.0 0.0) (0.125 0.0) (0.25 0.0))
+\o INFO (SCH-1170): Extracting "widlar_tb schematic"
+\o MCP:tbcheck=(0 0)
+\o MCP:tb_nets=("gnd!" "iout" "iref" "vdd")
+\o MCP:tbconn I0.GND=gnd!
+\o MCP:tbconn I0.IOUT=iout
+\o MCP:tbconn I0.IREF=iref
+\t (db:0x1649ad1c db:0x1649ad1b db:0x1649ad1a)
+\p > 
+\i ; ================= screenshots =================
+\i w1 = geOpen(?lib lib ?cell "widlar_core" ?view "schematic" ?mode "r")
+\o Loading vb.cxt 
+\o Loading nt.cxt 
+\o Loading oi.cxt 
+\o Loading see.cxt 
+\o Loading treeAssistant.cxt 
+\o Loading asst.cxt 
+\o Loading mtv.cxt 
+\o Loading leToolbox.cxt 
+\o Loading hsm.cxt 
+\o Loading simui.cxt 
+\t window:2
+\p > 
+\i hiResizeWindow(hiGetCurrentWindow() list(0:0 1600:1000))
+\t t
+\p > 
+\i procedure(wlA() errset(hiZoomAbsoluteScale(hiGetCurrentWindow() 0.95)) errset(evalstring(hiGetBindKey("Schematics" "<Key>f")) t) hiRegTimer("wlB()" 30))
+\t wlA
+\p > 
+\i procedure(wlB() mcpShot("sch_core")
+\i   when( ddGetObj("widlar_lib" "widlar_core" "symbol")
+\i     geOpen(?lib lib ?cell "widlar_core" ?view "symbol" ?mode "r")
+\i     hiResizeWindow(hiGetCurrentWindow() list(0:0 1600:1000)))
+\i   hiRegTimer("wlC()" 30))
+\t wlB
+\p > 
+\i procedure(wlC() errset(evalstring(hiGetBindKey("Symbol" "<Key>f")) t) hiRegTimer("wlD()" 30))
+\t wlC
+\p > 
+\i procedure(wlD() mcpShot("sym_core")
+\i   when( ddGetObj("widlar_lib" "widlar_tb" "schematic")
+\i     geOpen(?lib lib ?cell "widlar_tb" ?view "schematic" ?mode "r")
+\i     hiResizeWindow(hiGetCurrentWindow() list(0:0 1600:1000)))
+\i   hiRegTimer("wlE()" 30))
+\t wlD
+\p > 
+\i procedure(wlE() errset(evalstring(hiGetBindKey("Schematics" "<Key>f")) t) hiRegTimer("wlF()" 30))
+\t wlE
+\p > 
+\i procedure(wlF() mcpShot("sch_tb") printf("MCP:OK=1\n") exit(0))
+\t wlF
+\p > 
+\i hiRegTimer("wlA()" 40)
+\t t
+\p > 
+\# Replay complete, returning to interactive mode at UTC 2026.10.11 12:22:13.891
+\o MCP:shot=/home/work/widlar_shots/sch_core.png
+\a when(dwindow('oiAssistant2) hiMapWindow(dwindow('oiAssistant2)))
+\r t
+\a when(dwindow('treeAssistant2) hiMapWindow(dwindow('treeAssistant2)))
+\r t
+\o MCP:shot=/home/work/widlar_shots/sym_core.png
+\a when(dwindow('oiAssistant3) hiMapWindow(dwindow('oiAssistant3)))
+\r t
+\a when(dwindow('treeAssistant3) hiMapWindow(dwindow('treeAssistant3)))
+\r t
+\o MCP:shot=/home/work/widlar_shots/sch_tb.png
+\o MCP:OK=1
+\o 
+\o Loading cph.cxt 
+\# Memory report: on exit            386 MB, process size 1,208 MB at UTC 2026.10.11 12:22:35.390
+\# Memory report: peak usage         386 MB, process size 1,208 MB
+total 216
+drwxrwxr-x.  2 work work  4096 Oct 11 20:22 .
+drwx------. 65 work work  4096 Oct 11 20:15 ..
+-rw-rw-r--.  1 work work 76946 Oct 11 20:22 sch_core.png
+-rw-rw-r--.  1 work work 70822 Oct 11 20:22 sch_tb.png
+-rw-rw-r--.  1 work work 59767 Oct 11 20:22 sym_core.png

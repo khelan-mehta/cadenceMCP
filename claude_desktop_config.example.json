@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "cadence-analog-cmos": {
+      "command": "C:\\Users\\NG\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "args": ["-m", "cadence_mcp.server"],
+      "cwd": "C:\\Users\\NG\\Desktop\\cadence MCP",
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONPATH": "C:\\Users\\NG\\Desktop\\cadence MCP",
+        "CADENCE_VMX": "C:\\Users\\NG\\Downloads\\_Getintopc.com_Cadence_IC_Design_Virtuoso_6.17_Pre-Installed\\Cadence_IC_Design_Virtuoso_6.17_Pre-Installed\\Cadence_IC_Design_Virtuoso_6.17_Pre-Installed\\RHEL6_WORK.vmx",
+        "CADENCE_GUEST_USER": "work",
+        "CADENCE_GUEST_PASS": "111111"
+      }
+    }
+  }
+}

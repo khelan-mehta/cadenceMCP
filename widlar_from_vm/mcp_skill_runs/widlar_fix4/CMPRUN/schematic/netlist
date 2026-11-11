@@ -1,0 +1,16 @@
+t 0 IREF inputOutput
+t 3 IOUT inputOutput
+t 1 GND inputOutput
+n 0 /IREF
+n 1 /GND
+n 2 /NS
+n 3 /IOUT
+; nmos2v Instance /M2 = auLvs device M0
+d nmos2v D G S B (p D S)
+i 0 nmos2v 3 0 2 1 " m 1.0 l 2.8e-07 w 3.12e-06 "
+; nmos2v Instance /M1 = auLvs device M1
+d nmos2v D G S B (p D S)
+i 1 nmos2v 0 0 1 1 " m 1.0 l 2.8e-07 w 3.12e-06 "
+; resnsppoly Instance /RS = auLvs device M2
+d resnsppoly PLUS MINUS B (p PLUS MINUS)
+i 2 resnsppoly 2 1 1 " l 0.00067746 w 1e-06 "

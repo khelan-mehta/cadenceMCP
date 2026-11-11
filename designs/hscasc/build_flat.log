@@ -1,0 +1,309 @@
+\e Display :57 Error "BadAtom (invalid Atom parameter)"
+\e  request 20 error 5 serial 230 
+@@@VIRTUOSO_RC=0
+=== ciw ===
+\p > 
+\i ; output branch: M2.S ; M2.B ; M4.B
+\i W(cv list(b2 5.75:0))
+\t (db:0x169babcb)
+\p > 
+\i W(cv list(b4 5.9:yCoord(b4))) W(cv list(5.9:yCoord(b4) 5.9:-0.3))
+\t (db:0x169babcd)
+\p > 
+\i gndRail(cv list(list(xCoord(s2) yCoord(s2)) list(5.75 0.0) list(5.9 -0.3)) 5.5)
+\t db:0x169bb228
+\p > 
+\i ; V1 and V2 grounds
+\i W(cv list(pinPt(V1 "MINUS") -8.5:-1.5))
+\t (db:0x169babd4)
+\p > 
+\i placeAt(cv gndM "GV1" "gnd!" list(-8.5 -1.5) "R0" nil)
+\t db:0x169bb229
+\p > 
+\i W(cv list(pinPt(V2 "MINUS") 8.5:-0.5))
+\t (db:0x169babd5)
+\p > 
+\i placeAt(cv gndM "GV2" "gnd!" list(8.5 -0.5) "R0" nil)
+\t db:0x169bb22a
+\p > 
+\i ; labels
+\i LBL(cv xCoord(g3):2.2 "vb")
+\t db:0x169babd6
+\p > 
+\i LBL(cv -1.4:1.0 "nin")
+\t nil
+\p > 
+\i LBL(cv xCoord(s3):0.8 "na")
+\t nil
+\p > 
+\i LBL(cv xCoord(s4):0.8 "nb")
+\t nil
+\p > 
+\i LBL(cv 7.0:3.6 "nout")
+\t nil
+\p > 
+\i chk = schCheck(cv)
+\o INFO (SCH-1170): Extracting "hsc schematic"
+\o Warning: Floating net "vb" at (-0.6000, 4.1000).
+\t (0 1)
+\p > 
+\i printf("MCP:flatcheck=%L\n" chk)
+\o MCP:flatcheck=(0 1)
+\t t
+\p > 
+\i dbSave(cv)
+\o Loading lx.cxt 
+\o Loading lce.cxt 
+\o Loading le.cxt 
+\o Loading rte.cxt 
+\t t
+\p > 
+\o Loading mpt.cxt 
+\i foreach(i list(M0 M1 M2 M3 M4 I0 I1 V1 V2)
+\i   foreach(it i~>instTerms printf("MCP:conn %s.%s=%s\n" i~>name it~>name it~>net~>name)))
+\o MCP:conn M0.S=gnd!
+\o MCP:conn M0.B=gnd!
+\o MCP:conn M0.G=vb
+\o MCP:conn M0.D=vb
+\o MCP:conn M1.S=gnd!
+\o MCP:conn M1.B=gnd!
+\o MCP:conn M1.G=net3
+\o MCP:conn M1.D=net15
+\o MCP:conn M2.S=gnd!
+\o MCP:conn M2.B=gnd!
+\o MCP:conn M2.G=net3
+\o MCP:conn M2.D=net14
+\o MCP:conn M3.S=net15
+\o MCP:conn M3.B=gnd!
+\o MCP:conn M3.G=vb
+\o MCP:conn M3.D=net3
+\o MCP:conn M4.S=net14
+\o MCP:conn M4.B=gnd!
+\o MCP:conn M4.G=vb
+\o MCP:conn M4.D=net11
+\o MCP:conn I0.PLUS=vdd!
+\o MCP:conn I0.MINUS=vb
+\o MCP:conn I1.PLUS=vdd!
+\o MCP:conn I1.MINUS=net3
+\o MCP:conn V1.PLUS=vdd!
+\o MCP:conn V1.MINUS=gnd!
+\o MCP:conn V2.PLUS=net11
+\o MCP:conn V2.MINUS=gnd!
+\t (db:0x169bb21a db:0x169bb21b db:0x169bb21d db:0x169bb21c db:0x169bb21e
+\t     db:0x169bb21f db:0x169bb220 db:0x169bb221 db:0x169bb222
+\t )
+\p > 
+\i ; ================= LVS core =================
+\i core = dbOpenCellViewByType(lib "hsc_core" "schematic" "schematic" "w")
+\t db:0x169ba79a
+\p > 
+\i C0 = dbCreateParamInst(core nm "M0" -5.0:0 "R0" 1 mosB)
+\t db:0x169ba61a
+\p > 
+\i C1 = dbCreateParamInst(core nm "M1" 0:0 "R0" 1 mosW)
+\t db:0x169ba61b
+\p > 
+\i C3 = dbCreateParamInst(core nm "M3" 0:1.5 "R0" 1 mosW)
+\t db:0x169ba61c
+\p > 
+\i C2 = dbCreateParamInst(core nm "M2" 5.0:0 "R0" 1 mosW)
+\t db:0x169ba61d
+\p > 
+\i C4 = dbCreateParamInst(core nm "M4" 5.0:1.5 "R0" 1 mosW)
+\t db:0x169ba61e
+\p > 
+\i cg0=pinPt(C0 "G") cd0=pinPt(C0 "D") cs0=pinPt(C0 "S") cb0=pinPt(C0 "B")
+\t (-4.75 0.0)
+\p > 
+\i cg1=pinPt(C1 "G") cd1=pinPt(C1 "D") cs1=pinPt(C1 "S") cb1=pinPt(C1 "B")
+\t (0.25 0.0)
+\p > 
+\i cg2=pinPt(C2 "G") cd2=pinPt(C2 "D") cs2=pinPt(C2 "S") cb2=pinPt(C2 "B")
+\t (5.25 0.0)
+\p > 
+\i cg3=pinPt(C3 "G") cd3=pinPt(C3 "D") cs3=pinPt(C3 "S") cb3=pinPt(C3 "B")
+\t (0.25 1.5)
+\p > 
+\i cg4=pinPt(C4 "G") cd4=pinPt(C4 "D") cs4=pinPt(C4 "S") cb4=pinPt(C4 "B")
+\t (5.25 1.5)
+\p > 
+\i W(core list(cd0 xCoord(cd0):2.8))
+\t (db:0x169ba49a)
+\p > 
+\i schCreatePin(core iop "IBIAS" "inputOutput" nil xCoord(cd0):2.8 "R90")
+\t db:0x169ba61f
+\p > 
+\i W(core list(cg0 -5.5:0)) W(core list(-5.5:0 -5.5:0.6)) W(core list(-5.5:0.6 xCoord(cd0):0.6))
+\t (db:0x169ba49f)
+\p > 
+\i W(core list(xCoord(cd0):2.2 xCoord(cg3):2.2))
+\t (db:0x169ba4a2)
+\p > 
+\i W(core list(xCoord(cg3):2.2 cg3))
+\t (db:0x169ba4a4)
+\p > 
+\i W(core list(xCoord(cg3):2.2 xCoord(cg4):2.2))
+\t (db:0x169ba4a5)
+\p > 
+\i W(core list(xCoord(cg4):2.2 cg4))
+\t (db:0x169ba4a7)
+\p > 
+\i W(core list(cd3 xCoord(cd3):2.8))
+\t (db:0x169ba4a8)
+\p > 
+\i schCreatePin(core iop "IIN" "inputOutput" nil xCoord(cd3):2.8 "R90")
+\t db:0x169ba620
+\p > 
+\i W(core list(cs3 cd1))
+\t (db:0x169ba4aa)
+\p > 
+\i W(core list(xCoord(cd3):2.5 -1.4:2.5))
+\t (db:0x169ba4ac)
+\p > 
+\i W(core list(-1.4:2.5 -1.4:0))
+\t (db:0x169ba4ae)
+\p > 
+\i W(core list(-1.4:0 cg1))
+\t (db:0x169ba4af)
+\p > 
+\i W(core list(-1.4:0 -1.4:-0.9))
+\t (db:0x169ba4b0)
+\p > 
+\i W(core list(-1.4:-0.9 4.4:-0.9))
+\t (db:0x169ba4b2)
+\p > 
+\i W(core list(4.4:-0.9 4.4:0))
+\t (db:0x169ba4b3)
+\p > 
+\i W(core list(4.4:0 cg2))
+\t (db:0x169ba4b4)
+\p > 
+\i W(core list(cd2 cs4))
+\t (db:0x169ba4b5)
+\p > 
+\i W(core list(cd4 xCoord(cd4):2.8))
+\t (db:0x169ba4b6)
+\p > 
+\i schCreatePin(core iop "IOUT" "inputOutput" nil xCoord(cd4):2.8 "R90")
+\t db:0x169ba621
+\p > 
+\i ; one common ground rail with pin
+\i yR = -1.5
+\t -1.5
+\p > 
+\i foreach(p list(cs0 cs1 cs2) W(core list(p xCoord(p):yR)))
+\t ((-4.75 -0.1875) 
+\t     (0.25 -0.1875) 
+\t     (5.25 -0.1875)
+\t )
+\p > 
+\i W(core list(cb0 -4.25:0)) W(core list(-4.25:0 -4.25:yR))
+\t (db:0x169ba4bc)
+\p > 
+\i W(core list(cb1 0.75:0)) W(core list(0.75:0 0.75:yR))
+\t (db:0x169ba4be)
+\p > 
+\i W(core list(cb2 5.75:0)) W(core list(5.75:0 5.75:yR))
+\t (db:0x169ba4c0)
+\p > 
+\i W(core list(cb3 0.9:yCoord(cb3))) W(core list(0.9:yCoord(cb3) 0.9:yR))
+\t (db:0x169ba4c2)
+\p > 
+\i W(core list(cb4 5.9:yCoord(cb4))) W(core list(5.9:yCoord(cb4) 5.9:yR))
+\t (db:0x169ba4c4)
+\p > 
+\i W(core list(-6.3:yR 5.9:yR))
+\t (db:0x169ba4c5 db:0x169ba4c6 db:0x169ba4c7 db:0x169ba4c8 db:0x169ba4c9
+\t     db:0x169ba4ca db:0x169ba4cb db:0x169ba4cc
+\t )
+\p > 
+\i schCreatePin(core iop "GND" "inputOutput" nil -6.3:yR "R180")
+\t db:0x169ba622
+\p > 
+\i printf("MCP:corecheck=%L\n" schCheck(core))
+\o INFO (SCH-1170): Extracting "hsc_core schematic"
+\o MCP:corecheck=(0 0)
+\t t
+\p > 
+\i dbSave(core)
+\t t
+\p > 
+\i foreach(i list(C0 C1 C2 C3 C4)
+\i   foreach(it i~>instTerms printf("MCP:cconn %s.%s=%s\n" i~>name it~>name it~>net~>name)))
+\o MCP:cconn M0.S=GND
+\o MCP:cconn M0.B=GND
+\o MCP:cconn M0.G=IBIAS
+\o MCP:cconn M0.D=IBIAS
+\o MCP:cconn M1.S=GND
+\o MCP:cconn M1.B=GND
+\o MCP:cconn M1.G=IIN
+\o MCP:cconn M1.D=net14
+\o MCP:cconn M2.S=GND
+\o MCP:cconn M2.B=GND
+\o MCP:cconn M2.G=IIN
+\o MCP:cconn M2.D=net13
+\o MCP:cconn M3.S=net14
+\o MCP:cconn M3.B=GND
+\o MCP:cconn M3.G=IBIAS
+\o MCP:cconn M3.D=IIN
+\o MCP:cconn M4.S=net13
+\o MCP:cconn M4.B=GND
+\o MCP:cconn M4.G=IBIAS
+\o MCP:cconn M4.D=IOUT
+\t (db:0x169ba61a db:0x169ba61b db:0x169ba61d db:0x169ba61c db:0x169ba61e)
+\p > 
+\i ; ================= screenshot =================
+\i w1 = geOpen(?lib lib ?cell "hsc" ?view "schematic" ?mode "r")
+\o Loading vb.cxt 
+\o Loading nt.cxt 
+\o Loading oi.cxt 
+\o Loading see.cxt 
+\o Loading treeAssistant.cxt 
+\o Loading asst.cxt 
+\o Loading mtv.cxt 
+\o Loading leToolbox.cxt 
+\o Loading hsm.cxt 
+\o Loading simui.cxt 
+\t window:2
+\p > 
+\i hiSetCurrentWindow(w1)
+\t t
+\p > 
+\i hiResizeWindow(w1 list(0:0 1600:1000))
+\t t
+\p > 
+\i procedure(wlA() errset(evalstring(hiGetBindKey("Schematics" "<Key>f")) t) hiRegTimer("wlB()" 30))
+\t wlA
+\p > 
+\i procedure(wlB() mcpShot("hsc_flat")
+\i   w2 = geOpen(?lib lib ?cell "hsc_core" ?view "schematic" ?mode "r")
+\i   hiSetCurrentWindow(w2) hiResizeWindow(w2 list(0:0 1600:1000))
+\i   hiRegTimer("wlC()" 30))
+\t wlB
+\p > 
+\i procedure(wlC() errset(evalstring(hiGetBindKey("Schematics" "<Key>f")) t) hiRegTimer("wlD()" 30))
+\t wlC
+\p > 
+\i procedure(wlD() mcpShot("hsc_core") printf("MCP:OK=1\n") exit(0))
+\t wlD
+\p > 
+\i hiRegTimer("wlA()" 40)
+\t t
+\p > 
+\# Replay complete, returning to interactive mode at UTC 2026.10.14 08:23:16.345
+\o MCP:shot=/home/work/widlar_shots/hsc_flat.png
+\a when(dwindow('oiAssistant2) hiMapWindow(dwindow('oiAssistant2)))
+\r t
+\a when(dwindow('treeAssistant2) hiMapWindow(dwindow('treeAssistant2)))
+\r t
+\o MCP:shot=/home/work/widlar_shots/hsc_core.png
+\o MCP:OK=1
+\o 
+\o Loading cph.cxt 
+\# Memory report: on exit            383 MB, process size 1,205 MB at UTC 2026.10.14 08:23:31.911
+\# Memory report: peak usage         383 MB, process size 1,205 MB
+total 168
+drwxrwxr-x.  2 work work  4096 Oct 14 16:23 .
+drwx------. 65 work work  4096 Oct 13 18:43 ..
+-rw-rw-r--.  1 work work 85778 Oct 14 16:23 hsc_core.png
+-rw-rw-r--.  1 work work 77644 Oct 14 16:23 hsc_flat.png

@@ -1,0 +1,4 @@
+# VTC-ADC transfer (Vin -> VTC delay -> TDC code)
+
+Vin(V)	VTC delay(ps)	TDC code
+0.5	162.55622449976826	2

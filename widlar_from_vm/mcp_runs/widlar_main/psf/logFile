@@ -1,0 +1,79 @@
+HEADER
+"PSFversion" "1.00"
+"Log Generator" "drlLog rev. 1.0"
+"Log Time Stamp" "Sun Oct 11 20:26:17 2026"
+"simulator" "spectre"
+"version" "15.1.0.284.isr1"
+"date" "8:26:17 PM, Sun Oct 11, 2026"
+"design" "(no title)"
+"signalNameType" "spectre"
+"simMode" "Spectre"
+"measdgt" 0
+"ingold" 2
+"sst2usecolon" 0
+TYPE
+"analysisInst" STRUCT(
+"analysisType" STRING *
+"dataFile" STRING *
+"format" STRING *
+"parent" STRING *
+"sweepVariable" ARRAY ( * ) STRING *
+"description" STRING *
+)
+VALUE
+"op-dc" "analysisInst" (
+"dc"
+"op.dc"
+"PSF"
+""
+()
+"DC Analysis `op'"
+) PROP(
+"data_type" "scalar"
+)
+
+"op-info" "analysisInst" (
+"info"
+"op.info"
+"PSF"
+""
+()
+"Circuit Information"
+) PROP(
+"data_type" "struct"
+)
+
+"swsegl-dc" "analysisInst" (
+"dc"
+"swsegl.dc"
+"PSF"
+""
+("reff")
+"DC Analysis `swsegl': reff = (500e-06 -> 850e-06)"
+) PROP(
+"data_type" "scalar"
+)
+
+"swvdd-dc" "analysisInst" (
+"dc"
+"swvdd.dc"
+"PSF"
+""
+("dc")
+"DC Analysis `swvdd': VDD:dc = (0 V -> 1.8 V)"
+) PROP(
+"data_type" "scalar"
+)
+
+"tr-tran" "analysisInst" (
+"tran"
+"tr.tran.tran"
+"PSF"
+""
+("time")
+"Transient Analysis `tr': time = (0 s -> 100 us)"
+) PROP(
+"data_type" "swept_scalar"
+)
+
+END

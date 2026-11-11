@@ -1,0 +1,251 @@
+\e Display :57 Error "BadAtom (invalid Atom parameter)"
+\e  request 20 error 5 serial 230 
+
+A panic file has been created for cellview 'widlar_lib/probe_lay/layout' at:
+    (/home/work/widlar_lib/probe_lay/layout/layout.oa-)
+To open the cellview with the recovered data:
+    cellview = dbOpenPanicCellView("widlar_lib" "probe_lay" "layout")
+
+Panic files have been created for cellviews that were opened in edit mode.
+For details on these panic files, see
+    '/home/work/panic.log.work-eda.4466'
+@@@VIRTUOSO_RC=124
+=== ciw ===
+\# Program start time UTC 2026.10.11 11:51:38.090
+\# Local time Sunday 11 October 2026, 7:51 pm
+\o Program:		@(#)$CDS: virtuoso version 6.1.7-64b 11/09/2015 12:45 (sjfnl165) $
+\o Hierarchy:		/opt/IC617/tools.lnx86/dfII/
+\o Sub version:		sub-version  IC6.1.7-64b.78  (64-bit addresses)
+\# Command line:	/opt/IC617/tools/dfII/bin/64bit/virtuoso -replay ./run_7f432eeb.il -log ./ciw_7f432eeb.log
+\# Host name (type):	work-eda (x86_64)
+\# Operating system:	Linux 2.6.32-431.el6.x86_64 #1 SMP Sun Nov 10 22:19:54 EST 2013
+\# Linux /etc/issue:	Red Hat Enterprise Linux Server release 6.5 (Santiago)
+\# Linux /etc/issue:	Kernel \r on an \m
+\# X display name (WxH):	:57 (1600x1000)
+\# Available geometry:			TL(0:0) BR(1599:999)
+\# X server:			CentOS
+\# Depth of Visual (Root):	24 (24)
+\# Number of Planes Used:	24
+\# X version:		11.0 (vendor release 11704000)
+\# X resource pool:	base 0x200000, mask 0x1fffff (2097151), shift 0
+\# 			current id 0x0, current max 0x1ffffa (2097146)
+\# Max data seg size:	     unlimited
+\# Max process size:	     unlimited
+\# Initial sbrk value:	        370 MB
+\# Available memory:	      7,232 MB
+\# System memory:	      7,770 MB
+\# Maximum memory size:	      7,480 MB
+\# Max mem available:	      7,312 MB
+\# Initial memory used:	         80 MB
+\#        process size:	        873 MB
+\# Qt version:		4.8.5
+\# Window Manager:	other
+\# User Name:		work
+\o Working Directory:	work-eda:/home/work/widlar_run
+\# Process Id:		4466
+\o 
+\o COPYRIGHT � 1992-2015  CADENCE DESIGN SYSTEMS INC.  ALL RIGHTS RESERVED.
+\o           � 1992-2015  UNIX SYSTEMS Laboratories INC.,
+\o                          Reproduced with permission.
+\o 
+\o This Cadence Design Systems program and online documentation are
+\o proprietary/confidential information and may be disclosed/used only
+\o as authorized in a license agreement controlling such use and disclosure.
+\o 
+\o           RESTRICTED RIGHTS NOTICE (SHORT FORM)
+\o Use/reproduction/disclosure is subject to restriction
+\o set forth at FAR 1252.227-19 or its equivalent.
+\o Loading geView.cxt 
+\o Loading menuBuilder.cxt 
+\o Loading schView.cxt 
+\o Loading selectSv.cxt 
+\o Loading wireEdit.cxt 
+\o Loading pte2.cxt 
+\o Loading xlUI.cxt 
+\o Loading auCore.cxt 
+\o Loading vhdl.cxt 
+\o Loading seismic.cxt 
+\o Loading ci.cxt 
+\o Loading ams.cxt 
+\o Virtuoso Framework License (111) was checked out successfully. Total checkout time was 0.00s.
+\# Memory report: using         228 MB, process size 1,050 MB at UTC 2026.10.11 11:51:39.173
+\w *WARNING* The directory: '/home/work/widlar_lib' does not exist
+\w 	but was defined in libFile '/home/work/widlar_run/cds.lib' for Lib 'widlar_lib'.
+\o END OF SITE CUSTOMIZATION
+\o //
+\o //  Calibre Skill Interface * (v2015.2_36.27) *
+\o //
+\o //                 Copyright Mentor Graphics Corporation 2005
+\o //                             All Rights Reserved.
+\o //         THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+\o //            WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION
+\o //              OR ITS LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+\o //
+\o //
+\o Loading HSPICE.cxt
+\o Loading oasis.cxt 
+\o Loading analog.cxt 
+\o Loading cdf.cxt 
+\o   ==== HSPICE-ADE Interface, K-2015.06-3 BUILD (08/06/2015 18:09:41) ==== 
+\o   ==== COPYRIGHT 2008-2026 SYNOPSYS INC.                             ==== 
+\o   ==== HSPICE-ADE Interface installed successfully                   ==== 
+\o   HSPICE-ADE: use interface at '/opt/synopsys/Hspice-2015.06-3/interface'
+\o   HSPICE-ADE: use HSPICE at '/opt/synopsys/Hspice-2015.06-3//hspice/bin/hspice'
+\o   HSPICE-ADE: HSPICE Version K-2015.06-3 linux64 (build id: 3630644)
+\p > 
+\i procedure( mcpShot(name)
+\i   let( (f)
+\i     hiRedraw()
+\i     f = sprintf(nil "%s/%s.png" "/home/work/widlar_shots" name)
+\i     system(sprintf(nil "xwd -root -display $DISPLAY | convert xwd:- %s" f))
+\i     printf("MCP:shot=%s\n" f)))
+\t mcpShot
+\p > 
+\i printf("SKILL_START\n")
+\o SKILL_START
+\t t
+\p > 
+\i foreach(c '("nmos2v" "resnsppoly")
+\i   cdf = cdfGetBaseCellCDF(ddGetObj("gpdk090" c))
+\i   printf("MCP:%s_spectre=%L\n" c cdf~>simInfo~>spectre)
+\i   printf("MCP:%s_auCdl=%L\n" c cdf~>simInfo~>auCdl))
+\o Loading gpdk090/libInit.il ...
+\o 	Loading gpdk090/loadCxt.ile ... done!
+\o 	Loading context 'gpdk090' from library 'gpdk090' ... done!
+\o 	Loading context 'pdkUtils' from library 'gpdk090' ... done!
+\o 	Loading gpdk090/display.drf ... done!
+\o 	Loading gpdk090/gpdk090_customFilter.il ... done!
+\o 	Loading gpdk090/.simrc ... done!
+\o 	Loading gpdk090/libInitCustomExit.il ... 	Loading Environment Settings ...
+\w *WARNING* envSetVal: Can't set the value of variable 'extractVerifySubstrate',
+\w 	in tool[.partition] 'layout' - it has not been registered.
+\o 	Loading Model Management File ...
+\o Loading spectrei.cxt 
+\o Loading devCheck.cxt 
+\o Loading relXpert.cxt 
+\o Loading hspiceD.cxt 
+\o Loading spectreinl.cxt 
+\o Loading UltraSim.cxt 
+\# Memory report: using         336 MB, process size 1,158 MB at UTC 2026.10.11 11:51:42.037
+\o Loading msgHandler.cxt 
+\o Loading AMSOSS.cxt 
+\o Loading AMS.cxt 
+\o 	Loading gpdk090/gpdk090_PDKRegistrations.il ... done!
+\o 
+\o   *************************************************************           
+\o   *              Cadence Design Systems, Inc.                 *           
+\o   *                                                           *           
+\o   *                    Generic 90nm PDK                       *           
+\o   *                        (gpdk090)                          *           
+\o   *                                                           *           
+\o   *************************************************************           
+\o 	
+\o 
+\o 	Version : 4.6
+\o 
+\o 	Build date: 10-FEB-2011
+\o 
+\o done!
+\o Loaded gpdk090/libInit.il successfully!
+\e *Error* get/getq: first arg must be either symbol, list, defstruct or user type - ""
+\p > 
+\i unless( ddGetObj("widlar_lib") dbCreateLib("widlar_lib" "/home/work/widlar_lib"))
+\# Available memory:          6,683 MB at UTC 2026.10.11 11:51:50.646
+\# Memory report: Maximum memory size now 7,033 MB at UTC 2026.10.11 11:51:50.646
+\w *WARNING* LIB widlar_lib from File /home/work/widlar_run/cds.lib Line 3 redefines
+\w LIB widlar_lib from the same file (defined earlier.)
+\t dd:0x21c00e80
+\p > 
+\i r1 = errset(techBindTechFile(ddGetObj("widlar_lib") "gpdk090") t)
+\t (t)
+\p > 
+\i printf("MCP:bind=%L\n" r1)
+\o MCP:bind=(t)
+\t t
+\p > 
+\i cv = dbOpenCellViewByType("widlar_lib" "probe_lay" "layout" "maskLayout" "w")
+\w *WARNING* LIB widlar_lib from File /home/work/widlar_run/cds.lib Line 3 redefines
+\w LIB widlar_lib from the same file (defined earlier.)
+\t db:0x1768cb9a
+\p > 
+\i i1 = dbCreateParamInstByMasterName(cv "gpdk090" "nmos2v" "layout" "M1" 0:0 "R0" 1 list(list("fw" "float" 1.56e-6) list("l" "float" 2.8e-7) list("connectGates" "string" "Top")))
+\t db:0x1768c51a
+\p > 
+\i i2 = dbCreateParamInstByMasterName(cv "gpdk090" "resnsppoly" "layout" "R1" 5:0 "R0" 1 list(list("segW" "float" 1e-6) list("segL" "float" 10e-6) list("segments" "int" 4)))
+\t db:0x1768c51b
+\p > 
+\i foreach(i list(i1 i2)
+\i   foreach(t i~>master~>terminals printf("MCP:term %s %s %L\n" i~>name t~>name mapcar(lambda((p) list(p~>fig~>layerName p~>fig~>bBox)) t~>pins))))
+\e *Error* setq/set: Variable is protected and cannot be assigned to - t
+\p > 
+\i printf("MCP:bbox1=%L bbox2=%L\n" i1~>bBox i2~>bBox)
+\o MCP:bbox1=((-0.6 -0.3) (0.88 1.86)) bbox2=((4.72 -0.56) (11.08 10.56))
+\t t
+\p > 
+\i dbSave(cv)
+\o Loading le.cxt 
+\o Loading drdEdit.cxt 
+\o Loading leToolbox.cxt 
+\o Loading treeAssistant.cxt 
+\o Loading soi.cxt 
+\o Loading techComp.cxt 
+\t t
+\p > 
+\o Loading mpt.cxt 
+\i w = geOpen(?lib "widlar_lib" ?cell "probe_lay" ?view "layout" ?mode "r")
+\w *WARNING* (LE-104268): widlar_lib/probe_lay/layout has already been opened in edit mode.
+\o Loading lo.cxt 
+\o Loading vb.cxt 
+\o Loading see.cxt 
+\o Loading oi.cxt 
+\o Loading asst.cxt 
+\o Loading mtv.cxt 
+\o Loading lce.cxt 
+\t window:2
+\p > 
+\i printf("MCP:win=%L\n" w)
+\o MCP:win=window:2
+\t t
+\p > 
+\i hiResizeWindow(hiGetCurrentWindow() list(0:0 1600:1000))
+\t t
+\p > 
+\i hiZoomAbsoluteScale(hiGetCurrentWindow() 0.9)
+\t t
+\p > 
+\i leHiZoomToFit = errset(hiZoomToFit(hiGetCurrentWindow()) t)
+\e *Error* eval: undefined function - hiZoomToFit
+\t nil
+\p > 
+\i procedure(step1() mcpShot("probe_layout") hiRegTimer("step2()" 10))
+\t step1
+\p > 
+\i procedure(step2() printf("MCP:OK=1\n") exit(0))
+\e *Error* def: given function is internal and cannot be redefined - step2
+\p > 
+\i hiRegTimer("step1()" 50)
+\t t
+\p > 
+\# Replay complete, returning to interactive mode at UTC 2026.10.11 11:51:51.650
+\o MCP:shot=/home/work/widlar_shots/probe_layout.png
+\w *WARNING* Can only step from a break point.
+\o INFO (DB-120006): 'virtuoso' exited unexpectedly. Panic files have been created for the cellviews that 
+\o were opened in edit mode. For the list of these panic files, see the panic log:
+\o /home/work/panic.log.work-eda.4466
+\o To restore a cellview using its panic file:
+\o 1. Open the cellview with the recovered data using 'dbOpenPanicCellView'.
+\o    Example: 'cellview = dbOpenPanicCellView("lib" "cell" "view")'.
+\o    The cellview opens in read-only mode.
+\o 2. Reopen the cellview in append mode using 'dbReopen(cellview "a")'.
+\o 3. Restore the recovered data to the cellview using 'dbSave(cellview)'.
+\o    To save the recovered data to a different cellview, use
+\o    'dbSave(cellview "otherlib" "cell" "view")' with the desired
+\o    library, cell, and view information.
+\o 4. Remove the cellview from virtual memory using 'dbPurge(cellview)'.
+\o    You can now open the restored cellview.
+\w *WARNING* Process was terminated by USER with SIGTERM signal
+\o Local time (crash) Sunday 11 October 2026, 08:00:37 PM
+total 112
+drwxrwxr-x.  2 work work   4096 Oct 11 19:51 .
+drwx------. 65 work work   4096 Oct 11 20:00 ..
+-rw-rw-r--.  1 work work 104265 Oct 11 19:51 probe_layout.png

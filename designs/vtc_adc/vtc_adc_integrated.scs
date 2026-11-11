@@ -1,0 +1,115 @@
+// VTC-ADC : voltage-to-time + time-to-digital (gpdk090)
+simulator lang=spectre
+global 0
+include "/home/work/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+subckt INV (a y vdd vss)
+  parameters wp=0.4u wn=0.2u
+  MP (y a vdd vdd) gpdk090_pmos1v w=wp l=100n
+  MN (y a vss vss) gpdk090_nmos1v w=wn l=100n
+ends INV
+
+subckt NAND2 (a b y vdd vss)
+  parameters wp=0.4u wn=0.4u
+  MP1 (y a vdd vdd) gpdk090_pmos1v w=wp l=100n
+  MP2 (y b vdd vdd) gpdk090_pmos1v w=wp l=100n
+  MN1 (y a n1 vss)  gpdk090_nmos1v w=wn l=100n
+  MN2 (n1 b vss vss) gpdk090_nmos1v w=wn l=100n
+ends NAND2
+
+subckt NOR2 (a b y vdd vss)
+  parameters wp=0.8u wn=0.2u
+  MP1 (p1 a vdd vdd) gpdk090_pmos1v w=wp l=100n
+  MP2 (y b p1 vdd)   gpdk090_pmos1v w=wp l=100n
+  MN1 (y a vss vss)  gpdk090_nmos1v w=wn l=100n
+  MN2 (y b vss vss)  gpdk090_nmos1v w=wn l=100n
+ends NOR2
+
+// transmission gate
+subckt TG (in out c cb vdd vss)
+  MN (in out c vss)  gpdk090_nmos1v w=0.3u l=100n
+  MP (in out cb vdd) gpdk090_pmos1v w=0.3u l=100n
+ends TG
+
+// positive-edge-triggered D flip-flop (master-slave, TG based)
+subckt DFF (d q clk vdd vss)
+  parameters wp=0.4u wn=0.2u
+  // clock inverters
+  I_ckb (clk ckb vdd vss) INV
+  I_ck  (ckb ck  vdd vss) INV
+  // master latch (transparent when ck=0 i.e. clk low)
+  X_tg1 (d dm ckb ck vdd vss) TG
+  I_m1 (dm mb vdd vss) INV
+  I_m2 (mb dm2 vdd vss) INV
+  X_tgm (dm2 dm ck ckb vdd vss) TG
+  // slave latch (transparent when ck=1)
+  X_tg2 (mb ds ck ckb vdd vss) TG
+  I_s1 (ds q vdd vss) INV
+  I_s2 (q sb vdd vss) INV
+  X_tgs (sb ds ckb ck vdd vss) TG
+ends DFF
+
+// 1-bit full adder from 9 NAND2 gates (SUM, COUT)
+subckt FA (a b cin sum cout vdd vss)
+  I1 (a b   x1 vdd vss) NAND2
+  I2 (a x1  x2 vdd vss) NAND2
+  I3 (b x1  x3 vdd vss) NAND2
+  I4 (x2 x3 x4 vdd vss) NAND2
+  I5 (x4 cin x5 vdd vss) NAND2
+  I6 (x4 x5 x6 vdd vss) NAND2
+  I7 (cin x5 x7 vdd vss) NAND2
+  I8 (x6 x7 sum vdd vss) NAND2
+  I9 (x1 x5 cout vdd vss) NAND2
+ends FA
+
+// 6T SRAM cell (bit + bitb storage, wl word line, bl/blb bit lines)
+subckt SRAM6T (bl blb wl vdd vss)
+  MPL (q qb vdd vdd) gpdk090_pmos1v w=0.2u l=100n
+  MNL (q qb vss vss) gpdk090_nmos1v w=0.3u l=100n
+  MPR (qb q vdd vdd) gpdk090_pmos1v w=0.2u l=100n
+  MNR (qb q vss vss) gpdk090_nmos1v w=0.3u l=100n
+  MAL (bl wl q vss)  gpdk090_nmos1v w=0.3u l=100n
+  MAR (blb wl qb vss) gpdk090_nmos1v w=0.3u l=100n
+ends SRAM6T
+Vdd (vdd 0) vsource dc=1.0
+Vin (vc 0) vsource dc=0.5                 // analog input (controls VTC delay)
+Vtrig (trig 0) vsource type=pulse val0=0 val1=1 rise=10p fall=10p delay=1n width=8n period=20n
+// ---- VTC: current-starved inverter, discharge set by Vin ----
+M1p (mid trig vdd vdd) gpdk090_pmos1v w=1u l=100n
+M1n (mid trig ns 0)    gpdk090_nmos1v w=0.5u l=100n
+Ms  (ns  vc  0   0)    gpdk090_nmos1v w=2u l=100n
+M2p (stop mid vdd vdd) gpdk090_pmos1v w=1u l=100n
+M2n (stop mid 0 0)     gpdk090_nmos1v w=0.5u l=100n
+Cvtc (mid 0) capacitor c=40f
+// ---- TDC: buffer delay line launched by the same trigger (START) ----
+Xa0 (trig m0 vdd 0) INV
+Xb0 (m0 b0 vdd 0) INV
+Cl0 (b0 0) capacitor c=5f
+Xa1 (b0 m1 vdd 0) INV
+Xb1 (m1 b1 vdd 0) INV
+Cl1 (b1 0) capacitor c=5f
+Xa2 (b1 m2 vdd 0) INV
+Xb2 (m2 b2 vdd 0) INV
+Cl2 (b2 0) capacitor c=5f
+Xa3 (b2 m3 vdd 0) INV
+Xb3 (m3 b3 vdd 0) INV
+Cl3 (b3 0) capacitor c=5f
+Xa4 (b3 m4 vdd 0) INV
+Xb4 (m4 b4 vdd 0) INV
+Cl4 (b4 0) capacitor c=5f
+Xa5 (b4 m5 vdd 0) INV
+Xb5 (m5 b5 vdd 0) INV
+Cl5 (b5 0) capacitor c=5f
+Xa6 (b5 m6 vdd 0) INV
+Xb6 (m6 b6 vdd 0) INV
+Cl6 (b6 0) capacitor c=5f
+Xa7 (b6 m7 vdd 0) INV
+Xb7 (m7 b7 vdd 0) INV
+Cl7 (b7 0) capacitor c=5f
+Xa8 (b7 m8 vdd 0) INV
+Xb8 (m8 b8 vdd 0) INV
+Cl8 (b8 0) capacitor c=5f
+Xa9 (b8 m9 vdd 0) INV
+Xb9 (m9 b9 vdd 0) INV
+Cl9 (b9 0) capacitor c=5f
+simOpt options temp=27 save=allpub
+tr tran stop=6n step=2p errpreset=conservative

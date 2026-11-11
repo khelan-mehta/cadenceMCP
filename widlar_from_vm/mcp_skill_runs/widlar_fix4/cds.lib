@@ -1,0 +1,3 @@
+SOFTINCLUDE /home/work/cds.lib
+DEFINE mcp_work ./mcp_work
+DEFINE widlar_lib /home/work/widlar_lib

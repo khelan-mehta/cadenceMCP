@@ -1,0 +1,7 @@
+( expalin "Error in evaluating property value: 'ancNetlistFileNetOutput()'." probeType "net" pathObjectName "IREF" pathList "" probeArgType "probeColor" )
+( expalin "Error in evaluating property value: 'ancNetlistFileNetOutput()'." probeType "net" pathObjectName "GND" pathList "" probeArgType "probeColor" )
+( expalin "Error in evaluating property value: 'ancNetlistFileNetOutput()'." probeType "net" pathObjectName "NS" pathList "" probeArgType "probeColor" )
+( expalin "Error in evaluating property value: 'ancNetlistFileNetOutput()'." probeType "net" pathObjectName "IOUT" pathList "" probeArgType "probeColor" )
+( explain "Error in evaluating property value: 'ancNetlistFileInstOutput()'." probeType "instance" pathObjectName "M2" pathList "" probeArgType "probeColor" )
+( explain "Error in evaluating property value: 'ancNetlistFileInstOutput()'." probeType "instance" pathObjectName "M1" pathList "" probeArgType "probeColor" )
+( explain "Error in evaluating property value: 'ancNetlistFileInstOutput()'." probeType "instance" pathObjectName "RS" pathList "" probeArgType "probeColor" )

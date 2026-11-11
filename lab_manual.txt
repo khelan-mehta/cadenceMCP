@@ -1,0 +1,630 @@
+                              Nirma University
+
+                          School of Technology
+
+                          B. Tech. Sem. VII (EC)
+
+         4EC601ME25 Analog CMOS Integrated Circuits
+
+                            Laboratory Manual
+
+                                     ODD 2026
+
+
+
+
+  Electronics & Communication Engineering Department,
+                  School of Technology,
+                      Ahmedabad
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+  Course Learning Outcomes (CLOs)
+
+  At the end of the course, the students shall be able to:
+   1. apply noise analysis for analog CMOS circuits and evaluate input signal         (BL3)
+      noise and output signal noise
+   2. analyse the given analog circuit using a large signal, small signal and         (BL4)
+      high- frequency models and evaluate performance parameters
+   3. design an analog signal conditioning circuit using the operational              (BL6)
+      amplifier for the given specific application
+   4. construct an amplifier using switching capacitors circuits for the given        (BL6)
+      specifications
+
+                                              Index
+
+SR                                                     Marks as per Rubrics   Total
+                     Title                    Date                                      Sign
+NO                                                    02 02 02 02 02          Marks
+ 1.  Exploring Cadence Virtuoso for ASIC
+     Design                                                                     /10
+     (CO1, CO2, CO3, CO4)
+ 2. To simulate the output and transfer
+     characteristics of MOS transistors for
+                                                                                /10
+     finding out technology parameters
+     (CO2)
+ 3. To design and simulate current
+                                                                                /10
+     mirror circuits. (CO2)
+ 4. To Design and simulate MOS based                                            /10
+     resistive and current source load
+     single stage CS amplifiers for given
+     specifications. (CO2, CO4)
+ 5. To Design and simulate MOS based                                            /10
+     source degenerated single stage CS
+     amplifiers for given specifications.
+     (CO2, CO4)
+ 6. To Design and simulate MOS based                                            /10
+     single stage CD and CG amplifiers for
+     given specifications. (CO2, CO4)
+ 7. To Design and simulate MOS based
+     cascode      amplifiers   for   given                                      /10
+     specifications. (CO2, CO4)
+ 8. To Design and simulate differential
+     amplifiers for given specifications.                                       /10
+     (CO2, CO4)
+ 9. To design and simulate CMOS two
+                                                                                /10
+     stage operational Amplifier. (CO3)
+ 10. To carry out project work for the
+     assigned topic. (CO1, CO2, CO3,                                            /20
+     CO4)
+
+
+
+  4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Roll No.                                                            Date:
+Exp. 1. Exploring Cadence Virtuoso for ASIC Design
+Learning Outcomes
+After completion of this experiment students will be able to:
+   1. Utilize Cadence Virtuoso for Circuit Simulations
+   2. Carry out AC, DC and transient analysis
+   3. Prepare layout of circuit
+   4. Carry out pre and post layout simulations.
+Pre-lab Exercise
+   1. List various tools available under Cadence VLSI design suite with their
+      application area.
+   2. List VLSI design suites other than Cadence. Also list the tools under all suites
+      with their application areas.
+
+Procedure (Attach a separate sheet with all calculations):
+1. Refer to the Cadence ASIC Design Manual sent to you by a separate email. The
+   same is available on LMS.
+2. Complete the Pre layout simulations and find out the threshold voltage and
+   propagation delay for the CMOS inverter.
+3. Prepare the layout and carry out DRC, LVS and RC extraction. Observe the
+   various parasitic created after the layout.
+4. Carry out post layout simulations and compare the threshold voltage and
+   propagation delay results of pre and post layout simulations.
+
+Conclusion:
+
+
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Roll No.                                                        Date:
+Exp. 2. To simulate the output and transfer characteristics of MOS transistors
+for finding out technology parameters.
+Learning Outcomes
+After completion of this experiment students will be able to:
+   1. Prepare the schematic to find out the MOS characteristics
+   2. Carry out AC, DC and transient analysis
+   3. Determine the MOS operating regions depending on applied voltages
+   4. Extract basic parameters through experimental measurements
+
+Pre – Lab Exercise
+   1. What are the different operating regions of MOSFET and conditions for the
+      same?
+   2. Write down the equations of gm, λ and γ. Also discuss the significance of the
+      same.
+
+
+
+
+           A                              B                           C
+                                        Figure 1
+
+Procedure
+1. Prepare the designs for the circuits of Figure 1.
+2. Figure 1 – A is Drain Current vs Gate to Source Voltage setup and expected graph.
+   Simulate the same and from the graph find out the value of V T0.
+3. Figure 1 – B is Root of Drain Current vs Gate to Source Voltage setup and expected
+   graph. Mind the root of current and act accordingly. The slope of the curve will
+   provide Kn values. Change the value of Body potential and replot the same graph
+   to find the value of γ. γ can be found out by changing body potential in the step 1
+   as well.
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+4. Figure 1 – C is Drain Current vs Drain to Source Voltage setup and expected graph.
+   Simulate the same and from the graph find out the value of λ.
+5. Take help from the text book: CMOS Digital Integrated Circuits: Analysis and
+   Design by Sung – Mo – Kang and Yusuf Leblebici. Also write the equations to find
+   out the theoretical values of the above listed parameters.
+
+Assignment:
+1. Repeat the experiment for PMOS device.
+
+
+Conclusion:
+
+
+
+
+Assignment:
+   1. Which transistor has maximum operating frequency, NMOS or PMOS? Justify
+      your answer with proper reasoning. Support your answers with graphs if
+      possible. What is the parameter that allows to find out the maximum operating
+      frequency as transistor can work with?
+   2. Can body of the MOS be used as an input terminal? List the pros and cons of
+      using the same as input terminal.
+
+
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Roll No.                                                                Date:
+Exp. 3. To design and simulate current mirror circuits.
+
+Learning Outcomes:
+After completion of this experiment students will be able to:
+   1. Introduce and characterize the current mirrors.
+   2. Design of different types of current mirrors.
+   3. Improve the performance of the current mirrors
+
+Pre-lab Exercise:
+   1. Justify the need of biasing circuits. List the different biasing methods for
+      amplifier design.
+   2. Discuss the limitations of the traditional biasing methods listed above.
+
+Introduction:
+A current mirror is a circuit designed to copy a current through one active device by
+controlling the current in another active device of a circuit, keeping the output current
+constant regardless of loading. The current being 'copied' can be, and sometimes is,
+a varying signal current. Conceptually, an ideal current mirror is simply an ideal
+inverting current amplifier that reverses the current direction as well or it is a current-
+controlled current source (CCCS). The current mirror is used to provide bias currents
+and active loads to circuits. It can also be used to model a more realistic current
+source (since ideal current sources don't exist).
+
+
+
+
+       A. Simple               B. Experimental Setup                  C. Cascode
+
+                             Figure 1. Current Mirror
+Specifications:
+Design a current mirror using VDD = 1.8 V to sink a current of 10 uA.
+
+Procedure:
+   1. Design schematic as shown in figure 1 B. At the V CS point connect the resistor
+      of the same value as that of RSET. Vary the value of resistor at point VCS and
+      observe the current in both the branches.
+   2. Find out the range of values of resistor for which the change in current I BIAS is
+      less than 10% compared to the I REF.
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+   3. Now replace the convert the circuit into the Cascode Current mirror and repeat
+      the steps 1 and 2.
+   4. Convert the RSET to PMOS and design the circuit to get the current as per the
+      specifications provided.
+   5. Compare the simulated result with specifications.
+
+Results:
+
+                  Range of Resistance In
+                  Simple Current Mirror
+                  Range of Resistance In
+                  Cascode Current Mirror
+                  Range of Resistance
+                  with PMOS
+
+Assignment:
+ 1. Sketch small signal model of cascade current mirror. Compare theoretic and
+    practical value of output resistance.
+
+
+
+
+Conclusion:
+
+
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Roll No.                                                            Date:
+Exp. 4. To Design and simulate MOS based resistive and current source load
+single stage CS amplifiers for given specifications.
+Learning Outcomes
+   1. After completion of this experiment students will be able to:
+   2. Find out the operating point of MOS device.
+   3. Bias the MOS device for appropriate operating region.
+   4. Implement resistive and current source load CS amplifier for given
+      specifications.
+   5. Carryout AC, DC and Transient analysis for amplifier
+
+Pre-lab Exercise
+   1. Draw the small signal model for the MOSFET. Describe the concept of the small
+      signal and small signal model.
+   2. List various performance parameters for amplifier and explain them with
+      equations.
+   3. Derive the equation for input impedance for Resistive Load Single Stage CS
+      MOS based amplifier.
+
+Introduction
+Amplifier is one of the most important analog circuit that amplifies the input AC
+signal. The main aim of amplifier is to amplify the signal, but the other features like
+bandwidth, amount of noise added by the circuit, total harmonics introduced in the
+output etc. are also very important in the design of an amplifier. The simplest
+amplifier is a single stage resistive load amplifier. The following figure shows the CS
+single stage amplifier.
+
+
+
+
+                          Figure 1. Single Stage CS Amplifier
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Specification:
+                      Gain          20 dB       Power    < 1mW
+
+Procedure (Attach a separate sheet with all calculations):
+1. For resistive load amplifier, Calculate the load resistance R 1 and current IDS for
+   given power requirements of the amplifier.
+2. Find out the transconductance of the transistor required to achieve the specified
+   gain.
+3. Find out the value of COX using the model file.
+4. Using the relation of gm and I, find out W/L ratio and set the value of W and L.
+5. Prepare the circuit for simulation as per the values found out.
+6. Carry out AC, DC and Transient analysis for the amplifier.
+7. Compare theoretical results with the experimental results.
+8. Repeat the experiment with Current source Load first using NMOS as a load and
+   replacing the same with PMOS as a load.
+9. In step no. 8 no need to re calculate the values from beginning. For the available
+   W/L of NMOS driver set the value of load W/L to achieve the same gain.
+Results:
+                                  Amplifier Parameters
+                             Resistive Load     NMOS Load             PMOS Load
+       Gain
+       Bandwidth
+       Noise
+       Power
+       Input AC voltage
+       range
+       Output AC
+       voltage range
+                                    MOSFET Parameters
+       W driver
+       W load
+       gm
+       Ron
+       µn
+       ro
+       VT0
+       CGS
+       IDS
+       COX
+
+Assignment:
+   1. What is the maximum ac voltage that can be applied to the amplifier for proper
+      output operation?
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+   2. What is the maximum output swing that can be achieved? Write the upper and
+      lower value of output swing.
+   3. List the effect of input DC value, Value of Resistor and Value of W on the gain,
+      output swing and power of the amplifier.
+   4. What is the practical way to find out the operating point of the amplifier?
+
+Conclusion:
+
+
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Roll No.                                                         Date:
+Exp. 5. To Design and simulate MOS based source degenerated single stage CS
+amplifiers for given specifications.
+Learning Outcomes
+  1. Implement source degenerated CS amplifier for given specifications.
+  2. Carryout AC, DC and Transient analysis for amplifier
+  3. Carryout parametric analysis in Cadence Virtuoso.
+
+Pre-lab Exercise
+   1. Common source amplifier suffers from non-linearity. Justify the statement.
+   2. Derive the equation for output resistance for source degenerated CS amplifier.
+
+Introduction
+To make the traditional common source amplifier a linear amplifier, a resistor is
+placed at the source of the driver transistor. This resistor weakens the dependence of
+gain of amplifier on the transconductance of the amplifier and makes it a linear
+amplifier. Figure 1 shows the source degenerated CS amplifier.
+
+
+
+
+               Figure 1. Source Degenerated Single Stage CS Amplifier
+
+Procedure (Attach a separate sheet with all calculations):
+1. Use the parameter values found in the last experiment.
+2. Put a resistor at the source of the driver transistor as shown in figure 1.
+3. Find the value of resistor to avail the required gain with existing parameters.
+4. Carry out AC, DC and Transient analysis for the amplifier.
+5. Compare theoretical results with the experimental results.
+6. Find out the optimum value of resistor that provides the required gain using
+   parametric analysis.
+
+
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Results:
+                                   Amplifier Parameters
+       Gain
+       Bandwidth
+       Noise
+       Power
+       Input AC voltage
+       range
+       Output AC
+       voltage range
+                                    MOSFET Parameters
+       W driver                             ro
+       Rs                                   VT0
+       Gm                                   CGS
+       Ron                                  IDS
+       µn                                   COX
+
+Assignment:
+   1. What will be the effect on the gain of the amplifier if the source resistance is
+      replaced by the transistor? Consider the case of both NMOS and PMOS
+      transistor. Also comment on the issues or challenges encounter in the said
+      replacement.
+
+Conclusion:
+
+
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Roll No.                                                            Date:
+Exp. 6. To Design and simulate MOS based single stage CD and CG amplifiers
+for given specifications
+Learning Outcomes
+After completion of this experiment students will be able to:
+   1. Design a single stage CD and CG amplifier for given specifications.
+   2. Simulate CD and CG amplifier circuit and find out performance parameters of
+       amplifier.
+Pre-lab Exercise
+   1. Draw the small signal model for CG and CD amplifier.
+   2. Derive the equation for input impedance and gain for Single Stage CG and CD
+      MOS based amplifier.
+   3. Justify the need of CD amplifier.
+
+Introduction
+After the study of CS stage, it is necessary to study the other alternatives in the
+amplifier. The first alternative is common gate. Figure 1 shows the CG amplifier
+configuration.
+
+
+
+
+                          Figure 1. Single Stage CG Amplifier
+
+Common drain amplifier is a very useful circuit for analog chips. Figure 2 show the
+CD configuration. The resistive load can be replaced with current source load using
+PMOS. The analysis of the NMOS current source-based load CD amplifier can be
+carried out by replacing the NMOS by its output resistance.
+
+
+
+
+                          Figure 2. Single Stage CD Amplifier
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Procedure (Attach a separate sheet with all calculations):
+1. Refer to the values found in experiment 4 for resistive load CS amplifier. Same
+   amplifier will be converted to common gate stage for appropriate comparison,
+2. Prepare the circuit for simulation as per the values found out.
+3. Carry out AC, DC, Transient, Noise and Harmonic analysis for the amplifier.
+4. Compare theoretical results with the experimental results.
+5. Repeat all the steps for common drain stage.
+6. Compare the results with CS stage results.
+Results:
+                                   Amplifier Parameters
+                                     CG                             CD
+       Gain
+       Bandwidth
+       Noise
+       Power
+       Input AC voltage
+       range
+       Output AC
+       voltage range
+                                    MOSFET Parameters
+       W driver
+       L
+       gm
+       Ron
+       µn
+       ro
+       VT0
+       CGS
+       IDS
+       COX
+
+Assignment:
+   1. What is the maximum ac voltage that can be applied to the amplifier for proper
+      output operation? Consider both CG and CD stages.
+   2. What is the maximum output swing that can be achieved? Write the upper and
+      lower value of output swing. Consider both CG and CD stages.
+   3. Compare the performance of CS stage with that of the CG and CD stage.
+
+Conclusion:
+
+
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Roll No.                                             Date:
+Exp. 7. To Design and simulate MOS based cascode amplifiers for given
+specifications.
+
+Learning Outcomes:
+After completion of this experiment students will be able to:
+   1. Explain the concept of cascode amplifier.
+   2. Design cascode amplifier and compare with its counterparts.
+   3. To carryout Monte Carlo analysis for given circuit.
+
+Pre-lab Exercise
+   1. Draw the small signal model for cascode and folded cascode amplifier.
+
+Introduction
+A MOSFET-based cascode amplifier employs two MOSFETs arranged to enhance
+performance characteristics like gain, bandwidth, and linearity. The lower MOSFET
+serves as the common-source stage, providing high gain, while the upper MOSFET
+operates in a common-gate configuration, increasing output impedance and
+minimizing the Miller effect. This setup effectively reduces distortion and enhances
+stability, making it suitable for high-frequency applications such as RF amplifiers.
+The cascode configuration is particularly valued in integrated circuits for its ability to
+improve overall circuit performance while occupying a compact layout.
+
+
+
+
+                              Figure 1. Cascode Amplifier
+
+Procedure (Attach a separate sheet with all calculations):
+1. Refer to the values found in experiment 4 resistive load CS amplifier. Same
+   amplifier will be converted to cascode amplifier for appropriate comparison,
+2. Prepare the circuit for simulation as per the values found out.
+3. Carry out AC, DC, Transient, Noise and Harmonic analysis for the amplifier.
+4. Compare theoretical results with the experimental results.
+5. Compare the results with CS and CG stage results.
+
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Results:
+                                   Amplifier Parameters
+       Gain                                   Power
+       Bandwidth                              1 – dB
+                                              Compression
+                                              Point
+       Noise                                  IIP3
+                                   MOSFET Parameters
+       L                                      Ro
+       W                                      VT0
+       Gm                                     CGS
+       Ron                                    IDS
+       µn                                     COX
+
+Assignment:
+   1. List the advantage of folded cascode over cascode amplifier.
+   2. List the disadvantages of cascode amplifier compared to CS and CG amplifiers.
+
+Conclusion:
+
+
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Roll No.                                                         Date:
+Exp. 8. To Design and simulate differential amplifiers for given specifications.
+
+Learning Outcomes:
+After completion of this experiment students will be able to:
+   1. Design and simulate differential amplifier for given specifications.
+   2. Carryout appropriate analysis for differential amplifier.
+   3. Evaluate performance parameters of differential amplifier.
+
+Pre-lab Exercise
+   1. Explain the need of the tail current source in the differential amplifier.
+   2. List the applications, advantages and limitations of the differential amplifier.
+
+Specifications:
+
+          VDD=1.8V            Gain = 30dB                  Power = 5 mW
+
+Procedure:
+   1. Consider the PMOS load based differential amplifier for differential output.
+   2. For the given specifications find out the W for all the transistors involved in
+      amplifier. (Use the concept of PMOS load CS amplifier)
+   3. Simulate the amplifier and find out the followings as per the observation table.
+   4. Convert the differential output to the single ended output using PMOS based
+      Current Mirror load and observed the behaviour of the circuit. s
+
+Observation Table:
+ Sr No         Parameters                 Theoretical     Practical Value
+                                            Value
+     1.     Differential Gain
+     2.     Common mode Gain
+     3.     ICMR+
+     4.     ICMR-
+     5.     Power dissipation
+     6.     GBP
+
+Conclusion:
+
+
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Roll No.                                                    Date:
+Exp. 9. To design and simulate CMOS two stage operational Amplifier.
+
+Learning Outcomes:
+After completion of this experiment students will be able to:
+   1. Comprehend the concept of two stage operational amplifier.
+   2. Design and simulate operational amplifier.
+   3. Carry out analysis for and evaluate the performance of operational amplifier.
+   4. Utilize Opamp for various applications.
+   5. Prepare layout of Opamp and carry out post layout simulations.
+
+Specifications:
+VDD=-VSS=1.8V
+Slew rate=10V/us
+Gain = 200
+CL=20pF
+ICMR+=1.6V
+ICMR-=0.8V
+Power dissipation < 0.3mW
+GBP=10MHz
+
+Circuit Diagram:
+
+
+
+
+Procedure:
+   1. Find out W/L for all the transistors for two stage opamp with given
+      specifications for the circuit shown in figure above.
+   2. Prepare the schematic for simulation
+   3. Carry out necessary analysis to verify the specifications.
+   4. Compare the simulated result with theoretical calculations.
+   5. Prepare layout of designed circuit and carry out post layout simulations.
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+Assignment:
+   1. Derive the equation for DC gain and small signal gain of Opamp.
+   2. Elaborate the concept of miller capacitance. Discuss the effect of the same in
+      the design of Opamp.
+   3. List few applications where Opamp can be employed. Verify any one of them
+      using simulations.
+
+Conclusion:
+
+
+
+
+4EC601ME25 Analog CMOS Integrated Circuits/2026 - 2027
+

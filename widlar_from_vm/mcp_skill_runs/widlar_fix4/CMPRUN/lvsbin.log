@@ -1,0 +1,87 @@
+@(#)$CDS: LVS version 6.1.7-64b 11/09/2015 12:38 (sjfnl124) $
+@(#)$CDS: LVS version 6.1.7-64b 11/09/2015 12:38 (sjfnl124) $
+
+Command line: /opt/IC617/tools/dfII/bin/64bit/LVS -dir . -l -s -x./xref.out -f -t layout schematic
+Like matching is enabled.
+Net swapping is enabled.
+Creating cross reference file ./xref.out.
+Fixed device checking is enabled.
+Using terminal names as correspondence points.
+
+ GENERIC PDK LVS Rules
+
+    Net-list summary for layout/netlist
+       count
+        31              nets
+        3               terminals
+        2               nmos2v
+        28              resnsppoly
+
+    Net-list summary for schematic/netlist
+       count
+        4               nets
+        3               terminals
+        2               nmos2v
+        1               resnsppoly
+
+
+    Terminal correspondence points
+    N29       N1        GND
+    N28       N3        IOUT
+    N30       N0        IREF
+
+Devices in the rules but not in the netlist:
+        nmos1v nmos1v_hvt nmos1v_iso nmos1v_nat nmos2v_nat pmos1v pmos1v_hvt
+        pmos2v resm1 resm2 resm3 resm4 resm5 resm6 resm7 resm8 resm9
+        resnsndiff resnsnpoly resnspdiff resnwoxide resnwsti ressndiff
+        ressnpoly resspdiff ressppoly nmoscap1v nmoscap1v3 nmoscap2v
+        nmoscap2v3 pmoscap1v pmoscap1v3 pmoscap2v pmoscap2v3 pnp npn vpnp2
+        vpnp5 vpnp10 ndio pdio mimcap
+
+The net-lists match.
+
+                             layout  schematic
+                                instances
+        un-matched              0       0      
+        rewired                 0       0      
+        size errors             0       0      
+        pruned                  0       0      
+        active                  30      3      
+        total                   30      3      
+
+                                  nets
+        un-matched              0       0      
+        merged                  0       0      
+        pruned                  0       0      
+        active                  31      4      
+        total                   31      4      
+
+                                terminals
+        un-matched              0       0      
+        matched but
+        different type          0       0      
+        total                   3       3      
+
+The net-lists match.
+
+                             layout  schematic
+                                instances
+        un-matched              0       0      
+        rewired                 0       0      
+        size errors             0       0      
+        pruned                  0       0      
+        active                  30      3      
+        total                   30      3      
+
+                                  nets
+        un-matched              0       0      
+        merged                  0       0      
+        pruned                  0       0      
+        active                  31      4      
+        total                   31      4      
+
+                                terminals
+        un-matched              0       0      
+        matched but
+        different type          0       0      
+        total                   3       3      

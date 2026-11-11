@@ -1,0 +1,35 @@
+HEADER
+"PSFversion" "1.00"
+"Log Generator" "drlLog rev. 1.0"
+"Log Time Stamp" "Sun Oct 11 20:26:20 2026"
+"simulator" "spectre"
+"version" "15.1.0.284.isr1"
+"date" "8:26:20 PM, Sun Oct 11, 2026"
+"design" "(no title)"
+"signalNameType" "spectre"
+"simMode" "Spectre"
+"measdgt" 0
+"ingold" 2
+"sst2usecolon" 0
+TYPE
+"analysisInst" STRUCT(
+"analysisType" STRING *
+"dataFile" STRING *
+"format" STRING *
+"parent" STRING *
+"sweepVariable" ARRAY ( * ) STRING *
+"description" STRING *
+)
+VALUE
+"swvout-dc" "analysisInst" (
+"dc"
+"swvout.dc"
+"PSF"
+""
+("dc")
+"DC Analysis `swvout': VOUT:dc = (0 V -> 1.8 V)"
+) PROP(
+"data_type" "scalar"
+)
+
+END

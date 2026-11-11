@@ -1,0 +1,575 @@
+=== virtuoso SKILL (headless, Xvfb) ===
+@@@VIRTUOSO_RC=0
+=== ciw.log ===
+\# Program start time UTC 2026.10.14 08:39:07.024
+\# Local time Wednesday 14 October 2026, 4:39 pm
+\o Program:		@(#)$CDS: virtuoso version 6.1.7-64b 11/09/2015 12:45 (sjfnl165) $
+\o Hierarchy:		/opt/IC617/tools.lnx86/dfII/
+\o Sub version:		sub-version  IC6.1.7-64b.78  (64-bit addresses)
+\# Command line:	/opt/IC617/tools/dfII/bin/64bit/virtuoso -nograph -replay ./run.il -log ./ciw.log
+\# Host name (type):	work-eda (x86_64)
+\# Operating system:	Linux 2.6.32-431.el6.x86_64 #1 SMP Sun Nov 10 22:19:54 EST 2013
+\# Linux /etc/issue:	Red Hat Enterprise Linux Server release 6.5 (Santiago)
+\# Linux /etc/issue:	Kernel \r on an \m
+\# X display name (WxH):	work-eda:80 (1024x868)
+\# Available geometry:			TL(0:0) BR(1023:867)
+\# X server:			RealVNC Ltd (VNC nograph server, PID 7710)
+\# Depth of Visual (Root):	16 (16)
+\# Number of Planes Used:	16
+\# X version:		11.0 (vendor release 3370)
+\# X resource pool:	base 0x800000, mask 0x3fffff (4194303), shift 0
+\# 			current id 0x0, current max 0x3ffffa (4194298)
+\# Max data seg size:	     unlimited
+\# Max process size:	     unlimited
+\# Initial sbrk value:	        365 MB
+\# Available memory:	      6,864 MB
+\# System memory:	      7,770 MB
+\# Maximum memory size:	      7,484 MB
+\# Max mem available:	      6,944 MB
+\# Initial memory used:	         80 MB
+\#        process size:	        873 MB
+\# Qt version:		4.8.5
+\# Window Manager:	other
+\# User Name:		work
+\o Working Directory:	work-eda:/home/work/mcp_skill_runs/hsc_lay3
+\# Process Id:		7589
+\o 
+\o COPYRIGHT � 1992-2015  CADENCE DESIGN SYSTEMS INC.  ALL RIGHTS RESERVED.
+\o           � 1992-2015  UNIX SYSTEMS Laboratories INC.,
+\o                          Reproduced with permission.
+\o 
+\o This Cadence Design Systems program and online documentation are
+\o proprietary/confidential information and may be disclosed/used only
+\o as authorized in a license agreement controlling such use and disclosure.
+\o 
+\o           RESTRICTED RIGHTS NOTICE (SHORT FORM)
+\o Use/reproduction/disclosure is subject to restriction
+\o set forth at FAR 1252.227-19 or its equivalent.
+\o Loading geView.cxt 
+\o Loading menuBuilder.cxt 
+\o Loading schView.cxt 
+\o Loading selectSv.cxt 
+\o Loading wireEdit.cxt 
+\o Loading pte2.cxt 
+\o Loading xlUI.cxt 
+\o Loading auCore.cxt 
+\o Loading vhdl.cxt 
+\o Loading seismic.cxt 
+\o Loading ci.cxt 
+\o Loading ams.cxt 
+\o Virtuoso Framework License (111) was checked out successfully. Total checkout time was 0.00s.
+\w *WARNING* LIB widlar_lib from File /home/work/mcp_skill_runs/hsc_lay3/cds.lib Line 3 redefines
+\w LIB widlar_lib from File /home/work/cds.lib
+\w Insert UNDEFINE widlar_lib
+\w before DEFINE widlar_lib
+\w     in /home/work/mcp_skill_runs/hsc_lay3/cds.lib
+\w Or remove or comment out DEFINE widlar_lib
+\w     in /home/work/cds.lib
+\w to suppress this warning message.
+\w *WARNING* The directory: '/home/work/mcp_skill_runs/hsc_lay3/mcp_work' does not exist
+\w 	but was defined in libFile '/home/work/mcp_skill_runs/hsc_lay3/cds.lib' for Lib 'mcp_work'.
+\o END OF SITE CUSTOMIZATION
+\o //
+\o //  Calibre Skill Interface * (v2015.2_36.27) *
+\o //
+\o //                 Copyright Mentor Graphics Corporation 2005
+\o //                             All Rights Reserved.
+\o //         THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+\o //            WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION
+\o //              OR ITS LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+\o //
+\o //
+\# Memory report: using         231 MB, process size 1,053 MB at UTC 2026.10.14 08:39:08.939
+\o Loading HSPICE.cxt
+\o Loading oasis.cxt 
+\o Loading analog.cxt 
+\o Loading cdf.cxt 
+\o   ==== HSPICE-ADE Interface, K-2015.06-3 BUILD (08/06/2015 18:09:41) ==== 
+\o   ==== COPYRIGHT 2008-2026 SYNOPSYS INC.                             ==== 
+\o   ==== HSPICE-ADE Interface installed successfully                   ==== 
+\o   HSPICE-ADE: use interface at '/opt/synopsys/Hspice-2015.06-3/interface'
+\o   HSPICE-ADE: use HSPICE at '/opt/synopsys/Hspice-2015.06-3//hspice/bin/hspice'
+\o   HSPICE-ADE: HSPICE Version K-2015.06-3 linux64 (build id: 3630644)
+\p > 
+\i printf("SKILL_START\n")
+\o SKILL_START
+\t t
+\p > 
+\i lib = "widlar_lib"
+\t "widlar_lib"
+\p > 
+\i procedure( M1R(cv x0 y0 x1 y1)
+\i   dbCreateRect(cv list("Metal1" "drawing") list(min(x0 x1):min(y0 y1) max(x0 x1):max(y0 y1))))
+\t M1R
+\p > 
+\i procedure( LR(cv lay x0 y0 x1 y1)
+\i   dbCreateRect(cv list(lay "drawing") list(min(x0 x1):min(y0 y1) max(x0 x1):max(y0 y1))))
+\t LR
+\p > 
+\i procedure( netRect(cv net x0 y0 x1 y1)
+\i   let((f) f = M1R(cv x0 y0 x1 y1) dbAddFigToNet(f net) f))
+\t netRect
+\p > 
+\i procedure( netLR(cv net lay x0 y0 x1 y1)
+\i   let((f) f = LR(cv lay x0 y0 x1 y1) dbAddFigToNet(f net) f))
+\t netLR
+\p > 
+\i procedure( mkPin(cv net x0 y0 x1 y1)
+\i   let( (fig)
+\i     fig = M1R(cv x0 y0 x1 y1)
+\i     dbCreateTerm(net net~>name "inputOutput")
+\i     dbCreatePin(net fig)
+\i     dbCreateLabel(cv list("Metal1" "label") list((x0+x1)/2.0 (y0+y1)/2.0) net~>name "centerCenter" "R0" "roman" 0.3)
+\i     fig))
+\t mkPin
+\p > 
+\i cv = dbOpenCellViewByType(lib "hsc_lay" "layout" "maskLayout" "w")
+\w *WARNING* LIB widlar_lib from File /home/work/mcp_skill_runs/hsc_lay3/cds.lib Line 3 redefines
+\w LIB widlar_lib from File /home/work/cds.lib
+\w Insert UNDEFINE widlar_lib
+\w before DEFINE widlar_lib
+\w     in /home/work/mcp_skill_runs/hsc_lay3/cds.lib
+\w Or remove or comment out DEFINE widlar_lib
+\w     in /home/work/cds.lib
+\w to suppress this warning message.
+\w *WARNING* The directory: '/home/work/mcp_skill_runs/hsc_lay3/mcp_work' does not exist
+\w 	but was defined in libFile '/home/work/mcp_skill_runs/hsc_lay3/cds.lib' for Lib 'mcp_work'.
+\o Loading gpdk090/libInit.il ...
+\o 	Loading gpdk090/loadCxt.ile ... done!
+\o 	Loading context 'gpdk090' from library 'gpdk090' ... done!
+\o 	Loading context 'pdkUtils' from library 'gpdk090' ... done!
+\o 	Loading gpdk090/display.drf ... done!
+\o 	Loading gpdk090/gpdk090_customFilter.il ... done!
+\o 	Loading gpdk090/.simrc ... done!
+\o 	Loading gpdk090/libInitCustomExit.il ... 	Loading Environment Settings ...
+\w *WARNING* envSetVal: Can't set the value of variable 'extractVerifySubstrate',
+\w 	in tool[.partition] 'layout' - it has not been registered.
+\o 	Loading Model Management File ...
+\o Loading spectrei.cxt 
+\o Loading devCheck.cxt 
+\o Loading relXpert.cxt 
+\o Loading hspiceD.cxt 
+\o Loading spectreinl.cxt 
+\o Loading UltraSim.cxt 
+\# Memory report: using         336 MB, process size 1,158 MB at UTC 2026.10.14 08:39:10.154
+\o Loading msgHandler.cxt 
+\o Loading AMSOSS.cxt 
+\o Loading AMS.cxt 
+\o 	Loading gpdk090/gpdk090_PDKRegistrations.il ... done!
+\o 
+\o   *************************************************************           
+\o   *              Cadence Design Systems, Inc.                 *           
+\o   *                                                           *           
+\o   *                    Generic 90nm PDK                       *           
+\o   *                        (gpdk090)                          *           
+\o   *                                                           *           
+\o   *************************************************************           
+\o 	
+\o 
+\o 	Version : 4.6
+\o 
+\o 	Build date: 10-FEB-2011
+\o 
+\o done!
+\o Loaded gpdk090/libInit.il successfully!
+\t db:0x1719cd9a
+\p > 
+\i M0 = dbCreateParamInstByMasterName(cv "gpdk090" "nmos2v" "layout" "M0" 0:0 "R0" 1
+\i       list(list("fw" "float" 3e-6) list("l" "float" 1e-6) list("fingers" "int" 1)
+\i            list("tap" "string" "Integrated") list("connectGates" "string" "Top")))
+\t db:0x1719c71a
+\p > 
+\i MA = dbCreateParamInstByMasterName(cv "gpdk090" "nmos2v" "layout" "M1" 6.0:0 "R0" 1
+\i       list(list("fw" "float" 12e-6) list("l" "float" 1e-6) list("fingers" "int" 1)
+\i            list("tap" "string" "Integrated") list("connectGates" "string" "Top")))
+\t db:0x1719c71b
+\p > 
+\i MB = dbCreateParamInstByMasterName(cv "gpdk090" "nmos2v" "layout" "M2" 12.0:0 "R0" 1
+\i       list(list("fw" "float" 12e-6) list("l" "float" 1e-6) list("fingers" "int" 1)
+\i            list("tap" "string" "Integrated") list("connectGates" "string" "Top")))
+\t db:0x1719c71c
+\p > 
+\i MC = dbCreateParamInstByMasterName(cv "gpdk090" "nmos2v" "layout" "M3" 6.0:16.0 "R0" 1
+\i       list(list("fw" "float" 12e-6) list("l" "float" 1e-6) list("fingers" "int" 1)
+\i            list("tap" "string" "None") list("connectGates" "string" "Top") list("switchSD" "boolean" t)))
+\t db:0x1719c71d
+\p > 
+\i MD = dbCreateParamInstByMasterName(cv "gpdk090" "nmos2v" "layout" "M4" 12.0:16.0 "R0" 1
+\i       list(list("fw" "float" 12e-6) list("l" "float" 1e-6) list("fingers" "int" 1)
+\i            list("tap" "string" "None") list("connectGates" "string" "Top")))
+\t db:0x1719c71e
+\p > 
+\i printf("MCP:placed=t\n")
+\o MCP:placed=t
+\t t
+\p > 
+\i nGND=dbCreateNet(cv "GND") nVB=dbCreateNet(cv "IBIAS") nIN=dbCreateNet(cv "IIN")
+\t db:0x1719b09c
+\p > 
+\i nNA=dbCreateNet(cv "NA") nNB=dbCreateNet(cv "NB") nOUT=dbCreateNet(cv "IOUT")
+\t db:0x1719b09f
+\p > 
+\i ; ---- GND ----
+\i netRect(cv nGND -2.0 -2.0 15.0 -1.6)
+\t db:0x1719b01a
+\p > 
+\i netRect(cv nGND -0.5 -1.6 -0.12 0.1)
+\t db:0x1719b01b
+\p > 
+\i netRect(cv nGND 5.5 -1.6 5.88 0.1)
+\t db:0x1719b01c
+\p > 
+\i netRect(cv nGND 11.5 -1.6 11.88 0.1)
+\t db:0x1719b01d
+\p > 
+\i mkPin(cv nGND 2.0 -2.0 2.5 -1.6)
+\t db:0x1719b01e
+\p > 
+\i ; ---- vb (IBIAS): M0 diode plate, left leg, top bar, strap drops ----
+\i netRect(cv nVB 0.08 2.9 1.24 3.52)
+\t db:0x1719b020
+\p > 
+\i netRect(cv nVB -1.0 3.4 1.24 3.52)
+\t db:0x1719b021
+\p > 
+\i netRect(cv nVB -1.0 3.4 -0.88 28.56)
+\t db:0x1719b022
+\p > 
+\i netRect(cv nVB -2.0 28.44 12.62 28.56)
+\t db:0x1719b023
+\p > 
+\i netRect(cv nVB 6.5 28.2 6.62 28.56)
+\t db:0x1719b024
+\p > 
+\i netRect(cv nVB 12.5 28.2 12.62 28.56)
+\t db:0x1719b025
+\p > 
+\i mkPin(cv nVB -2.0 28.44 -1.5 28.56)
+\t db:0x1719b026
+\p > 
+\i ; ---- NA: single vertical, S3 (east col of M3, switched) over D1 ----
+\i netRect(cv nNA 7.12 11.9 7.24 16.1)
+\t db:0x1719b028
+\p > 
+\i ; ---- NB: S4 west col down, jog, into D2 ----
+\i netRect(cv nNB 11.76 13.18 11.88 16.1)
+\t db:0x1719b029
+\p > 
+\i netRect(cv nNB 11.76 13.18 13.24 13.3)
+\t db:0x1719b02a
+\p > 
+\i netRect(cv nNB 13.12 11.9 13.24 13.3)
+\t db:0x1719b02b
+\p > 
+\i ; ---- IIN: D3 (west col) drop + west bar + strap drops + M2 piece + M2 bridge ----
+\i netRect(cv nIN 5.76 12.44 5.88 16.1)
+\t db:0x1719b02c
+\p > 
+\i netRect(cv nIN 4.5 12.44 6.94 12.56)
+\t db:0x1719b02d
+\p > 
+\i netRect(cv nIN 6.3 12.2 6.42 12.56)
+\t db:0x1719b02e
+\p > 
+\i netRect(cv nIN 7.42 12.44 12.42 12.56)
+\t db:0x1719b02f
+\p > 
+\i netRect(cv nIN 12.3 12.2 12.42 12.56)
+\t db:0x1719b030
+\p > 
+\i ; via landing pads (Metal1), Via1 cuts, Metal2 bridge
+\i netRect(cv nIN 6.3 12.4 6.86 12.72)
+\t db:0x1719b031
+\p > 
+\i netRect(cv nIN 7.5 12.4 7.9 12.72)
+\t db:0x1719b032
+\p > 
+\i netLR(cv nIN "Via1" 6.56 12.49 6.70 12.63)
+\t db:0x1719b033
+\p > 
+\i netLR(cv nIN "Via1" 7.62 12.49 7.76 12.63)
+\t db:0x1719b034
+\p > 
+\i netLR(cv nIN "Metal2" 6.46 12.4 7.9 12.72)
+\t db:0x1719b035
+\p > 
+\i mkPin(cv nIN 4.5 12.44 5.0 12.56)
+\t db:0x1719b036
+\p > 
+\i ; ---- IOUT: D4 east col exit right ----
+\i netRect(cv nOUT 13.12 16.0 15.0 16.12)
+\t db:0x1719b038
+\p > 
+\i mkPin(cv nOUT 14.5 16.0 15.0 16.12)
+\t db:0x1719b039
+\p > 
+\i printf("MCP:routed=t\n")
+\o MCP:routed=t
+\t t
+\p > 
+\i dbSave(cv)
+\# Available memory:          6,645 MB at UTC 2026.10.14 08:39:19.110
+\# Memory report: Maximum memory size now 6,996 MB at UTC 2026.10.14 08:39:19.110
+\o Loading le.cxt 
+\o Loading drdEdit.cxt 
+\o Loading leToolbox.cxt 
+\o Loading treeAssistant.cxt 
+\o Loading soi.cxt 
+\o Loading techComp.cxt 
+\t t
+\p > 
+\o Loading mpt.cxt 
+\i drcA = errset( ivDRC( ?cell cv ?rulesFromUnix t ?rulesFilePath "/home/work/gpdk090_v4.6/diva/divaDRC.rul" ?rulesLibName "" ?hier t ?echo t) t)
+\o DRC started at Wed Oct 14 16:39:19 2026
+\o 
+\o Validating hierarchy instantiation for:
+\o library: widlar_lib
+\o cell:    hsc_lay
+\o view:    layout
+\o Rules source is a simple file.
+\o Rules path is /home/work/gpdk090_v4.6/diva/divaDRC.rul.
+\o Inclusion limit is set to 1000.
+\o Parsing drcExtractRules of "/home/work/gpdk090_v4.6/diva/divaDRC.rul"...
+\o Optimizing rules...
+\o removing unused task: rule_VIAk_X_3_X_4b = geomEnclose(metal_2_7_stack via_2_6_stack (keep == 1))
+\o removing unused task: metal_2_7_stack = geomAnd(Metal7 metal_2_6_stack)
+\o removing unused task: via_2_6_stack = geomAnd(L56520 Via6)
+\o removing unused task: L56520 = geomAnd(L73372 Via5)
+\o removing unused task: L73372 = geomAnd(L19896 Via4)
+\o removing unused task: L19896 = geomAnd(Via2 Via3)
+\o removing unused task: rule_VIAk_X_3_X_4a = geomEnclose(metal_2_6_stack via_1_5_stack (keep == 1))
+\o removing unused task: via_1_5_stack = geomAnd(L30797 Via5)
+\o removing unused task: L30797 = geomAnd(L33864 Via4)
+\o removing unused task: L33864 = geomAnd(L90744 Via3)
+\o removing unused task: L90744 = geomAnd(Via1 Via2)
+\o removing unused task: metal_2_6_stack = geomAnd(L42786 Metal6)
+\o removing unused task: L42786 = geomAnd(L79489 Metal5)
+\o removing unused task: L79489 = geomAnd(L18248 Metal4)
+\o removing unused task: Metal9_n = geomOr(("Metal9" "net"))
+\o removing unused task: Metal8_n = geomOr(("Metal8" "net"))
+\o removing unused task: Metal7_n = geomOr(("Metal7" "net"))
+\o removing unused task: Metal6_n = geomOr(("Metal6" "net"))
+\o removing unused task: Metal5_n = geomOr(("Metal5" "net"))
+\o removing unused task: Metal4_n = geomOr(("Metal4" "net"))
+\o removing unused task: Metal3_n = geomOr(("Metal3" "net"))
+\o removing unused task: Metal2_n = geomOr(("Metal2" "net"))
+\o removing unused task: Metal1_n = geomOr(("Metal1" "net"))
+\o Running layout DRC analysis
+\o Hierarchical mode with optimization
+\o Parsing drcExtractRules of "/home/work/gpdk090_v4.6/diva/divaDRC.rul"...
+\o function switchProc0 redefined
+\o function switchProc1 redefined
+\o function switchProc2 redefined
+\o Optimizing rules...
+\o removing unused task: rule_VIAk_X_3_X_4b = geomEnclose(metal_2_7_stack via_2_6_stack (keep == 1))
+\o removing unused task: metal_2_7_stack = geomAnd(Metal7 metal_2_6_stack)
+\o removing unused task: via_2_6_stack = geomAnd(L56520 Via6)
+\o removing unused task: L56520 = geomAnd(L73372 Via5)
+\o removing unused task: L73372 = geomAnd(L19896 Via4)
+\o removing unused task: L19896 = geomAnd(Via2 Via3)
+\o removing unused task: rule_VIAk_X_3_X_4a = geomEnclose(metal_2_6_stack via_1_5_stack (keep == 1))
+\o removing unused task: via_1_5_stack = geomAnd(L30797 Via5)
+\o removing unused task: L30797 = geomAnd(L33864 Via4)
+\o removing unused task: L33864 = geomAnd(L90744 Via3)
+\o removing unused task: L90744 = geomAnd(Via1 Via2)
+\o removing unused task: metal_2_6_stack = geomAnd(L42786 Metal6)
+\o removing unused task: L42786 = geomAnd(L79489 Metal5)
+\o removing unused task: L79489 = geomAnd(L18248 Metal4)
+\o removing unused task: Metal9_n = geomOr(("Metal9" "net"))
+\o removing unused task: Metal8_n = geomOr(("Metal8" "net"))
+\o removing unused task: Metal7_n = geomOr(("Metal7" "net"))
+\o removing unused task: Metal6_n = geomOr(("Metal6" "net"))
+\o removing unused task: Metal5_n = geomOr(("Metal5" "net"))
+\o removing unused task: Metal4_n = geomOr(("Metal4" "net"))
+\o removing unused task: Metal3_n = geomOr(("Metal3" "net"))
+\o removing unused task: Metal2_n = geomOr(("Metal2" "net"))
+\o removing unused task: Metal1_n = geomOr(("Metal1" "net"))
+\o Parsing drcExtractRules of "/home/work/gpdk090_v4.6/diva/divaDRC.rul"...
+\o function switchProc0 redefined
+\o function switchProc1 redefined
+\o function switchProc2 redefined
+\o Optimizing rules...
+\o removing unused task: rule_VIAk_X_3_X_4b = geomEnclose(metal_2_7_stack via_2_6_stack (keep == 1))
+\o removing unused task: metal_2_7_stack = geomAnd(Metal7 metal_2_6_stack)
+\o removing unused task: via_2_6_stack = geomAnd(L56520 Via6)
+\o removing unused task: L56520 = geomAnd(L73372 Via5)
+\o removing unused task: L73372 = geomAnd(L19896 Via4)
+\o removing unused task: L19896 = geomAnd(Via2 Via3)
+\o removing unused task: rule_VIAk_X_3_X_4a = geomEnclose(metal_2_6_stack via_1_5_stack (keep == 1))
+\o removing unused task: via_1_5_stack = geomAnd(L30797 Via5)
+\o removing unused task: L30797 = geomAnd(L33864 Via4)
+\o removing unused task: L33864 = geomAnd(L90744 Via3)
+\o removing unused task: L90744 = geomAnd(Via1 Via2)
+\o removing unused task: metal_2_6_stack = geomAnd(L42786 Metal6)
+\o removing unused task: L42786 = geomAnd(L79489 Metal5)
+\o removing unused task: L79489 = geomAnd(L18248 Metal4)
+\o removing unused task: Metal9_n = geomOr(("Metal9" "net"))
+\o removing unused task: Metal8_n = geomOr(("Metal8" "net"))
+\o removing unused task: Metal7_n = geomOr(("Metal7" "net"))
+\o removing unused task: Metal6_n = geomOr(("Metal6" "net"))
+\o removing unused task: Metal5_n = geomOr(("Metal5" "net"))
+\o removing unused task: Metal4_n = geomOr(("Metal4" "net"))
+\o removing unused task: Metal3_n = geomOr(("Metal3" "net"))
+\o removing unused task: Metal2_n = geomOr(("Metal2" "net"))
+\o removing unused task: Metal1_n = geomOr(("Metal1" "net"))
+\o Parsing drcExtractRules of "/home/work/gpdk090_v4.6/diva/divaDRC.rul"...
+\o function switchProc0 redefined
+\o function switchProc1 redefined
+\o function switchProc2 redefined
+\o Optimizing rules...
+\o removing unused task: rule_VIAk_X_3_X_4b = geomEnclose(metal_2_7_stack via_2_6_stack (keep == 1))
+\o removing unused task: metal_2_7_stack = geomAnd(Metal7 metal_2_6_stack)
+\o removing unused task: via_2_6_stack = geomAnd(L56520 Via6)
+\o removing unused task: L56520 = geomAnd(L73372 Via5)
+\o removing unused task: L73372 = geomAnd(L19896 Via4)
+\o removing unused task: L19896 = geomAnd(Via2 Via3)
+\o removing unused task: rule_VIAk_X_3_X_4a = geomEnclose(metal_2_6_stack via_1_5_stack (keep == 1))
+\o removing unused task: via_1_5_stack = geomAnd(L30797 Via5)
+\o removing unused task: L30797 = geomAnd(L33864 Via4)
+\o removing unused task: L33864 = geomAnd(L90744 Via3)
+\o removing unused task: L90744 = geomAnd(Via1 Via2)
+\o removing unused task: metal_2_6_stack = geomAnd(L42786 Metal6)
+\o removing unused task: L42786 = geomAnd(L79489 Metal5)
+\o removing unused task: L79489 = geomAnd(L18248 Metal4)
+\o removing unused task: Metal9_n = geomOr(("Metal9" "net"))
+\o removing unused task: Metal8_n = geomOr(("Metal8" "net"))
+\o removing unused task: Metal7_n = geomOr(("Metal7" "net"))
+\o removing unused task: Metal6_n = geomOr(("Metal6" "net"))
+\o removing unused task: Metal5_n = geomOr(("Metal5" "net"))
+\o removing unused task: Metal4_n = geomOr(("Metal4" "net"))
+\o removing unused task: Metal3_n = geomOr(("Metal3" "net"))
+\o removing unused task: Metal2_n = geomOr(("Metal2" "net"))
+\o removing unused task: Metal1_n = geomOr(("Metal1" "net"))
+\o Maximum halo distance is 118
+\o Doing: widlar_lib/hsc_lay/layout
+\o DRC started.......Wed Oct 14 16:39:19 2026
+\o     completed ....Wed Oct 14 16:39:19 2026
+\o     CPU TIME = 00:00:00  TOTAL TIME = 00:00:00
+\o *********   Summary of rule violations for cell "hsc_lay layout"   *********
+\o    Total errors found: 0
+\o 
+\t (t)
+\p > 
+\i printf("MCP:drcA=%L\n" drcA)
+\o MCP:drcA=(t)
+\t t
+\p > 
+\i extA = errset( ivExtract( ?cell cv ?rulesFromUnix t ?rulesFilePath "/home/work/gpdk090_v4.6/diva/divaEXT.rul" ?rulesLibName "" ?hier t ?echo t) t)
+\o Extraction started at Wed Oct 14 16:39:19 2026
+\o 
+\o Validating hierarchy instantiation for:
+\o library: widlar_lib
+\o cell:    hsc_lay
+\o view:    layout
+\o Rules source is a simple file.
+\o Rules path is /home/work/gpdk090_v4.6/diva/divaEXT.rul.
+\o Inclusion limit is set to 1000.
+\o Parsing drcExtractRules of "/home/work/gpdk090_v4.6/diva/divaEXT.rul"...
+\o info: If short location check is desired later on, check the saveInterconnect
+\o  statement for correctness:
+\o  Interconnect layer bp_tap, Bondpad, Metal9_v, Via8, Metal8_v, Via7, Metal7_v, Via6, Metal6_v, Via5, Metal5_v, Via4, Metal4_v, Via3, Metal3_v, via2_cap, CapMetal, via2_out_capInd, Metal2_v, Via1, ind_term1_tap, ind_term1, ind_term2_tap, ind_term2, Metal1_v, cont_poly, cont_pdiff, cont_ndiff, cont_emit, cont_base, npn_base, cont_coll not saved.
+\o  Interconnect layers merged on save: npn_coll, nwell_conn.
+\o  Interconnect layers merged on save: npn_emit, ndiff_conn.
+\o  Interconnect layers merged on save: metal1_conn, Metal1_p.
+\o  Interconnect layers merged on save: metal2_conn, Metal2_p.
+\o  Interconnect layers merged on save: metal3_conn, Metal3_p.
+\o  Interconnect layers merged on save: metal4_conn, Metal4_p.
+\o  Interconnect layers merged on save: metal5_conn, Metal5_p.
+\o  Interconnect layers merged on save: metal6_conn, Metal6_p.
+\o  Interconnect layers merged on save: metal7_conn, Metal7_p.
+\o  Interconnect layers merged on save: metal8_conn, Metal8_p.
+\o  Interconnect layers merged on save: metal9_conn, Metal9_p.
+\o  
+\o Optimizing rules...
+\o Running layout Extraction analysis
+\o Hierarchical mode
+\o Extracting cell widlar_lib/hsc_lay/layout
+\o For layer _nmos_25 :
+\o     5  shapes encountered.
+\o     5  nmos2v ivpcell gpdk090 devices well formed.
+\o 0 macro cells were extracted in this cell.
+\o saving rep widlar_lib/hsc_lay/extracted
+\o saving widlar_lib/hsc_lay/excell
+\o Extraction started.......Wed Oct 14 16:39:19 2026
+\o            completed ....Wed Oct 14 16:39:19 2026
+\o     CPU TIME = 00:00:00  TOTAL TIME = 00:00:00
+\o *********   Summary of rule violations for cell "hsc_lay layout"   *********
+\o    Total errors found: 0
+\o 
+\t (t)
+\p > 
+\i printf("MCP:extA=%L\n" extA)
+\o MCP:extA=(t)
+\t t
+\p > 
+\i procedure( mcpNum(v)
+\i   if( floatp(v) || fixp(v) then float(v)
+\i     else let((r) r = errset(cdfParseFloatString(v) nil) if(r && floatp(car(r)) then car(r) else 0.0))))
+\t mcpNum
+\p > 
+\i procedure( dumpNL(cvv fname)
+\i   let( (op ni k nets)
+\i     op = outfile(fname "w")
+\i     ni = makeTable("ni" nil) k = 0
+\i     nets = cvv~>nets
+\i     foreach(n nets ni[n~>name] = k k = k+1)
+\i     foreach(tm cvv~>terminals
+\i       fprintf(op "t %d %s inputOutput\n" ni[tm~>net~>name] tm~>name))
+\i     foreach(n nets fprintf(op "n %d /%s\n" ni[n~>name] n~>name))
+\i     k = 0
+\i     foreach(i cvv~>instances
+\i       when( i~>cellName=="nmos2v"
+\i         fprintf(op "; nmos2v Instance /%s = auLvs device M%d\n" i~>name k)
+\i         fprintf(op "d nmos2v D G S B (p D S)\n")
+\i         fprintf(op "i %d nmos2v" k)
+\i         foreach(tn '("D" "G" "S" "B")
+\i           let((it) it = car(setof(x i~>instTerms x~>name==tn))
+\i             fprintf(op " %d" ni[it~>net~>name])))
+\i         fprintf(op " \" m 1.0 l %g w %g \"\n" mcpNum(i~>l) mcpNum(i~>w))
+\i         k = k+1))
+\i     close(op)
+\i     printf("MCP:dumped=%s devs=%d\n" fname k)))
+\t dumpNL
+\p > 
+\i system("mkdir -p ./CMPRUN/layout ./CMPRUN/schematic")
+\t 0
+\p > 
+\i ext = dbOpenCellViewByType(lib "hsc_lay" "extracted" nil "r")
+\t db:0x1719529a
+\p > 
+\i when(ext dumpNL(ext "./CMPRUN/layout/netlist")
+\i   foreach(i ext~>instances
+\i     when( i~>cellName=="nmos2v"
+\i       printf("MCP:extmos %s w=%L %L\n" i~>name i~>w
+\i         mapcar(lambda((it) list(it~>name it~>net~>name)) i~>instTerms)))))
+\o MCP:dumped=./CMPRUN/layout/netlist devs=5
+\o MCP:extmos +4 w=1.2e-05 (("S" "GND") ("B" "GND") ("G" "IIN") ("D" "6"))
+\o MCP:extmos +3 w=1.2e-05 (("S" "6") ("B" "GND") ("G" "IBIAS") ("D" "IOUT"))
+\o MCP:extmos +2 w=1.2e-05 (("S" "GND") ("B" "GND") ("G" "IIN") ("D" "5"))
+\o MCP:extmos +1 w=1.2e-05 (("S" "IIN") ("B" "GND") ("G" "IBIAS") ("D" "5"))
+\o MCP:extmos +0 w=3e-06 (("S" "GND") ("B" "GND") ("G" "IBIAS") ("D" "IBIAS"))
+\t (db:0x17194c9e db:0x17194c9d db:0x17194c9c db:0x17194c9b db:0x17194c9a)
+\p > 
+\i sch = dbOpenCellViewByType(lib "hsc_core" "schematic" nil "r")
+\o Loading layers.cxt 
+\t db:0x17193c1a
+\p > 
+\i dumpNL(sch "./CMPRUN/schematic/netlist")
+\o MCP:dumped=./CMPRUN/schematic/netlist devs=5
+\t t
+\p > 
+\i printf("MCP:OK=1\n")
+\o MCP:OK=1
+\t t
+\p > 
+\i exit(0)
+\p > 
+\a exit
+\w *WARNING* hiDeleteForm: Cannot delete a form that is mapped or from within the form's callback (geSaveAllForm)
+\w *WARNING* hiCreateAppForm: Could not delete already created form geSaveAllForm
+\w *WARNING* hiDeleteForm: Cannot delete a form that is mapped or from within the form's callback (geSaveAllForm)
+\o 
+\o Loading lce.cxt 
+\# Memory report: on exit            426 MB, process size 1,248 MB at UTC 2026.10.14 08:39:20.576
+\# Memory report: peak usage         426 MB, process size 1,248 MB
+@@@DONE

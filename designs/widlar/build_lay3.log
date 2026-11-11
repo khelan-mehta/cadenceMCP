@@ -1,0 +1,307 @@
+\e Display :57 Error "BadAtom (invalid Atom parameter)"
+\e  request 20 error 5 serial 230 
+@@@VIRTUOSO_RC=124
+=== ciw ===
+\o Loading AMSOSS.cxt 
+\o Loading AMS.cxt 
+\# Memory report: using         351 MB, process size 1,173 MB at UTC 2026.10.11 12:38:20.162
+\o 	Loading gpdk090/gpdk090_PDKRegistrations.il ... done!
+\o 
+\o   *************************************************************           
+\o   *              Cadence Design Systems, Inc.                 *           
+\o   *                                                           *           
+\o   *                    Generic 90nm PDK                       *           
+\o   *                        (gpdk090)                          *           
+\o   *                                                           *           
+\o   *************************************************************           
+\o 	
+\o 
+\o 	Version : 4.6
+\o 
+\o 	Build date: 10-FEB-2011
+\o 
+\o done!
+\o Loaded gpdk090/libInit.il successfully!
+\t db:0x16c4cd9a
+\p > 
+\i mp1 = list(list("fw" "float" 3.12e-6) list("l" "float" 2.8e-7) list("fingers" "int" 1)
+\i            list("tap" "string" "Integrated") list("connectGates" "string" "Top"))
+\t (("fw" "float" 3.12e-06) 
+\t     ("l" "float" 2.8e-07) 
+\t     ("fingers" "int" 1) 
+\t     ("tap" "string" "Integrated") 
+\t     ("connectGates" "string" "Top")
+\t )
+\p > 
+\i mp2 = list(list("fw" "float" 3.12e-6) list("l" "float" 2.8e-7) list("fingers" "int" 1)
+\i            list("tap" "string" "None") list("connectGates" "string" "Top"))
+\t (("fw" "float" 3.12e-06) 
+\t     ("l" "float" 2.8e-07) 
+\t     ("fingers" "int" 1) 
+\t     ("tap" "string" "None") 
+\t     ("connectGates" "string" "Top")
+\t )
+\p > 
+\i i1 = dbCreateParamInstByMasterName(sc "gpdk090" "nmos2v" "layout" "F1" 0:0 "R0" 1 mp1)
+\t db:0x16c4c71a
+\p > 
+\i i2 = dbCreateParamInstByMasterName(sc "gpdk090" "nmos2v" "layout" "F2" 20.0:0 "R0" 1 mp2)
+\t db:0x16c4c71b
+\p > 
+\i dbFlattenInst(i1 32 t t)
+\t t
+\p > 
+\i dbFlattenInst(i2 32 t t)
+\t t
+\p > 
+\i foreach(sh sc~>shapes
+\i   when( sh~>layerName=="Metal1" && sh~>purpose=="drawing"
+\i     printf("MCP:m1 %L\n" sh~>bBox)))
+\o MCP:m1 ((-0.5 0.0) (-0.12 3.12))
+\o MCP:m1 ((0.4 0.0) (0.52 3.12))
+\o MCP:m1 ((-0.5 0.0) (-0.12 3.12))
+\o MCP:m1 ((0.0 3.26) (0.28 3.38))
+\o MCP:m1 ((19.76 0.0) (19.88 3.12))
+\o MCP:m1 ((20.4 0.0) (20.52 3.12))
+\o MCP:m1 ((20.0 3.26) (20.28 3.38))
+\t (db:0x16c4bb1a db:0x16c4bb1b db:0x16c4bb1c db:0x16c4bb1d db:0x16c4bb1e
+\t     db:0x16c4bb1f db:0x16c4bb20 db:0x16c4bb21 db:0x16c4bb22 db:0x16c4bb23
+\t     db:0x16c4bb24 db:0x16c4bb25 db:0x16c4bb26 db:0x16c4bb27 db:0x16c4bb28
+\t     db:0x16c4bb29 db:0x16c4bb2a db:0x16c4bb2b db:0x16c4bb2c db:0x16c4bb2d
+\t     db:0x16c4bb2e db:0x16c4bb2f db:0x16c4bb30 db:0x16c4bb31 db:0x16c4bb32
+\t     db:0x16c4bb33 db:0x16c4bb34 db:0x16c4bb35 db:0x16c4bb36 db:0x16c4bb37
+\t     db:0x16c4bb38 db:0x16c4bb39 db:0x16c4bb3a db:0x16c4bb3b db:0x16c4bb3c
+\t     db:0x16c4bb3d db:0x16c4bb3e db:0x16c4bb3f db:0x16c4bb40 db:0x16c4bb41
+\t     db:0x16c4bb42 db:0x16c4bb43 db:0x16c4bb44 db:0x16c4bb45 db:0x16c4bb46
+\t     db:0x16c4bb47 db:0x16c4bb48 db:0x16c4bb49 db:0x16c4bb4a db:0x16c4bb4b
+\t     db:0x16c4bb4c db:0x16c4bb4d db:0x16c4bb4e db:0x16c4bb4f db:0x16c4bb50
+\t     db:0x16c4bb51 db:0x16c4bb52 db:0x16c4bb53 db:0x16c4bb54 db:0x16c4bb55
+\t     db:0x16c4bb56 db:0x16c4bb57 db:0x16c4bb58 db:0x16c4bb59 db:0x16c4bb5a
+\t     db:0x16c4bb5b db:0x16c4bb5c db:0x16c4bb5d db:0x16c4bb5e db:0x16c4bb5f
+\t     db:0x16c4bb60 db:0x16c4bb61 db:0x16c4bb62 db:0x16c4bb63 db:0x16c4bb64
+\t     db:0x16c4bb65 db:0x16c4bb66 db:0x16c4bb67 db:0x16c4bb68 db:0x16c4bb69
+\t     db:0x16c4bb6a db:0x16c4bb6b db:0x16c4bb6c db:0x16c4bb6d db:0x16c4bb6e
+\t     db:0x16c4bb6f db:0x16c4bb70 db:0x16c4bb71 db:0x16c4bb72 db:0x16c4bb73
+\t     db:0x16c4bb74 db:0x16c4bb75
+\t )
+\p > 
+\i dbSave(sc) dbClose(sc)
+\# Available memory:          6,582 MB at UTC 2026.10.11 12:38:28.682
+\# Memory report: Maximum memory size now 6,933 MB at UTC 2026.10.11 12:38:28.682
+\o Loading le.cxt 
+\o Loading drdEdit.cxt 
+\o Loading leToolbox.cxt 
+\o Loading treeAssistant.cxt 
+\o Loading soi.cxt 
+\t t
+\p > 
+\o Loading mpt.cxt 
+\i ; ---------- 2. rebuild layout ----------
+\i cv = dbOpenCellViewByType(lib "widlar_lay" "layout" "maskLayout" "w")
+\t db:0x16c4cd9a
+\p > 
+\i MA = dbCreateParamInstByMasterName(cv "gpdk090" "nmos2v" "layout" "M1" 0:0 "R0" 1 mp1)
+\t db:0x16c4b91a
+\p > 
+\i MB = dbCreateParamInstByMasterName(cv "gpdk090" "nmos2v" "layout" "M2" 6.0:0 "R0" 1 mp2)
+\t db:0x16c4b91b
+\p > 
+\i RS = dbCreateParamInstByMasterName(cv "gpdk090" "resnsppoly" "layout" "RS" 0:-32.0 "R0" 1
+\i       list(list("segments" "int" 28) list("segW" "float" 1e-6) list("segL" "float" 24.195e-6)
+\i            list("connection" "string" "Series")))
+\t db:0x16c4b91c
+\p > 
+\i d1 = termBox(MA "D") g1 = termBox(MA "G") b1 = termBox(MA "B")
+\t ((-0.5 0.0) 
+\t     (-0.12 3.12)
+\t )
+\p > 
+\i d2 = termBox(MB "D") g2 = termBox(MB "G") s2 = termBox(MB "S")
+\t ((5.7 0.0) 
+\t     (6.0 3.12)
+\t )
+\p > 
+\i rp = termBox(RS "PLUS") rm = termBox(RS "MINUS")
+\t ((43.2 -32.37) 
+\t     (44.2 -32.25)
+\t )
+\p > 
+\i ; source-column metal x-range, from the flatten probe: the narrow Metal1 column
+\i ; inside the S diffusion. We recompute it generically: source metal column =
+\i ; Metal1 rect whose x-range lies inside the S box of the probe cells.
+\i ; For tap=None (M2) the probe showed its own column; apply the offset directly.
+\i sMet2x0 = 19.76 + 6.0 - 20.0   ; probe F2 at x=20 -> M2 at x=6
+\t 5.76
+\p > 
+\i sMet2x1 = 19.88 + 6.0 - 20.0
+\t 5.88
+\p > 
+\i printf("MCP:nscol=%L %L\n" sMet2x0 sMet2x1)
+\o MCP:nscol=5.76 5.88
+\t t
+\p > 
+\i nIREF = dbCreateNet(cv "IREF") nIOUT = dbCreateNet(cv "IOUT")
+\t db:0x16c4b11b
+\p > 
+\i nGND = dbCreateNet(cv "GND")  nNS  = dbCreateNet(cv "NS")
+\t db:0x16c4b11d
+\p > 
+\i railY0 = -2.0 railY1 = -1.6
+\t -1.6
+\p > 
+\i netRect(cv nGND -1.0 railY0 45.0 railY1)
+\t db:0x16c4b09a
+\p > 
+\i netRect(cv nGND xCoord(lowerLeft(b1)) railY1 xCoord(upperRight(b1)) 0.1)
+\t db:0x16c4b09b
+\p > 
+\i netRect(cv nGND xCoord(lowerLeft(rm)) yCoord(lowerLeft(rm)) 45.0 yCoord(upperRight(rm)))
+\t db:0x16c4b09c
+\p > 
+\i netRect(cv nGND 44.88 yCoord(lowerLeft(rm)) 45.0 railY1)
+\t db:0x16c4b09d
+\p > 
+\i netRect(cv nNS sMet2x0 -1.1 sMet2x1 0.1)
+\t db:0x16c4b09e
+\p > 
+\i netRect(cv nNS -1.4 -1.1 sMet2x1 -0.9)
+\t db:0x16c4b09f
+\p > 
+\i netRect(cv nNS -1.4 yCoord(lowerLeft(rp)) -1.28 -0.9)
+\t db:0x16c4b0a0
+\p > 
+\i netRect(cv nNS -1.4 yCoord(lowerLeft(rp)) xCoord(upperRight(rp)) yCoord(upperRight(rp)))
+\t db:0x16c4b0a1
+\p > 
+\i dx0 = xCoord(lowerLeft(d1)) dx1 = xCoord(upperRight(d1))
+\t 0.58
+\p > 
+\i barY0 = 3.6 barY1 = 3.72
+\t 3.72
+\p > 
+\i netRect(cv nIREF dx0 yCoord(upperRight(d1))-0.1 dx1 barY1)
+\t db:0x16c4b0a2
+\p > 
+\i netRect(cv nIREF -1.4 barY0 xCoord(upperRight(g2))-0.02 barY1)
+\t db:0x16c4b0a3
+\p > 
+\i gc1 = (xCoord(lowerLeft(g1))+xCoord(upperRight(g1)))/2.0
+\t 0.14
+\p > 
+\i gc2 = (xCoord(lowerLeft(g2))+xCoord(upperRight(g2)))/2.0
+\t 6.14
+\p > 
+\i netRect(cv nIREF gc1-0.06 yCoord(lowerLeft(g1))+0.02 gc1+0.06 barY1)
+\t db:0x16c4b0a4
+\p > 
+\i netRect(cv nIREF gc2-0.06 yCoord(lowerLeft(g2))+0.02 gc2+0.06 barY1)
+\t db:0x16c4b0a5
+\p > 
+\i ox0 = xCoord(lowerLeft(d2)) ox1 = xCoord(upperRight(d2))
+\t 6.58
+\p > 
+\i netRect(cv nIOUT ox0 -0.75 ox1 0.1)
+\t db:0x16c4b0a6
+\p > 
+\i netRect(cv nIOUT ox0 -0.75 8.3 -0.63)
+\t db:0x16c4b0a7
+\p > 
+\i mkPin(cv nIREF -1.4 barY0 -0.9 barY1)
+\t db:0x16c4b0a8
+\p > 
+\i mkPin(cv nIOUT 7.8 -0.75 8.3 -0.63)
+\t db:0x16c4b0aa
+\p > 
+\i mkPin(cv nGND 4.0 railY0 4.5 railY1)
+\t db:0x16c4b0ac
+\p > 
+\i printf("MCP:routed=t nets=%L\n" cv~>nets~>name)
+\o MCP:routed=t nets=("IREF" "IOUT" "GND" "NS")
+\t t
+\p > 
+\i dbSave(cv)
+\o Loading techComp.cxt 
+\t t
+\p > 
+\i ; ---------- 3. DRC (verbose errors) ----------
+\i lay = dbOpenCellViewByType(lib "widlar_lay" "layout" "maskLayout" "r")
+\t db:0x16c4cd9a
+\p > 
+\i drcRes = errset( ivDRC( ?cell lay ?rulesFilePath "/home/work/gpdk090_v4.6/diva/divaDRC.rul" ?rulesLibName "" ?hier t ?echo t) t)
+\o DRC started at Sun Oct 11 20:38:28 2026
+\o 
+\o Validating hierarchy instantiation for:
+\o library: widlar_lib
+\o cell:    widlar_lay
+\o view:    layout
+\o Rules path is /home/work/gpdk090_v4.6/diva/divaDRC.rul.
+\o Inclusion limit is set to 1000.
+\w *WARNING* Illegal techfile name "/home/work/gpdk090_v4.6/diva/divaDRC.rul".
+\o Verification program terminated.
+\t (nil)
+\p > 
+\i printf("MCP:drc_call=%L err=%L\n" drcRes errset.errset)
+\o MCP:drc_call=(nil) err=nil
+\t t
+\p > 
+\i extRes = errset( ivExtract( ?cell lay ?rulesFilePath "/home/work/gpdk090_v4.6/diva/divaEXT.rul" ?rulesLibName "" ?hier t ?echo t) t)
+\o Extraction started at Sun Oct 11 20:38:28 2026
+\o 
+\o Validating hierarchy instantiation for:
+\o library: widlar_lib
+\o cell:    widlar_lay
+\o view:    layout
+\o Rules path is /home/work/gpdk090_v4.6/diva/divaEXT.rul.
+\o Inclusion limit is set to 1000.
+\w *WARNING* Illegal techfile name "/home/work/gpdk090_v4.6/diva/divaEXT.rul".
+\o Verification program terminated.
+\t (nil)
+\p > 
+\i printf("MCP:ext_call=%L err=%L\n" extRes errset.errset)
+\o MCP:ext_call=(nil) err=nil
+\t t
+\p > 
+\i lvsRes = errset(
+\i   ivLVS( "./LVSrun" lib "widlar_lay" "layout" t
+\i          lib "widlar_core" "schematic" t
+\i          t nil t nil "" t 0 t "" "/home/work/gpdk090_v4.6/diva/divaLVS.rul" "" ) t)
+\o Loading LVS.cxt 
+\o Loading layerProc.cxt 
+\o Loading seCore.cxt 
+\o LVS job is now started...
+\t (t)
+\p > 
+\i printf("MCP:lvs_call=%L err=%L\n" lvsRes errset.errset)
+\o MCP:lvs_call=(t) err=nil
+\t t
+\p > 
+\i printf("MCP:OK=1\n")
+\o MCP:OK=1
+\t t
+\p > 
+\i exit(0)
+\o 
+\o Loading lce.cxt 
+\o The LVS job has completed. Unable to open si.out to determine match status.
+\o 
+\o Run Directory: /home/work/widlar_run/LVSrun
+\p > 
+\# Replay complete, returning to interactive mode at UTC 2026.10.11 12:38:33.949
+\w *WARNING* 'virtuoso' exited unexpectedly. Panic files have been created for the cellviews that were opened in edit mode. For the list of these panic files, see the panic log:
+\w /home/work/panic.log.work-eda.12277
+\w To restore a cellview using its panic file:
+\w 1. Open the cellview with the recovered data using 'dbOpenPanicCellView'.
+\w    Example: 'cellview = dbOpenPanicCellView("lib" "cell" "view")'.
+\w    The cellview opens in read-only mode.
+\w 2. Reopen the cellview in append mode using 'dbReopen(cellview "a")'.
+\w 3. Restore the recovered data to the cellview using 'dbSave(cellview)'.
+\w    To save the recovered data to a different cellview, use
+\w    'dbSave(cellview "otherlib" "cell" "view")' with the desired
+\w    library, cell, and view information.
+\w 4. Remove the cellview from virtual memory using 'dbPurge(cellview)'.
+\w    You can now open the restored cellview.
+\w *WARNING* Process was terminated by USER with SIGTERM signal
+\o Local time (crash) Sunday 11 October 2026, 08:52:15 PM
+total 8
+drwxrwxr-x.  2 work work 4096 Oct 11 20:37 .
+drwx------. 65 work work 4096 Oct 11 20:15 ..

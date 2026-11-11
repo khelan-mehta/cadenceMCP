@@ -1,0 +1,75 @@
+Virtuoso Framework License (111) was checked out successfully. Total checkout time was 0.00s.
+
+Running netlist
+Begin netlist:    Oct 11 21:07:29 2026
+    simulation library = widlar_lib
+               cell = widlar_core
+               view = schematic
+    view list = ("auLvs" "schematic")
+    stopping view list = ("auLvs")
+*WARNING* The directory: '/home/work/mcp_skill_runs/widlar_fix2/LVSrun/mcp_work' does not exist
+	but was defined in libFile '/home/work/mcp_skill_runs/widlar_fix2/LVSrun/cds.lib' for Lib 'mcp_work'.
+Loading gpdk090/libInit.il ...
+	Loading gpdk090/loadCxt.ile ... done!
+	Loading context 'gpdk090' from library 'gpdk090' ... done!
+	Loading context 'pdkUtils' from library 'gpdk090' ... done!
+	Loading gpdk090/gpdk090_customFilter.il ... done!
+	Loading gpdk090/.simrc ... done!
+	Loading gpdk090/libInitCustomExit.il ... 	Loading Environment Settings ...
+	Loading gpdk090/gpdk090_PDKRegistrations.il ... done!
+
+  *************************************************************           
+  *              Cadence Design Systems, Inc.                 *           
+  *                                                           *           
+  *                    Generic 90nm PDK                       *           
+  *                        (gpdk090)                          *           
+  *                                                           *           
+  *************************************************************           
+	
+
+	Version : 4.6
+
+	Build date: 10-FEB-2011
+
+done!
+Loaded gpdk090/libInit.il successfully!
+*WARNING* envSetVal: Can't set the value of variable 'extractVerifySubstrate',
+	in tool[.partition] 'layout' - it has not been registered.
+*Error* skill: undefined function - ancNetlistFileHeader
+*Error* simNetlistWithArgs: 
+*Error* skill: undefined function - ancNetlistFileNetOutput
+error in net path /IREF:
+Error in evaluating property value: 'ancNetlistFileNetOutput()'.
+*Error* simNetlistWithArgs: 
+*Error* skill: undefined function - ancNetlistFileNetOutput
+error in net path /GND:
+Error in evaluating property value: 'ancNetlistFileNetOutput()'.
+*Error* simNetlistWithArgs: 
+*Error* skill: undefined function - ancNetlistFileNetOutput
+error in net path /NS:
+Error in evaluating property value: 'ancNetlistFileNetOutput()'.
+*Error* simNetlistWithArgs: 
+*Error* skill: undefined function - ancNetlistFileNetOutput
+error in net path /IOUT:
+Error in evaluating property value: 'ancNetlistFileNetOutput()'.
+*Error* simNetlistWithArgs: 
+*Error* skill: undefined function - ancFnlPushHier
+*Error* simNetlistWithArgs: 
+*Error* skill: undefined function - ancNetlistFileInstOutput
+error in instance path /M2:
+Error in evaluating property value: 'ancNetlistFileInstOutput()'.
+*Error* simNetlistWithArgs: 
+*Error* skill: undefined function - ancNetlistFileInstOutput
+error in instance path /M1:
+Error in evaluating property value: 'ancNetlistFileInstOutput()'.
+*Error* simNetlistWithArgs: 
+*Error* skill: undefined function - ancNetlistFileInstOutput
+error in instance path /RS:
+Error in evaluating property value: 'ancNetlistFileInstOutput()'.
+*Error* simNetlistWithArgs: 
+*Error* skill: undefined function - ancFnlPopHier
+*Error* simNetlistWithArgs: 
+*Error* skill: undefined function - ancNetlistFileFooter
+*Error* simNetlistWithArgs: 
+	si: Netlist did not complete successfully.
+End netlist:      Oct 11 21:07:29 2026

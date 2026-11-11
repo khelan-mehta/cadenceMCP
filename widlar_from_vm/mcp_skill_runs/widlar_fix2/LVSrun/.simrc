@@ -1,0 +1,2 @@
+errset(loadContext("/opt/IC617/tools.lnx86/dfII/etc/context/64bit/cdsFuncs.cxt") t)
+errset(loadContext("/opt/IC617/tools.lnx86/dfII/etc/context/64bit/socket.cxt") t)

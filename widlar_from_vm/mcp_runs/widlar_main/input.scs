@@ -1,0 +1,16 @@
+simulator lang=spectre
+global 0
+include "/home/work/gpdk090_v4.6/models/spectre/gpdk090.scs" section=NN
+parameters vdd=1.8 iref=100u reff=677.46u wn=3.12u ln=280n
+VDD (vdd 0) vsource dc=vdd
+IREF (vdd nref) isource dc=iref
+M1 (nref nref 0 0) gpdk090_nmos2v w=wn l=ln fingers=2 fw=wn/2
+M2 (nout nref ns 0) gpdk090_nmos2v w=wn l=ln fingers=2 fw=wn/2
+RS (ns 0 0) gpdk090_resnsppoly w=1u l=reff
+opts options save=allpub currents=all
+RL (vdd nout) resistor r=1M
+op dc oppoint=rawfile
+info1 info what=oppoint where=file file="op.info"
+swsegl dc param=reff start=500u stop=850u step=1u
+swvdd dc dev=VDD param=dc start=0 stop=1.8 step=5m
+tr tran stop=100u
